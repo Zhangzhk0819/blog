@@ -251,6 +251,97 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-how-to-create-blog-by-hexo" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/09/13/how-to-create-blog-by-hexo/" class="article-date">
+      <time datetime="2017-09-13T13:26:30.000Z" itemprop="datePublished">2017-09-13</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="安装-node-js-和-hexo"><a href="#安装-node-js-和-hexo" class="headerlink" title="安装 node.js 和 hexo"></a>安装 node.js 和 hexo</h2><p>首先到<a href="https://nodejs.org/en/download/" target="_blank" rel="external">官网</a>下载安装 node.js, windows 版本是一个 msi 文件，直接下载双击安装就行。安装程序会自动添加环境变量，此时需要重启才能生效。</p>
+<p>接下来的操作大多数基于命令行，windows 系统下可以使用 git bash（git 安装与使用方法这里暂不详述）, 其操作与 linux 类似，个人感觉比 cmd 好用。</p>
+<p>接下来通过下面命令安装 hexo：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-cli -g</div></pre></td></tr></table></figure>
+<p>其中 npm 是 node.js 的包管理工具，类似于 ruby 的 gem 包管理工具。接下来，到到你想存放博客文件的目录，执行下面命令新建一个博客：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo init blog</div></pre></td></tr></table></figure>
+<p>上面命令中的 blog 可以任意取名，用于存放博客文件，然后 cd 进去 blog 文件。接下来执行下面命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install</div></pre></td></tr></table></figure>
+<p>npm install 是 npm 的安装命令，会自动在blog目录下寻找 package.json 作为配置文件安装必要的模块。此时就可以在本地通过以下命令启动hexo服务器了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo s</div></pre></td></tr></table></figure>
+<p>启动本地服务器后，便可以通过 <a href="http://localhost:4000/" target="_blank" rel="external">localhost:4000</a> 来访问自己本地的 hexo 博客了。需要注意的是，这个时候打开的这个 git bash 已经被占用了，不能关闭，否则 hexo 服务器也就关闭了。如果要执行其他命令，需要打开一个新的 git bash。</p>
+<h2 id="把-hexo-部署到-github-上"><a href="#把-hexo-部署到-github-上" class="headerlink" title="把 hexo 部署到 github 上"></a>把 hexo 部署到 github 上</h2><p>接下来就可以把本地的 hexo 博客部署到 github 上了。</p>
+<p>首先，我们需要在 github 上新建一个 repo, repo 的名字为 yourname.github.io，其中 yourname 为你自己的 github 的名字。</p>
+<p>在正式部署之前，需要做好以下三项准备：</p>
+<ul>
+<li>安装 git 部署工具</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<ul>
+<li>blog 文件夹里面的 _config.yml 文件的 deploy 部分需要做以下配置：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  <span class="built_in">type</span>: git</div><div class="line">  repo: git@github.com:yourname/yourname.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+<ul>
+<li>设置好本地 git bash 与你 github 账号之间的秘钥。</li>
+</ul>
+<p>这个时候就可以通过以下命令一键部署本地 hexo 到 github 上面了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g -d</div></pre></td></tr></table></figure>
+<p>至此，hexo 就已经部署好了，接下来说一说更好得使用 hexo。</p>
+<h2 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h2><p>前面利用 hexo init 建立博客时使用的是默认模板，个人感觉不是很好看，hexo 有着丰富的<a href="https://hexo.io/themes/" target="_blank" rel="external">主题模板</a>，而且切换起来非常方便，只需要在 blog 文件夹下面执行下面命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/MOxFIVE/hexo-theme-yelee themes/yelee</div></pre></td></tr></table></figure>
+<p>上面的链接为主题模板的 github 地址，下载的主题放在 /blog/themes 文件夹下面。事实上，打开 themes 文件夹我们发现里面已经有一个默认模板 landscape 在里面了。</p>
+<p>最后把 blog 文件夹里面的 _config.yml 文件的 theme 字段修改成对应的主题名字就好了。</p>
+<h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><ul>
+<li><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo 官方文档</a></li>
+<li><a href="http://moxfive.coding.me/yelee/5.Vendor/baidu-share.html" target="_blank" rel="external">Yelee 主题使用说明</a></li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-test" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
