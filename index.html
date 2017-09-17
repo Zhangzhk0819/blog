@@ -303,8 +303,12 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  <span class="built_in">type</span>: git</div><div class="line">  repo: git@github.com:yourname/yourname.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
 <ul>
-<li>设置好本地 git bash 与你 github 账号之间的秘钥。</li>
+<li>设置本地 git bash 与你 github 账号之间的秘钥。使用一下命令生成 ssh key:</li>
 </ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C <span class="string">"youremail@email.com"</span></div></pre></td></tr></table></figure>
+<p>其中 youremail@email.com 是 github bash 的邮箱，cd 到存放秘钥的目录，利用以下命令打印出公钥：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat id_rsa.pub</div></pre></td></tr></table></figure>
+<p>复制打印出来的公钥，粘贴到 GitHub 账号的 setting -&gt; SSH keys。</p>
 <p>这个时候就可以通过以下命令一键部署本地 hexo 到 github 上面了</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g -d</div></pre></td></tr></table></figure>
 <p>至此，hexo 就已经部署好了，接下来说一说更好得使用 hexo。</p>
