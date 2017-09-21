@@ -1,1 +1,1 @@
-My homepage is [zhangzhk.com](zhangzhk.com).
+My homepage is [zhangzhk.com](http://zhangzhk.com).
