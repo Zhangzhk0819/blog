@@ -381,6 +381,28 @@
 
 
     
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://yoursite.com/2017/09/13/test/';
+            this.page.identifier = '2017/09/13/test/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//comment.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
 
 
 
@@ -401,7 +423,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/manage-two-github-accounts-in-one-computer/">在一台设备上管理两个 github 账号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/test/">Test</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/understanding-fully-connected-feed/">深入剖析 fully_connected_feed.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/manage-two-github-accounts-in-one-computer/">在一台设备上管理两个 github 账号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/test/">Test</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/hello-world/">Hello World</a></li></ul>
 
 
 
