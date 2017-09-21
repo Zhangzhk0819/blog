@@ -3,6 +3,34 @@
   
     
     <entry>
+      <title><![CDATA[Git 使用方法与常用命令]]></title>
+      <url>/2017/09/21/commands-of-git/</url>
+      <content type="html"><![CDATA[<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
+<li>克隆项目到本地<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> https://github.com/folder-of-project folder-to-save</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><ul>
+<li><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰教程</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> coding </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[深入剖析 fully_connected_feed.py]]></title>
       <url>/2017/09/21/understanding-fully-connected-feed/</url>
       <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>fully_connected_feed.py 是 tensorflow 中训练 MINIST 数据集的简单示例，通过对该代码的学习，可以帮助我们更好得理解 python 的语法以及 tensorflow 的工作流程。</p>
@@ -86,15 +114,15 @@
 <ul>
 <li>设置本地 git bash 与你 github 账号之间的秘钥。使用一下命令生成 ssh key:</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C <span class="string">"youremail@email.com"</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C <span class="string">"youremail@email.com"</span></div></pre></td></tr></table></figure>
 <p>其中 youremail@email.com 是 github bash 的邮箱，cd 到存放秘钥的目录，利用以下命令打印出公钥：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat id_rsa.pub</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cat id_rsa.pub</div></pre></td></tr></table></figure>
 <p>复制打印出来的公钥，粘贴到 GitHub 账号的 setting -&gt; SSH keys。</p>
 <p>这个时候就可以通过以下命令一键部署本地 hexo 到 github 上面了</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g -d</div></pre></td></tr></table></figure>
 <p>至此，hexo 就已经部署好了，接下来说一说更好得使用 hexo。</p>
 <h2 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h2><p>前面利用 hexo init 建立博客时使用的是默认模板，个人感觉不是很好看，hexo 有着丰富的<a href="https://hexo.io/themes/" target="_blank" rel="external">主题模板</a>，而且切换起来非常方便，只需要在 blog 文件夹下面执行下面命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/MOxFIVE/hexo-theme-yelee themes/yelee</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> https://github.com/MOxFIVE/hexo-theme-yelee themes/yelee</div></pre></td></tr></table></figure>
 <p>上面的链接为主题模板的 github 地址，下载的主题放在 /blog/themes 文件夹下面。事实上，打开 themes 文件夹我们发现里面已经有一个默认模板 landscape 在里面了。</p>
 <p>最后把 blog 文件夹里面的 _config.yml 文件的 theme 字段修改成对应的主题名字就好了。</p>
 <h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><ul>
