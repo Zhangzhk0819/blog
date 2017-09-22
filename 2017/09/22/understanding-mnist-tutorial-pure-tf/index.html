@@ -14,17 +14,19 @@
 <meta name="author" content="Zhikun Zhang" />
 
 
-    
-    
 
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="Homepage of Zhikun Zhang">
-<meta property="og:url" content="http://zhangzhk.com/index.html">
+<meta name="description" content="1234567891011121314151617from __future__ import absolute_importfrom __future__ import divisionfrom __future__ import print_functionfrom __future__ import unicode_literalsimport numpy as npimport tenso">
+<meta name="keywords" content="security,cleverhans,adversarial">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入剖析 Mnist_tutorial_pure_tf">
+<meta property="og:url" content="http://zhangzhk.com/2017/09/22/understanding-mnist-tutorial-pure-tf/index.html">
 <meta property="og:site_name" content="Homepage of Zhikun Zhang">
+<meta property="og:description" content="1234567891011121314151617from __future__ import absolute_importfrom __future__ import divisionfrom __future__ import print_functionfrom __future__ import unicode_literalsimport numpy as npimport tenso">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-09-22T09:51:01.847Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Homepage of Zhikun Zhang">
+<meta name="twitter:title" content="深入剖析 Mnist_tutorial_pure_tf">
+<meta name="twitter:description" content="1234567891011121314151617from __future__ import absolute_importfrom __future__ import divisionfrom __future__ import print_functionfrom __future__ import unicode_literalsimport numpy as npimport tenso">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -52,13 +54,11 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
-    <style> .article { opacity: 0;} </style>
-
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Homepage of Zhikun Zhang</title>
+<title>深入剖析 Mnist_tutorial_pure_tf | Homepage of Zhikun Zhang</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -67,8 +67,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
-        isPost: false,
+        isHome: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -242,9 +242,7 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-understanding-mnist-tutorial-pure-tf" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-understanding-mnist-tutorial-pure-tf" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2017/09/22/understanding-mnist-tutorial-pure-tf/" class="article-date">
@@ -262,12 +260,27 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/22/understanding-mnist-tutorial-pure-tf/">深入剖析 Mnist_tutorial_pure_tf</a>
+    <h1 class="article-title" itemprop="name">
+      深入剖析 Mnist_tutorial_pure_tf
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/adversarial/">adversarial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cleverhans/">cleverhans</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/security/">security</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -288,298 +301,85 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/adversarial/">adversarial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cleverhans/">cleverhans</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/security/">security</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-commands-of-git" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/09/21/commands-of-git/" class="article-date">
-      <time datetime="2017-09-21T07:35:53.000Z" itemprop="datePublished">2017-09-21</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/21/commands-of-git/">Git 使用方法与常用命令</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
-<li>克隆项目到本地<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> https://github.com/folder-of-project folder-to-save</div></pre></td></tr></table></figure>
-</li>
-</ul>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/coding/">coding</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2017/09/21/commands-of-git/#more">more >></a>
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2017/09/22/understanding-mnist-tutorial-pure-tf/">深入剖析 Mnist_tutorial_pure_tf</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
+        <p><span>Created:</span>2017-09-22, 17:37:16</p>
+        <p><span>Updated:</span>2017-09-22, 17:51:01</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2017/09/22/understanding-mnist-tutorial-pure-tf/" title="深入剖析 Mnist_tutorial_pure_tf">http://zhangzhk.com/2017/09/22/understanding-mnist-tutorial-pure-tf/</a>
+            <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2017/09/22/understanding-mnist-tutorial-pure-tf/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-understanding-fully-connected-feed" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/09/21/understanding-fully-connected-feed/" class="article-date">
-      <time datetime="2017-09-21T02:07:41.000Z" itemprop="datePublished">2017-09-21</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/21/understanding-fully-connected-feed/">深入剖析 fully_connected_feed.py</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>fully_connected_feed.py 是 tensorflow 中训练 MINIST 数据集的简单示例，通过对该代码的学习，可以帮助我们更好得理解 python 的语法以及 tensorflow 的工作流程。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tensorflow/">tensorflow</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2017/09/21/understanding-fully-connected-feed/#more">more >></a>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
         </p>
-      
-      <div class="clearfix"></div>
     </div>
-    
-  </div>
-  
-</article>
 
 
 
-
-
-
-
-
-
-  
-    <article id="post-manage-two-github-accounts-in-one-computer" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/09/17/manage-two-github-accounts-in-one-computer/" class="article-date">
-      <time datetime="2017-09-17T15:58:05.000Z" itemprop="datePublished">2017-09-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <nav id="article-nav">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/17/manage-two-github-accounts-in-one-computer/">在一台设备上管理两个 Github 账号</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><p><a href="http://www.jianshu.com/p/f2bef9737a8a" target="_blank" rel="external">简书</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/coding/">coding</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-how-to-create-blog-by-hexo" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/09/13/how-to-create-blog-by-hexo/" class="article-date">
-      <time datetime="2017-09-13T13:26:30.000Z" itemprop="datePublished">2017-09-13</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a>
-    </h1>
-  
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/09/21/commands-of-git/">
+                    Git 使用方法与常用命令
+                </a>
+            </div>
+        
+    </nav>
 
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Hexo 是一种基于 node.js 的静态博客框架。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/coding/">coding</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2017/09/13/how-to-create-blog-by-hexo/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
   
 </article>
 
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"深入剖析 Mnist_tutorial_pure_tf　| Homepage of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
 
 
 
@@ -587,9 +387,55 @@
 
 
 
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://zhangzhk.com/2017/09/22/understanding-mnist-tutorial-pure-tf/';
+            this.page.identifier = '2017/09/22/understanding-mnist-tutorial-pure-tf/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//zhangzhk.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
 
-  
-  
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/09/21/commands-of-git/" title="Next: Git 使用方法与常用命令">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/22/understanding-mnist-tutorial-pure-tf/">深入剖析 Mnist_tutorial_pure_tf</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/commands-of-git/">Git 使用方法与常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/understanding-fully-connected-feed/">深入剖析 fully_connected_feed.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/manage-two-github-accounts-in-one-computer/">在一台设备上管理两个 Github 账号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
