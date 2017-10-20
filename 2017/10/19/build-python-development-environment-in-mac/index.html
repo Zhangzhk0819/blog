@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Homepage of Zhikun Zhang">
 <meta property="og:description" content="虽然Mac OS上自带 python, 但往往难以满足开发者对版本的需求，因此我们需要完善 Mac 上 python 的开发环境。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-20T14:35:29.000Z">
+<meta property="og:updated_time" content="2017-10-20T16:51:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac 中 Python 开发环境搭建">
 <meta name="twitter:description" content="虽然Mac OS上自带 python, 但往往难以满足开发者对版本的需求，因此我们需要完善 Mac 上 python 的开发环境。">
@@ -312,6 +312,9 @@
 <p>wget 是一个好用的文件下载工具，下载的文件放在当前文件夹中。如果还没有安装 wget，也可以通过 homebrew 进行安装。</p>
 <p>接下来就可以用 python 执行该安装脚本了：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo python get-pip.py</div></pre></td></tr></table></figure>
+<p>需要注意的是，由于我们使用了 pyenv 来管理 python 版本，每次使用 pip 都是把相应的包安装到当前系统使用的 python 版本中。</p>
+<h2 id="Python-开发常用软件"><a href="#Python-开发常用软件" class="headerlink" title="Python 开发常用软件"></a>Python 开发常用软件</h2><p>在 python 开发过程中，使用一些软件能大大加快开发进程，这些软件都可以通过 pip 进行安装。</p>
+<p>*ipython</p>
 <h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><ul>
 <li><a href="https://brew.sh/index_zh-cn.html" target="_blank" rel="external">homebrew 官网</a></li>
 <li><a href="http://www.jb51.net/article/76931.htm" target="_blank" rel="external">在Mac OS上搭建Python的开发环境</a></li>
@@ -329,7 +332,7 @@
         <p><span>Title:</span><a href="/2017/10/19/build-python-development-environment-in-mac/">Mac 中 Python 开发环境搭建</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
         <p><span>Created:</span>2017-10-19, 15:14:48</p>
-        <p><span>Updated:</span>2017-10-20, 10:35:29</p>
+        <p><span>Updated:</span>2017-10-20, 12:51:44</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2017/10/19/build-python-development-environment-in-mac/" title="Mac 中 Python 开发环境搭建">http://zhangzhk.com/2017/10/19/build-python-development-environment-in-mac/</a>
             <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2017/10/19/build-python-development-environment-in-mac/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
@@ -359,7 +362,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-homebrew"><span class="toc-number">1.</span> <span class="toc-text">安装 homebrew</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-pyenv"><span class="toc-number">2.</span> <span class="toc-text">安装 pyenv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-pip"><span class="toc-number">3.</span> <span class="toc-text">安装 pip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有用链接"><span class="toc-number">4.</span> <span class="toc-text">有用链接</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-homebrew"><span class="toc-number">1.</span> <span class="toc-text">安装 homebrew</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-pyenv"><span class="toc-number">2.</span> <span class="toc-text">安装 pyenv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-pip"><span class="toc-number">3.</span> <span class="toc-text">安装 pip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-开发常用软件"><span class="toc-number">4.</span> <span class="toc-text">Python 开发常用软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有用链接"><span class="toc-number">5.</span> <span class="toc-text">有用链接</span></a></li></ol>
         
     </div>
     <style>

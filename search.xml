@@ -31,6 +31,9 @@
 <p>wget 是一个好用的文件下载工具，下载的文件放在当前文件夹中。如果还没有安装 wget，也可以通过 homebrew 进行安装。</p>
 <p>接下来就可以用 python 执行该安装脚本了：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo python get-pip.py</div></pre></td></tr></table></figure>
+<p>需要注意的是，由于我们使用了 pyenv 来管理 python 版本，每次使用 pip 都是把相应的包安装到当前系统使用的 python 版本中。</p>
+<h2 id="Python-开发常用软件"><a href="#Python-开发常用软件" class="headerlink" title="Python 开发常用软件"></a>Python 开发常用软件</h2><p>在 python 开发过程中，使用一些软件能大大加快开发进程，这些软件都可以通过 pip 进行安装。</p>
+<p>*ipython</p>
 <h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><ul>
 <li><a href="https://brew.sh/index_zh-cn.html" target="_blank" rel="external">homebrew 官网</a></li>
 <li><a href="http://www.jb51.net/article/76931.htm" target="_blank" rel="external">在Mac OS上搭建Python的开发环境</a></li>
