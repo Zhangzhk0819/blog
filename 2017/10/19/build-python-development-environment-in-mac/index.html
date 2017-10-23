@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="虽然Mac OS上自带 python, 但往往难以满足开发者对版本的需求，因此我们需要完善 Mac 上 python 的开发环境。">
+<meta name="description" content="由于 Mac 上很多系统软件依赖于其自带的 python 环境，如果直接使用系统自带的 python 环境进行开发，很可能会把该环境搞乱，威胁系统安全，因此在开发的时候我们最好能在独立的环境中进行开发。另外，在 python 开发过程中，经常需要在不同版本之间切换，特别是 2.7 和 3.5，因此需要搭建一个方便 python 版本切换的开发环境。">
 <meta name="keywords" content="python,mac">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac 中 Python 开发环境搭建">
+<meta property="og:title" content="Mac 中多版本 Python 开发环境管理">
 <meta property="og:url" content="http://zhangzhk.com/2017/10/19/build-python-development-environment-in-mac/index.html">
 <meta property="og:site_name" content="Homepage of Zhikun Zhang">
-<meta property="og:description" content="虽然Mac OS上自带 python, 但往往难以满足开发者对版本的需求，因此我们需要完善 Mac 上 python 的开发环境。">
+<meta property="og:description" content="由于 Mac 上很多系统软件依赖于其自带的 python 环境，如果直接使用系统自带的 python 环境进行开发，很可能会把该环境搞乱，威胁系统安全，因此在开发的时候我们最好能在独立的环境中进行开发。另外，在 python 开发过程中，经常需要在不同版本之间切换，特别是 2.7 和 3.5，因此需要搭建一个方便 python 版本切换的开发环境。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-23T21:26:30.000Z">
+<meta property="og:updated_time" content="2017-10-23T21:44:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac 中 Python 开发环境搭建">
-<meta name="twitter:description" content="虽然Mac OS上自带 python, 但往往难以满足开发者对版本的需求，因此我们需要完善 Mac 上 python 的开发环境。">
+<meta name="twitter:title" content="Mac 中多版本 Python 开发环境管理">
+<meta name="twitter:description" content="由于 Mac 上很多系统软件依赖于其自带的 python 环境，如果直接使用系统自带的 python 环境进行开发，很可能会把该环境搞乱，威胁系统安全，因此在开发的时候我们最好能在独立的环境中进行开发。另外，在 python 开发过程中，经常需要在不同版本之间切换，特别是 2.7 和 3.5，因此需要搭建一个方便 python 版本切换的开发环境。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -58,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Mac 中 Python 开发环境搭建 | Homepage of Zhikun Zhang</title>
+<title>Mac 中多版本 Python 开发环境管理 | Homepage of Zhikun Zhang</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -261,7 +261,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Mac 中 Python 开发环境搭建
+      Mac 中多版本 Python 开发环境管理
     </h1>
   
 
@@ -286,7 +286,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>虽然Mac OS上自带 python, 但往往难以满足开发者对版本的需求，因此我们需要完善 Mac 上 python 的开发环境。</p>
+        <p>由于 Mac 上很多系统软件依赖于其自带的 python 环境，如果直接使用系统自带的 python 环境进行开发，很可能会把该环境搞乱，威胁系统安全，因此在开发的时候我们最好能在独立的环境中进行开发。另外，在 python 开发过程中，经常需要在不同版本之间切换，特别是 2.7 和 3.5，因此需要搭建一个方便 python 版本切换的开发环境。</p>
 <a id="more"></a>
 <h2 id="安装-homebrew"><a href="#安装-homebrew" class="headerlink" title="安装 homebrew"></a>安装 homebrew</h2><p>在各个版本的 Linux 系统中，可以使用包管理工具来快速安装各种软件，比如 Ubuntu 的 apt-get，Debian/Kali 的 dpkg，Fedora 的 yum 等。同样，在 Mac 系统中，也有一个比较好用的包管理系统，那就是 homebrew。Mac 系统默认是没有 homebrew 的，需要通过以下命令安装：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ /usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></div></pre></td></tr></table></figure>
@@ -343,12 +343,12 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2017/10/19/build-python-development-environment-in-mac/">Mac 中 Python 开发环境搭建</a></p>
+        <p><span>Title:</span><a href="/2017/10/19/build-python-development-environment-in-mac/">Mac 中多版本 Python 开发环境管理</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
         <p><span>Created:</span>2017-10-19, 15:14:48</p>
-        <p><span>Updated:</span>2017-10-23, 17:26:30</p>
+        <p><span>Updated:</span>2017-10-23, 17:44:07</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2017/10/19/build-python-development-environment-in-mac/" title="Mac 中 Python 开发环境搭建">http://zhangzhk.com/2017/10/19/build-python-development-environment-in-mac/</a>
+            <span>Full URL:</span><a class="post-url" href="/2017/10/19/build-python-development-environment-in-mac/" title="Mac 中多版本 Python 开发环境管理">http://zhangzhk.com/2017/10/19/build-python-development-environment-in-mac/</a>
             <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2017/10/19/build-python-development-environment-in-mac/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -412,7 +412,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Mac 中 Python 开发环境搭建　| Homepage of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Mac 中多版本 Python 开发环境管理　| Homepage of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -466,7 +466,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/19/build-python-development-environment-in-mac/">Mac 中 Python 开发环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/22/understanding-mnist-tutorial-pure-tf/">深入剖析 mnist_tutorial_pure_tf.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/commands-of-git/">Git 使用方法与常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/understanding-fully-connected-feed/">深入剖析 fully_connected_feed.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/manage-two-github-accounts-in-one-computer/">在一台设备上管理两个 Github 账号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/19/build-python-development-environment-in-mac/">Mac 中多版本 Python 开发环境管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/22/understanding-mnist-tutorial-pure-tf/">深入剖析 mnist_tutorial_pure_tf.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/commands-of-git/">Git 使用方法与常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/understanding-fully-connected-feed/">深入剖析 fully_connected_feed.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/manage-two-github-accounts-in-one-computer/">在一台设备上管理两个 Github 账号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a></li></ul>
 
 
 
