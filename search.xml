@@ -3,16 +3,17 @@
   
     
     <entry>
-      <title><![CDATA[Mac 中多版本 Python 开发环境管理]]></title>
+      <title><![CDATA[Mac 中多版本 Python 开发环境搭建]]></title>
       <url>/2017/10/19/build-python-development-environment-in-mac/</url>
-      <content type="html"><![CDATA[<p>由于 Mac 上很多系统软件依赖于其自带的 python 环境，如果直接使用系统自带的 python 环境进行开发，很可能会把该环境搞乱，威胁系统安全，因此在开发的时候我们最好能在独立的环境中进行开发。另外，在 python 开发过程中，经常需要在不同版本之间切换，特别是 2.7 和 3.5，因此需要搭建一个方便 python 版本切换的开发环境。</p>
-<a id="more"></a>
+      <content type="html"><![CDATA[<p>由于 Mac 上很多系统软件依赖于其自带的 python 环境，如果直接使用系统自带的 python 环境进行开发，很可能会把该环境搞乱，威胁系统安全，因此在开发的时候我们最好能在独立的环境中进行开发。另外，在 python 开发过程中，经常需要在不同版本之间切换，特别是 2.7 和 3.5，因此需要搭建一个方便 python 版本切换的开发环境。<br><a id="more"></a></p>
+<p>下面详细介绍 mac 中多版本 python 开发环境的搭建方法。</p>
 <h2 id="安装-homebrew"><a href="#安装-homebrew" class="headerlink" title="安装 homebrew"></a>安装 homebrew</h2><p>在各个版本的 Linux 系统中，可以使用包管理工具来快速安装各种软件，比如 Ubuntu 的 apt-get，Debian/Kali 的 dpkg，Fedora 的 yum 等。同样，在 Mac 系统中，也有一个比较好用的包管理系统，那就是 homebrew。Mac 系统默认是没有 homebrew 的，需要通过以下命令安装：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ /usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></div></pre></td></tr></table></figure>
+<p>安装完成后就可以通过 brew intall pakage-name 命令来安装各种软件了。在这篇博客中主要用来安装下面的 pyenv 和 pyenv-virtualenv。</p>
 <h2 id="安装-pyenv"><a href="#安装-pyenv" class="headerlink" title="安装 pyenv"></a>安装 pyenv</h2><p>Mac 系统一般自带有 python 2.7，为了方便 python 版本切换，我们可以通过 pyenv 这个软件来进行快速管理。pyenv 可以管理 python2, python3 以及 annaconda, miniconda 在内的各种 python 发行版本，所有版本文件都存放在 ~/.pyenv/versions 文件夹里面。</p>
 <p>首先利用下面命令安装 pyenv:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install pyenv</div></pre></td></tr></table></figure>
-<p>通过以下两条命令把环境变量写入 ~/.bash_profile 中：</p>
+<p>然后通过以下两条命令把环境变量写入 ~/.bash_profile 中：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'export PYENV_ROOT="$HOME/.pyenv"'</span> &gt;&gt; ~/.bash_profile</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'export PATH="$PYENV_ROOT/bin:$PATH"'</span> &gt;&gt; ~/.bash_profile</div></pre></td></tr></table></figure>
 <p>接下来通过把 pyenv init 写入 shell 来开启 shims 和自动补齐功能：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> -e <span class="string">'if command -v pyenv 1&gt;/dev/null 2&gt;&amp;1; then\n  eval "$(pyenv init -)"\nfi'</span> &gt;&gt; ~/.bash_profile</div></pre></td></tr></table></figure>
@@ -24,7 +25,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv install -l</div></pre></td></tr></table></figure>
 <p>Python 安装与卸载</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pyenv install 2.7.3   <span class="comment"># 安装python</span></div><div class="line">$ pyenv uninstall 2.7.3 <span class="comment"># 卸载python</span></div></pre></td></tr></table></figure>
-<p>Python 切换</p>
+<p>Python 版本切换</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ pyenv global 2.7.3  <span class="comment"># 设置全局的 Python 版本，通过将版本号写入 ~/.pyenv/version 文件的方式。</span></div><div class="line">$ pyenv <span class="built_in">local</span> 2.7.3 <span class="comment"># 设置 Python 本地版本，通过将版本号写入当前目录下的 .python-version 文件的方式。</span></div><div class="line">$ pyenv shell 2.7.3 <span class="comment"># 设置面向 shell 的 Python 版本，通过设置当前 shell 的 PYENV_VERSION 环境变量的方式。</span></div><div class="line">$ pyenv shell --<span class="built_in">unset</span> <span class="comment"># 取消当前 shell 设定的版本。</span></div><div class="line">$ pyenv <span class="built_in">rehash</span>  <span class="comment"># 创建垫片路径（为所有已安装的可执行文件创建 shims，如：~/.pyenv/versions/*/bin/*，因此，每当你增删了 Python 版本或带有可执行文件的包（如 pip）以后，都应该执行一次本命令）</span></div></pre></td></tr></table></figure>
 <p>python 的使用优先级为 shell &gt; local &gt; global。</p>
 <h2 id="安装-pyenv-virtualenv"><a href="#安装-pyenv-virtualenv" class="headerlink" title="安装 pyenv-virtualenv"></a>安装 pyenv-virtualenv</h2><p>pyenv-virtual 是用来管理虚拟环境的。这里我们需要认真区分版本管理和环境管理的区别，版本管理用于管理 python 的不同发行版本，而环境管理用于为不同项目定制开发环境。在 pyenv 中，环境是从版本中派生出来的，可以继承所属版本的第三方包，也可以为特定项目定制第三方包，而又不至于影响原始的 python 版本。对于 pyenv 来说，虚拟环境和版本一样，也存放在 ~/.pyenv/versions 文件夹中，其管理跟版本管理类似，可以使用 uninstall, global, local 等命令。</p>
