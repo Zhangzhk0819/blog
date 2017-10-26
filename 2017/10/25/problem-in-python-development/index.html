@@ -15,13 +15,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Homepage of Zhikun Zhang">
-<meta property="og:url" content="http://zhangzhk.com/archives/2017/index.html">
+<meta name="description" content="在 python 开发过程中，经常遇到各种小问题，有的时候一个小问题便需要花大半天甚至数天时间才能解决。为方便今后查找，这篇博客主要记录在 python 开发过程中遇到的各种小问题以及相应的解决方法。">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 开发过程中遇到问题总结">
+<meta property="og:url" content="http://zhangzhk.com/2017/10/25/problem-in-python-development/index.html">
 <meta property="og:site_name" content="Homepage of Zhikun Zhang">
+<meta property="og:description" content="在 python 开发过程中，经常遇到各种小问题，有的时候一个小问题便需要花大半天甚至数天时间才能解决。为方便今后查找，这篇博客主要记录在 python 开发过程中遇到的各种小问题以及相应的解决方法。">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-10-25T19:23:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Homepage of Zhikun Zhang">
+<meta name="twitter:title" content="Python 开发过程中遇到问题总结">
+<meta name="twitter:description" content="在 python 开发过程中，经常遇到各种小问题，有的时候一个小问题便需要花大半天甚至数天时间才能解决。为方便今后查找，这篇博客主要记录在 python 开发过程中遇到的各种小问题以及相应的解决方法。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -53,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives: 2017 | Homepage of Zhikun Zhang</title>
+<title>Python 开发过程中遇到问题总结 | Homepage of Zhikun Zhang</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -63,8 +68,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -237,282 +242,198 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-problem-in-python-development" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/10/25/problem-in-python-development/" class="archive-article-date">
-      <time datetime="2017-10-25T18:56:26.000Z" itemprop="datePublished">10-25</time>
+    <div class="article-meta">
+      <a href="/2017/10/25/problem-in-python-development/" class="article-date">
+      <time datetime="2017-10-25T18:56:26.000Z" itemprop="datePublished">2017-10-25</time>
 </a>
 
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/25/problem-in-python-development/">Python 开发过程中遇到问题总结</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python 开发过程中遇到问题总结
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
     <div class="article-category tagcloud">
     <a class="article-category-link" href="/categories/coding/">coding</a>
     </div>
 
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>在 python 开发过程中，经常遇到各种小问题，有的时候一个小问题便需要花大半天甚至数天时间才能解决。为方便今后查找，这篇博客主要记录在 python 开发过程中遇到的各种小问题以及相应的解决方法。<br><a id="more"></a></p>
+<h2 id="ipython-重新加载模块"><a href="#ipython-重新加载模块" class="headerlink" title="ipython 重新加载模块"></a>ipython 重新加载模块</h2><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>为了提高加载速度，ipython 运行过程中对所有的 module 只会 import 一次，而在稍微大一些的项目中，往往需要编写多个 module 以方便管理。这样一来，当需要在 submodule 里面修改内容时，主程序并不能及时更新，使用的还是最开始加载的内容。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>最简单的解决方法就是每次修改 submodule 内容以后重启 ipython，但这样做非常麻烦而且有可能丢失数据。下面介绍一种利用 ipython 的 autoreload 扩展 [1]彻底解决该问题的方法：</p>
+<p>在 ipython 的配置文件 ~/.ipython/profile_default/ipython_config.py 中添加下面两段内容：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">c.InteractiveShellApp.extensions = [<span class="string">'autoreload'</span>]     </div><div class="line">c.InteractiveShellApp.exec_lines = [<span class="string">'%autoreload 2'</span>]</div></pre></td></tr></table></figure>
+<p>如果目前 ~/.ipython/profile_default/ 文件夹中不存在 ipython_config.py，可以在终端中输入以下命令来创建：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ipython profile create</div></pre></td></tr></table></figure>
+<p>该命令会自动创建 ipython 的配置文件，所有可用的配置都被注释好了，我们要做的就是根据自己的需要打开相应的配置并添加相应的内容就好了。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://ipython.org/ipython-doc/3/config/extensions/autoreload.html" target="_blank" rel="external">ipython document</a></p>
+
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2017/10/25/problem-in-python-development/">Python 开发过程中遇到问题总结</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
+        <p><span>Created:</span>2017-10-25, 14:56:26</p>
+        <p><span>Updated:</span>2017-10-25, 15:23:20</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2017/10/25/problem-in-python-development/" title="Python 开发过程中遇到问题总结">http://zhangzhk.com/2017/10/25/problem-in-python-development/</a>
+            <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2017/10/25/problem-in-python-development/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/10/19/build-python-development-environment-in-mac/">
+                    Mac 中多版本 Python 开发环境搭建
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/10/19/build-python-development-environment-in-mac/" class="archive-article-date">
-      <time datetime="2017-10-19T19:14:48.000Z" itemprop="datePublished">10-19</time>
-</a>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ipython-重新加载模块"><span class="toc-number">1.</span> <span class="toc-text">ipython 重新加载模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题"><span class="toc-number">1.1.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决方案"><span class="toc-number">1.2.</span> <span class="toc-text">解决方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">2.</span> <span class="toc-text">Reference</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
 
 
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/19/build-python-development-environment-in-mac/">Mac 中多版本 Python 开发环境搭建</a>
-    </h1>
-  
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Python 开发过程中遇到问题总结　| Homepage of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
 
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/coding/">coding</a>
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://zhangzhk.com/2017/10/25/problem-in-python-development/';
+            this.page.identifier = '2017/10/25/problem-in-python-development/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//zhangzhk.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/10/19/build-python-development-environment-in-mac/" title="Next: Mac 中多版本 Python 开发环境搭建">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
 
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/09/22/understanding-mnist-tutorial-pure-tf/" class="archive-article-date">
-      <time datetime="2017-09-22T21:37:16.000Z" itemprop="datePublished">09-22</time>
-</a>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/problem-in-python-development/">Python 开发过程中遇到问题总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/19/build-python-development-environment-in-mac/">Mac 中多版本 Python 开发环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/22/understanding-mnist-tutorial-pure-tf/">深入剖析 mnist_tutorial_pure_tf.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/commands-of-git/">Git 使用方法与常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/understanding-fully-connected-feed/">深入剖析 fully_connected_feed.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/manage-two-github-accounts-in-one-computer/">在一台设备上管理两个 Github 账号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a></li></ul>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/22/understanding-mnist-tutorial-pure-tf/">深入剖析 mnist_tutorial_pure_tf.py</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
-    </div>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/adversarial/">adversarial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cleverhans/">cleverhans</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/security/">security</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/09/21/commands-of-git/" class="archive-article-date">
-      <time datetime="2017-09-21T19:35:53.000Z" itemprop="datePublished">09-21</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/21/commands-of-git/">Git 使用方法与常用命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/coding/">coding</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/09/21/understanding-fully-connected-feed/" class="archive-article-date">
-      <time datetime="2017-09-21T14:07:41.000Z" itemprop="datePublished">09-21</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/21/understanding-fully-connected-feed/">深入剖析 fully_connected_feed.py</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tensorflow/">tensorflow</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/09/17/manage-two-github-accounts-in-one-computer/" class="archive-article-date">
-      <time datetime="2017-09-18T03:58:05.000Z" itemprop="datePublished">09-17</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/17/manage-two-github-accounts-in-one-computer/">在一台设备上管理两个 Github 账号</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/coding/">coding</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/09/13/how-to-create-blog-by-hexo/" class="archive-article-date">
-      <time datetime="2017-09-14T01:26:30.000Z" itemprop="datePublished">09-13</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/coding/">coding</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">

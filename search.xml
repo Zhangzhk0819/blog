@@ -3,6 +3,35 @@
   
     
     <entry>
+      <title><![CDATA[Python 开发过程中遇到问题总结]]></title>
+      <url>/2017/10/25/problem-in-python-development/</url>
+      <content type="html"><![CDATA[<p>在 python 开发过程中，经常遇到各种小问题，有的时候一个小问题便需要花大半天甚至数天时间才能解决。为方便今后查找，这篇博客主要记录在 python 开发过程中遇到的各种小问题以及相应的解决方法。<br><a id="more"></a></p>
+<h2 id="ipython-重新加载模块"><a href="#ipython-重新加载模块" class="headerlink" title="ipython 重新加载模块"></a>ipython 重新加载模块</h2><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>为了提高加载速度，ipython 运行过程中对所有的 module 只会 import 一次，而在稍微大一些的项目中，往往需要编写多个 module 以方便管理。这样一来，当需要在 submodule 里面修改内容时，主程序并不能及时更新，使用的还是最开始加载的内容。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>最简单的解决方法就是每次修改 submodule 内容以后重启 ipython，但这样做非常麻烦而且有可能丢失数据。下面介绍一种利用 ipython 的 autoreload 扩展 [1]彻底解决该问题的方法：</p>
+<p>在 ipython 的配置文件 ~/.ipython/profile_default/ipython_config.py 中添加下面两段内容：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">c.InteractiveShellApp.extensions = [<span class="string">'autoreload'</span>]     </div><div class="line">c.InteractiveShellApp.exec_lines = [<span class="string">'%autoreload 2'</span>]</div></pre></td></tr></table></figure>
+<p>如果目前 ~/.ipython/profile_default/ 文件夹中不存在 ipython_config.py，可以在终端中输入以下命令来创建：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ipython profile create</div></pre></td></tr></table></figure>
+<p>该命令会自动创建 ipython 的配置文件，所有可用的配置都被注释好了，我们要做的就是根据自己的需要打开相应的配置并添加相应的内容就好了。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://ipython.org/ipython-doc/3/config/extensions/autoreload.html" target="_blank" rel="external">ipython document</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> coding </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Mac 中多版本 Python 开发环境搭建]]></title>
       <url>/2017/10/19/build-python-development-environment-in-mac/</url>
       <content type="html"><![CDATA[<p>由于 Mac 上很多系统软件依赖于其自带的 python 环境，如果直接使用系统自带的 python 环境进行开发，很可能会把该环境搞乱，威胁系统安全，因此在开发的时候我们最好能在独立的环境中进行开发。另外，在 python 开发过程中，经常需要在不同版本之间切换，特别是 2.7 和 3.5，因此需要搭建一个方便 python 版本切换的开发环境。<br><a id="more"></a></p>
