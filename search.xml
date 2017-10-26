@@ -13,6 +13,9 @@
 <p>如果目前 ~/.ipython/profile_default/ 文件夹中不存在 ipython_config.py，可以在终端中输入以下命令来创建：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ipython profile create</div></pre></td></tr></table></figure>
 <p>该命令会自动创建 ipython 的配置文件，所有可用的配置都被注释好了，我们要做的就是根据自己的需要打开相应的配置并添加相应的内容就好了。</p>
+<h2 id="Theano-和-Lasagne-模块-import-错误"><a href="#Theano-和-Lasagne-模块-import-错误" class="headerlink" title="Theano 和 Lasagne 模块 import 错误"></a>Theano 和 Lasagne 模块 import 错误</h2><h3 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h3><p>在 Theano 和 Lasagne 模块 import 过程中报 ImportError 错误。</p>
+<h3 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h3><p>利用 pip 安装 theano 和 lasagne 模块的正确版本，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pip install theano==0.8.2</div><div class="line">$ pip install lasagne==0.1</div></pre></td></tr></table></figure>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://ipython.org/ipython-doc/3/config/extensions/autoreload.html" target="_blank" rel="external">ipython document</a></p>
 ]]></content>
       
