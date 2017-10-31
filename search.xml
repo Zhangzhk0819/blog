@@ -3,6 +3,34 @@
   
     
     <entry>
+      <title><![CDATA[如何使用 Purdue 的计算集群]]></title>
+      <url>/2017/10/30/how-to-use-purdue-cluster/</url>
+      <content type="html"><![CDATA[<p>在普渡学习期间，为了提高训练模型的速度，获得了使用计算集群 Conte 的权限。下面记录一下使用计算集群的方法。</p>
+<a id="more"></a>
+<h2 id="配置-ssh"><a href="#配置-ssh" class="headerlink" title="配置 ssh"></a>配置 ssh</h2><p>front end，计算集群</p>
+<h2 id="存储空间使用"><a href="#存储空间使用" class="headerlink" title="存储空间使用"></a>存储空间使用</h2><h2 id="提交任务"><a href="#提交任务" class="headerlink" title="提交任务"></a>提交任务</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="">Conte user guide</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> coding </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> cluster </tag>
+            
+            <tag> ssh </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Python 开发过程中遇到问题总结]]></title>
       <url>/2017/10/25/problem-in-python-development/</url>
       <content type="html"><![CDATA[<p>在 python 开发过程中，经常遇到各种小问题，有的时候一个小问题便需要花大半天甚至数天时间才能解决。为方便今后查找，这篇博客主要记录在 python 开发过程中遇到的各种小问题以及相应的解决方法。<br><a id="more"></a></p>
