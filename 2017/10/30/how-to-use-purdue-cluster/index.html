@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="在普渡学习期间，为了提高训练模型的速度，获得了使用计算集群 Conte 的权限。下面记录一下使用计算集群的方法。">
+<meta name="description" content="在普渡学习期间，为了提高训练模型的速度，获得了使用多个远程计算资源的权限，包括课题组自己搭建的 swarm 服务器，普渡计算中心集群 Conte [1]，以及匹兹堡超算中心（Pittsburgh Supercomputing Center）Bridges 计算集群。下面记录一下使用各个远程计算资源的方法。">
 <meta name="keywords" content="cluster,ssh">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何使用 Purdue 的计算集群">
+<meta property="og:title" content="如何使用远程计算资源">
 <meta property="og:url" content="http://zhangzhk.com/2017/10/30/how-to-use-purdue-cluster/index.html">
 <meta property="og:site_name" content="Homepage of Zhikun Zhang">
-<meta property="og:description" content="在普渡学习期间，为了提高训练模型的速度，获得了使用计算集群 Conte 的权限。下面记录一下使用计算集群的方法。">
+<meta property="og:description" content="在普渡学习期间，为了提高训练模型的速度，获得了使用多个远程计算资源的权限，包括课题组自己搭建的 swarm 服务器，普渡计算中心集群 Conte [1]，以及匹兹堡超算中心（Pittsburgh Supercomputing Center）Bridges 计算集群。下面记录一下使用各个远程计算资源的方法。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-31T03:32:02.000Z">
+<meta property="og:updated_time" content="2017-11-03T19:57:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何使用 Purdue 的计算集群">
-<meta name="twitter:description" content="在普渡学习期间，为了提高训练模型的速度，获得了使用计算集群 Conte 的权限。下面记录一下使用计算集群的方法。">
+<meta name="twitter:title" content="如何使用远程计算资源">
+<meta name="twitter:description" content="在普渡学习期间，为了提高训练模型的速度，获得了使用多个远程计算资源的权限，包括课题组自己搭建的 swarm 服务器，普渡计算中心集群 Conte [1]，以及匹兹堡超算中心（Pittsburgh Supercomputing Center）Bridges 计算集群。下面记录一下使用各个远程计算资源的方法。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -58,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>如何使用 Purdue 的计算集群 | Homepage of Zhikun Zhang</title>
+<title>如何使用远程计算资源 | Homepage of Zhikun Zhang</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -261,7 +261,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      如何使用 Purdue 的计算集群
+      如何使用远程计算资源
     </h1>
   
 
@@ -286,12 +286,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>在普渡学习期间，为了提高训练模型的速度，获得了使用计算集群 Conte 的权限。下面记录一下使用计算集群的方法。</p>
+        <p>在普渡学习期间，为了提高训练模型的速度，获得了使用多个远程计算资源的权限，包括课题组自己搭建的 swarm 服务器，普渡计算中心集群 Conte [1]，以及匹兹堡超算中心（Pittsburgh Supercomputing Center）Bridges 计算集群。下面记录一下使用各个远程计算资源的方法。</p>
 <a id="more"></a>
-<h2 id="配置-ssh"><a href="#配置-ssh" class="headerlink" title="配置 ssh"></a>配置 ssh</h2><p>front end，计算集群</p>
-<h2 id="存储空间使用"><a href="#存储空间使用" class="headerlink" title="存储空间使用"></a>存储空间使用</h2><h2 id="提交任务"><a href="#提交任务" class="headerlink" title="提交任务"></a>提交任务</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a href="">Conte user guide</a></li>
-</ul>
+<h2 id="swarm"><a href="#swarm" class="headerlink" title="swarm"></a>swarm</h2><h2 id="Conte"><a href="#Conte" class="headerlink" title="Conte"></a>Conte</h2><h3 id="配置-ssh"><a href="#配置-ssh" class="headerlink" title="配置 ssh"></a>配置 ssh</h3><p>front end，计算集群</p>
+<h3 id="存储空间使用"><a href="#存储空间使用" class="headerlink" title="存储空间使用"></a>存储空间使用</h3><h3 id="提交任务"><a href="#提交任务" class="headerlink" title="提交任务"></a>提交任务</h3><h2 id="Bridges"><a href="#Bridges" class="headerlink" title="Bridges"></a>Bridges</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="https://www.rcac.purdue.edu/knowledge/conte" target="_blank" rel="external">Conte user guide</a></li>
+<li><a href="https://www.psc.edu/bridges/user-guide" target="_blank" rel="external">Bridges user guide</a></li>
+</ol>
 
       
     </div>
@@ -300,12 +301,12 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2017/10/30/how-to-use-purdue-cluster/">如何使用 Purdue 的计算集群</a></p>
+        <p><span>Title:</span><a href="/2017/10/30/how-to-use-purdue-cluster/">如何使用远程计算资源</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
         <p><span>Created:</span>2017-10-30, 23:24:48</p>
-        <p><span>Updated:</span>2017-10-30, 23:32:02</p>
+        <p><span>Updated:</span>2017-11-03, 15:57:59</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2017/10/30/how-to-use-purdue-cluster/" title="如何使用 Purdue 的计算集群">http://zhangzhk.com/2017/10/30/how-to-use-purdue-cluster/</a>
+            <span>Full URL:</span><a class="post-url" href="/2017/10/30/how-to-use-purdue-cluster/" title="如何使用远程计算资源">http://zhangzhk.com/2017/10/30/how-to-use-purdue-cluster/</a>
             <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2017/10/30/how-to-use-purdue-cluster/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -333,7 +334,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-ssh"><span class="toc-number">1.</span> <span class="toc-text">配置 ssh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#存储空间使用"><span class="toc-number">2.</span> <span class="toc-text">存储空间使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提交任务"><span class="toc-number">3.</span> <span class="toc-text">提交任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#swarm"><span class="toc-number">1.</span> <span class="toc-text">swarm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conte"><span class="toc-number">2.</span> <span class="toc-text">Conte</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置-ssh"><span class="toc-number">2.1.</span> <span class="toc-text">配置 ssh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储空间使用"><span class="toc-number">2.2.</span> <span class="toc-text">存储空间使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交任务"><span class="toc-number">2.3.</span> <span class="toc-text">提交任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bridges"><span class="toc-number">3.</span> <span class="toc-text">Bridges</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
         
     </div>
     <style>
@@ -369,7 +370,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"如何使用 Purdue 的计算集群　| Homepage of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"如何使用远程计算资源　| Homepage of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -423,7 +424,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/how-to-use-purdue-cluster/">如何使用 Purdue 的计算集群</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/problem-in-python-development/">Python 开发过程中遇到问题总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/19/build-python-development-environment-in-mac/">Mac 中多版本 Python 开发环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/22/understanding-mnist-tutorial-pure-tf/">深入剖析 mnist_tutorial_pure_tf.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/commands-of-git/">Git 使用方法与常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/understanding-fully-connected-feed/">深入剖析 fully_connected_feed.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/manage-two-github-accounts-in-one-computer/">在一台设备上管理两个 Github 账号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/how-to-use-purdue-cluster/">如何使用远程计算资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/problem-in-python-development/">Python 开发过程中遇到问题总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/19/build-python-development-environment-in-mac/">Mac 中多版本 Python 开发环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/22/understanding-mnist-tutorial-pure-tf/">深入剖析 mnist_tutorial_pure_tf.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/commands-of-git/">Git 使用方法与常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/understanding-fully-connected-feed/">深入剖析 fully_connected_feed.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/manage-two-github-accounts-in-one-computer/">在一台设备上管理两个 Github 账号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a></li></ul>
 
 
 
