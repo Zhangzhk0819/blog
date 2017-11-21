@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Homepage of Zhikun Zhang">
 <meta property="og:description" content="在普渡学习期间，为了提高训练模型的速度，获得了使用多个远程计算资源的权限，包括课题组自己搭建的 swarm 服务器，普渡计算中心集群 Conte [1]，以及匹兹堡超算中心（Pittsburgh Supercomputing Center）Bridges 计算集群。下面记录一下使用各个远程计算资源的方法。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-03T19:57:59.000Z">
+<meta property="og:updated_time" content="2017-11-21T03:59:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何使用远程计算资源">
 <meta name="twitter:description" content="在普渡学习期间，为了提高训练模型的速度，获得了使用多个远程计算资源的权限，包括课题组自己搭建的 swarm 服务器，普渡计算中心集群 Conte [1]，以及匹兹堡超算中心（Pittsburgh Supercomputing Center）Bridges 计算集群。下面记录一下使用各个远程计算资源的方法。">
@@ -288,7 +288,16 @@
           
         <p>在普渡学习期间，为了提高训练模型的速度，获得了使用多个远程计算资源的权限，包括课题组自己搭建的 swarm 服务器，普渡计算中心集群 Conte [1]，以及匹兹堡超算中心（Pittsburgh Supercomputing Center）Bridges 计算集群。下面记录一下使用各个远程计算资源的方法。</p>
 <a id="more"></a>
-<h2 id="swarm"><a href="#swarm" class="headerlink" title="swarm"></a>swarm</h2><h2 id="Conte"><a href="#Conte" class="headerlink" title="Conte"></a>Conte</h2><h3 id="配置-ssh"><a href="#配置-ssh" class="headerlink" title="配置 ssh"></a>配置 ssh</h3><p>front end，计算集群</p>
+<h2 id="swarm"><a href="#swarm" class="headerlink" title="swarm"></a>swarm</h2><h3 id="远程登录主机"><a href="#远程登录主机" class="headerlink" title="远程登录主机"></a>远程登录主机</h3><p>在 macos 或 Linux 中，可以直接使用 ssh 命令登录远程主机，使用方法为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh username_in_remote_host@remote_host</div></pre></td></tr></table></figure>
+<p>其中，username_in_remote_host 是自己在远程主机上拥有的用户名，remote_host 是远程主机的 IP 地址或者域名。登录远程主机以后就跟在自己电脑上一样操作了。另外，可以使用下面的 scp 命令在本地主机和远程主机之间传输文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp path_to_local_file username_in_remote_host@remote_host:path_to_remote_file</div></pre></td></tr></table></figure>
+<p>值得一提的是，我们可以在本地使用多个 shell 登录远程主机，而且在远程主机上可以使用同样的命令登录另外一台远程主机，比如说课题组还有一台服务器 crater 只能通过内网访问，而我的 mac 只能连无线网，无法接入内网，只能通过 ssh 先连接到可以外网访问的服务器 swarm，然后在 swarm 上再通过 ssh 连接 crater。</p>
+<h3 id="ssh-免密登录"><a href="#ssh-免密登录" class="headerlink" title="ssh 免密登录"></a>ssh 免密登录</h3><p>正常情况下，每次在本地使用 ssh 和 scp 的时候，都需要输入一次远程主机的登录密码，非常麻烦。为方便起见，我们可以使用 ssh 秘钥对来进行免密登录。</p>
+<p>首先，在本地主机使用<code>ssh-keygen</code>命令产生秘钥对，密钥对默认存放在 ~/.ssh 文件夹中，需要注意的是，在产生秘钥过程中会提示设置密码，我们直接按回车键，表示不设置密码，否则就失去了免密登录的意义了。接下来使用 scp 命令把 ~/.ssh 文件夹中的 id_rsa.pub 文件远程拷贝到远程主机的 ~/.ssh 文件夹（如果没有，可以使用<code>mkdir .ssh</code>命令创建）中，接下来使用下面命令对远程主机中的 id_rsa.pub 进行重命名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mv id_rsa.pub authorized_keys</div></pre></td></tr></table></figure>
+<p>这个时候当我们再在本地执行 ssh 命令时，不需要输密码就能进入远程主机了。</p>
+<h2 id="Conte"><a href="#Conte" class="headerlink" title="Conte"></a>Conte</h2><p>front end，计算集群</p>
 <h3 id="存储空间使用"><a href="#存储空间使用" class="headerlink" title="存储空间使用"></a>存储空间使用</h3><h3 id="提交任务"><a href="#提交任务" class="headerlink" title="提交任务"></a>提交任务</h3><h2 id="Bridges"><a href="#Bridges" class="headerlink" title="Bridges"></a>Bridges</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
 <li><a href="https://www.rcac.purdue.edu/knowledge/conte" target="_blank" rel="external">Conte user guide</a></li>
 <li><a href="https://www.psc.edu/bridges/user-guide" target="_blank" rel="external">Bridges user guide</a></li>
@@ -304,7 +313,7 @@
         <p><span>Title:</span><a href="/2017/10/30/how-to-use-purdue-cluster/">如何使用远程计算资源</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
         <p><span>Created:</span>2017-10-30, 23:24:48</p>
-        <p><span>Updated:</span>2017-11-03, 15:57:59</p>
+        <p><span>Updated:</span>2017-11-20, 22:59:44</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2017/10/30/how-to-use-purdue-cluster/" title="如何使用远程计算资源">http://zhangzhk.com/2017/10/30/how-to-use-purdue-cluster/</a>
             <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2017/10/30/how-to-use-purdue-cluster/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
@@ -334,7 +343,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#swarm"><span class="toc-number">1.</span> <span class="toc-text">swarm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conte"><span class="toc-number">2.</span> <span class="toc-text">Conte</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置-ssh"><span class="toc-number">2.1.</span> <span class="toc-text">配置 ssh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储空间使用"><span class="toc-number">2.2.</span> <span class="toc-text">存储空间使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交任务"><span class="toc-number">2.3.</span> <span class="toc-text">提交任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bridges"><span class="toc-number">3.</span> <span class="toc-text">Bridges</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#swarm"><span class="toc-number">1.</span> <span class="toc-text">swarm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#远程登录主机"><span class="toc-number">1.1.</span> <span class="toc-text">远程登录主机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ssh-免密登录"><span class="toc-number">1.2.</span> <span class="toc-text">ssh 免密登录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conte"><span class="toc-number">2.</span> <span class="toc-text">Conte</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#存储空间使用"><span class="toc-number">2.1.</span> <span class="toc-text">存储空间使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交任务"><span class="toc-number">2.2.</span> <span class="toc-text">提交任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bridges"><span class="toc-number">3.</span> <span class="toc-text">Bridges</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
         
     </div>
     <style>
