@@ -3,6 +3,71 @@
   
     
     <entry>
+      <title><![CDATA[Spark 的 Python 编程]]></title>
+      <url>/2017/12/05/python-programming-for-spark/</url>
+      <content type="html"><![CDATA[<p>Spark 集群的安装在我的 <a href="http://blog.csdn.net/u012604314/article/details/51606918" target="_blank" rel="external">CSDN 博客</a> 里面有详细介绍，这里不再赘述。另外，spark 的原理介绍有时间单独开一篇博客来讲，这篇博客主要介绍 spark 的 python 编程。</p>
+<a id="more"></a>
+<h2 id="Spark-环境启动"><a href="#Spark-环境启动" class="headerlink" title="Spark 环境启动"></a>Spark 环境启动</h2><p>因为最近在用 Pittsburgh Supercomputing Center(PSC) 的计算资源在学习 spark，所以这里主要介绍 PSC 的 spark 环境启动方法。</p>
+<ul>
+<li>利用 ssh 登录 bridges.psc.edu</li>
+<li>使用<code>interact</code>命令进入计算节点</li>
+<li>使用<code>module load spark</code>命令载入 spark 模块</li>
+<li>使用<code>pyspark</code>命令进入 python 交互环境，这个时候就可以开始按照 python 语法进行编程了。</li>
+</ul>
+<p>如果想要执行 python 脚本，有以下两种方法：</p>
+<ul>
+<li>进入 pyspark 环境后，执行<code>execfile(&quot;python_file.py&quot;)</code></li>
+<li>不进入 pyspark 编译环境，执行<code>spark-submit python_file.py</code></li>
+</ul>
+<p>如果是后一种方式，在编写正式 spark python 语句之前，需要在头部加入以下语句：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext, SparkConf</div><div class="line"></div><div class="line">conf = SparkConf()</div><div class="line">sc = SparkContext(conf=conf)</div></pre></td></tr></table></figure>
+<h2 id="Spark-常用-transformation-和-action"><a href="#Spark-常用-transformation-和-action" class="headerlink" title="Spark 常用 transformation 和 action"></a>Spark 常用 transformation 和 action</h2><h3 id="Transformation"><a href="#Transformation" class="headerlink" title="Transformation"></a>Transformation</h3><p>常规 transformation</p>
+<ul>
+<li>map(func): 分别利用 func 对现有 RDD 的每个元素进行运算，生成新 RDD</li>
+<li>filter(func): 选择使得通过 func 运算为真的元素，生成新 RDD</li>
+<li>flatMap(func): 与 map 相比较，func 可以返回多个元素，最终 flatMap 的一个元素可以生成多个元素</li>
+<li>distinct(): 返回元素不重复的 RDD</li>
+</ul>
+<p>Key-value transformation</p>
+<ul>
+<li>reduceByKey(func): 通过 key 对现有 RDD 进行 reduce，reduce 方法由 func 指定</li>
+<li>sortByKey(): 返回经过 key 排序后的 RDD</li>
+</ul>
+<h3 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h3><p>常规 action</p>
+<ul>
+<li>collect(): 返回 RDD 的所有元素</li>
+<li>count(): 返回 RDD 所有元素的个数</li>
+<li>take(n): 返回 RDD 前 n 个元素</li>
+</ul>
+<p>Key-value action</p>
+<ul>
+<li>countByKey(): 返回每个 key 元素的个数</li>
+<li>lookup(key): 返回指定 key 的所有元素</li>
+</ul>
+<h2 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h2><p>下面以一个例子来说明 spark python 的使用方法。本例子要实现的任务是对一个包含 Shakespeare 所有著作的文件，统计出现次数最多的几个词。Spark python 实现代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 读入 txt 文件，放到 rdd 中，其中 sc 代表 spark context</span></div><div class="line">rdd = sc.textFile(<span class="string">"Complete_Shakespeare.txt"</span>);</div><div class="line"><span class="comment"># 在读入的 rdd 中，一个元素代表一行文字，下面这条语句把行拆分成单词，使得 words_rdd 的每个元素代表一个单词，其中 lambda 是 python 中嵌入式函数定义方法，分号前面是输入参数，后面是函数实现方法</span></div><div class="line">words_rdd = rdd.flatMap(<span class="keyword">lambda</span> x: x.split());</div><div class="line"><span class="comment"># 把 words_rdd 转化成 key-value 的形式，以充分利用 key-value transformation 的功能</span></div><div class="line">key_value_rdd = words_rdd.map(<span class="keyword">lambda</span> x: (x,<span class="number">1</span>));</div><div class="line"><span class="comment"># 在 key_value_rdd 中，key 为单词，value 为 1，在 word_counts_rdd 中，key 为单词，value 为该单词出现的次数</span></div><div class="line">word_counts_rdd = key_value_rdd.reduceByKey(<span class="keyword">lambda</span> x,y: (x+y));</div><div class="line"><span class="comment"># key 和 value 互换位置</span></div><div class="line">flipped_rdd = word_counts_rdd.map(<span class="keyword">lambda</span> x: (x[<span class="number">1</span>],x[<span class="number">0</span>]));</div><div class="line"><span class="comment"># 互换位置后就可以通过 key 进行排序了</span></div><div class="line">result_rdd = flipped_rdd.sortByKey(<span class="keyword">False</span>);</div><div class="line"><span class="comment"># 取出出现次数最多的前 n 个单词</span></div><div class="line">result_rdd.take(n)</div></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>]]></content>
+      
+        <categories>
+            
+            <category> machine learning </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> spark </tag>
+            
+            <tag> machine learning </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[如何使用远程计算资源]]></title>
       <url>/2017/10/30/how-to-use-purdue-cluster/</url>
       <content type="html"><![CDATA[<p>在普渡学习期间，为了提高训练模型的速度，获得了使用多个远程计算资源的权限，包括课题组自己搭建的 swarm 服务器，普渡计算中心集群 Conte [1]，以及匹兹堡超算中心（Pittsburgh Supercomputing Center）Bridges 计算集群。下面记录一下使用各个远程计算资源的方法。</p>
