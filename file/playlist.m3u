@@ -1,0 +1,39 @@
+#EXTM3U
+
+#EXTINF:-1, Chanel 1
+http://api.new.livestream.com/accounts/9263055/events/3189799/live.m3u8
+
+#EXTINF:-1 group-title="CCTV",CCTV1HD
+http://61.189.255.152/live.aishang.ctlcdn.com/00000110240127_1/encoder/0/playlist.m3u8
+#EXTINF:-1 group-title="CCTV",CCTV2HD
+http://61.189.255.152/live.aishang.ctlcdn.com/00000110240244_1/encoder/0/playlist.m3u8
+#EXTINF:-1 group-title="CCTV",CCTV3HD
+http://61.189.255.152/live.aishang.ctlcdn.com/00000110240245_1/encoder/0/playlist.m3u8
+#EXTINF:-1 group-title="CCTV",CCTV5HD
+http://61.189.255.152/live.aishang.ctlcdn.com/00000110240246_1/encoder/0/playlist.m3u8
+
+#EXTINF:-1,Challenge 
+http://94.46.245.190:8000/play/a01q
+#EXTINF:-1,BBC ONE HD 
+http://94.46.245.190:8000/play/a01i
+#EXTINF:-1,UK: BBC 4 HD 
+http://star-tv.ddns.me:25461/live/enzo/enzo/12971.ts 
+#EXTINF:-1,UK: BBC News UK 
+http://star-tv.ddns.me:25461/live/enzo/enzo/12970.ts 
+#EXTINF:-1,UK: BBC One 
+http://star-tv.ddns.me:25461/live/enzo/enzo/12974.ts
+
+#EXTINF:-1,USA | CNN News HD 
+http://217.182.160.161:8000/live/etsekossivi/etse1999/1796.ts 
+#EXTINF:-1,USA | HISTORY HD 
+http://217.182.160.161:8000/live/etsekossivi/etse1999/1789.ts 
+#EXTINF:-1,USA | TNT HD 
+http://217.182.160.161:8000/live/etsekossivi/etse1999/1781.ts 
+#EXTINF:-1,USA | USA Network 
+http://217.182.160.161:8000/live/etsekossivi/etse1999/1779.ts 
+#EXTINF:-1,USA | CBSN News HD 
+http://217.182.160.161:8000/live/etsekossivi/etse1999/2232.ts 
+#EXTINF:-1,USA | CNN News 
+http://217.182.160.161:8000/live/etsekossivi/etse1999/2233.ts 
+#EXTINF:-1,USA | FOX News 
+http://217.182.160.161:8000/live/etsekossivi/etse1999/2234.ts
