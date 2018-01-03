@@ -3,6 +3,37 @@
   
     
     <entry>
+      <title><![CDATA[Gitbook]]></title>
+      <url>/2018/01/02/gitbook/</url>
+      <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><a id="more"></a>
+<h2 id="安装-gitbook"><a href="#安装-gitbook" class="headerlink" title="安装 gitbook"></a>安装 gitbook</h2><p>我们可以使用 nodejs 的 npm 包管理器来安装 gitbook，nodejs 的安装方法参考我的<a href="http://zhangzhk.com/2017/09/13/how-to-create-blog-by-hexo/">这篇博客</a>。使用以下命令安装 gitbook:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install gitbook -g</div></pre></td></tr></table></figure>
+<h2 id="使用-gitbook"><a href="#使用-gitbook" class="headerlink" title="使用 gitbook"></a>使用 gitbook</h2><p>Gitbook 的使用很简单，主要是以下两条命令：</p>
+<ul>
+<li><code>gitbook init</code></li>
+<li><code>gitbook serve</code> </li>
+</ul>
+<h2 id="使用-gitbook-com-并关联-github"><a href="#使用-gitbook-com-并关联-github" class="headerlink" title="使用 gitbook.com 并关联 github"></a>使用 gitbook.com 并关联 github</h2><h2 id="发布到-github-page"><a href="#发布到-github-page" class="headerlink" title="发布到 github page"></a>发布到 github page</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> git@github.com:repository.git</div></pre></td></tr></table></figure>
+<p>使用这个<a href="/file/deploy.sh">脚本</a>快速部署到 github page。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="http://www.chengweiyang.cn/gitbook/index.html" target="_blank" rel="external">GitBook 简明教程</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> coding </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Kodi 设置教程]]></title>
       <url>/2018/01/02/setting-kodi/</url>
       <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Kodi 是一个强大的流媒体播放软件，支持 macos, windows, linux, ios 以及 android 等众多平台，使得其能在各种手机、电脑、平板以及机顶盒中运行。另外，Kodi 拥有上千种插件，大大扩展了它的功能。</p>
