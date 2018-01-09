@@ -27,6 +27,17 @@
 <li>每行最大长度79，换行可以使用反斜杠，最好使用圆括号。换行点要在操作符的后边敲回车。</li>
 <li>类和top-level函数定义之间空两行；类中的方法定义之间空一行；函数内逻辑无关段落之间空一行；其他地方尽量不要再空行</li>
 </ul>
+<h2 id="空格使用"><a href="#空格使用" class="headerlink" title="空格使用"></a>空格使用</h2><p>总体原则，避免不必要的空格。</p>
+<ul>
+<li>各种右括号前不要加空格。</li>
+<li>逗号、冒号、分号前不要加空格。</li>
+<li>函数的左括号前不要加空格。如Func(1)。</li>
+<li>序列的左括号前不要加空格。如list[2]。</li>
+<li>操作符左右各加一个空格，不要为了对齐增加空格。</li>
+<li>函数默认参数使用的赋值符左右省略空格。</li>
+<li>不要将多句语句写在同一行，尽管使用‘;’允许。</li>
+<li>if/for/while语句中，即使执行语句只有一句，也必须另起一行。</li>
+</ul>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://www.douban.com/note/134971609/" target="_blank" rel="external">PEP8 Python 编码规范整理</a></p>
 ]]></content>
       
