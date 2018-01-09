@@ -3,6 +3,51 @@
   
     
     <entry>
+      <title><![CDATA[Python PEP8 编程规范总结]]></title>
+      <url>/2018/01/09/python-pep8-program-standard/</url>
+      <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这篇博客主要总结一些 python PEP8 的编程规范。</p>
+<a id="more"></a>
+<h2 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h2><ul>
+<li>尽量单独使用小写字母‘l’，大写字母‘O’等容易混淆的字母。</li>
+<li>模块命名尽量短小，使用全部小写的方式，可以使用下划线。</li>
+<li>包命名尽量短小，使用全部小写的方式，不可以使用下划线。</li>
+<li>类的命名使用CapWords的方式，模块内部使用的类采用_CapWords的方式。</li>
+<li>异常命名使用CapWords+Error后缀的方式。</li>
+<li>全局变量尽量只在模块内有效，类似C语言中的static。实现方法有两种，一是<strong>all</strong>机制;二是前缀一个下划线。</li>
+<li>函数命名使用全部小写的方式，可以使用下划线。</li>
+<li>常量命名使用全部大写的方式，可以使用下划线。</li>
+<li>类的属性（方法和变量）命名使用全部小写的方式，可以使用下划线。</li>
+<li>类的属性有3种作用域public、non-public和subclass API，可以理解成C++中的public、private、protected，non-public属性前，前缀一条下划线。</li>
+<li>类的属性若与关键字名字冲突，后缀一下划线，尽量不要使用缩略等其他方式。</li>
+<li>为避免与子类属性命名冲突，在类的一些属性前，前缀两条下划线。比如：类Foo中声明<strong>a,访问时，只能通过Foo._Foo</strong>a，避免歧义。如果子类也叫Foo，那就无能为力了。</li>
+<li>类的方法第一个参数必须是self，而静态方法第一个参数必须是cls。</li>
+</ul>
+<h2 id="代码编排"><a href="#代码编排" class="headerlink" title="代码编排"></a>代码编排</h2><ul>
+<li>缩进。4个空格的缩进（编辑器都可以完成此功能），不使用Tap，更不能混合使用Tap和空格。</li>
+<li>每行最大长度79，换行可以使用反斜杠，最好使用圆括号。换行点要在操作符的后边敲回车。</li>
+<li>类和top-level函数定义之间空两行；类中的方法定义之间空一行；函数内逻辑无关段落之间空一行；其他地方尽量不要再空行</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://www.douban.com/note/134971609/" target="_blank" rel="external">PEP8 Python 编码规范整理</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> coding </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> pep8 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Gitbook]]></title>
       <url>/2018/01/02/gitbook/</url>
       <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><a id="more"></a>
@@ -13,8 +58,11 @@
 <li><code>gitbook init</code></li>
 <li><code>gitbook serve</code> </li>
 </ul>
-<h2 id="使用-gitbook-com-并关联-github"><a href="#使用-gitbook-com-并关联-github" class="headerlink" title="使用 gitbook.com 并关联 github"></a>使用 gitbook.com 并关联 github</h2><h2 id="发布到-github-page"><a href="#发布到-github-page" class="headerlink" title="发布到 github page"></a>发布到 github page</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> git@github.com:repository.git</div></pre></td></tr></table></figure>
+<p>使用 gitbook.com 并关联 github</p>
+<h2 id="发布到-github-page"><a href="#发布到-github-page" class="headerlink" title="发布到 github page"></a>发布到 github page</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> git@github.com:repository.git</div></pre></td></tr></table></figure>
 <p>使用这个<a href="/file/deploy.sh">脚本</a>快速部署到 github page。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git add deploy.sh</div><div class="line">$ git commit -m <span class="string">"Commit deploy.sh to master repository"</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ chmod +x deploy.sh</div></pre></td></tr></table></figure>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="http://www.chengweiyang.cn/gitbook/index.html" target="_blank" rel="external">GitBook 简明教程</a></p>
 ]]></content>
       

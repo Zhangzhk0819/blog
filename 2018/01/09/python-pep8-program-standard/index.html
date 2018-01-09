@@ -15,17 +15,18 @@
 
 
 
-<meta name="description" content="test">
-<meta property="og:type" content="website">
-<meta property="og:title" content="My Books">
-<meta property="og:url" content="http://zhangzhk.com/books/index.html">
+<meta name="description" content="简介这篇博客主要总结一些 python PEP8 的编程规范。">
+<meta name="keywords" content="python,pep8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python PEP8 编程规范总结">
+<meta property="og:url" content="http://zhangzhk.com/2018/01/09/python-pep8-program-standard/index.html">
 <meta property="og:site_name" content="Homepage of Zhikun Zhang">
-<meta property="og:description" content="test">
+<meta property="og:description" content="简介这篇博客主要总结一些 python PEP8 的编程规范。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-04T22:13:07.541Z">
+<meta property="og:updated_time" content="2018-01-09T19:46:10.044Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="My Books">
-<meta name="twitter:description" content="test">
+<meta name="twitter:title" content="Python PEP8 编程规范总结">
+<meta name="twitter:description" content="简介这篇博客主要总结一些 python PEP8 的编程规范。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -57,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>My Books | Homepage of Zhikun Zhang</title>
+<title>Python PEP8 编程规范总结 | Homepage of Zhikun Zhang</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -67,7 +68,7 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -245,11 +246,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-python-pep8-program-standard" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/books/index.html" class="article-date">
-      <time datetime="2018-01-02T23:14:45.000Z" itemprop="datePublished">2018-01-02</time>
+      <a href="/2018/01/09/python-pep8-program-standard/" class="article-date">
+      <time datetime="2018-01-09T19:39:19.000Z" itemprop="datePublished">2018-01-09</time>
 </a>
 
 
@@ -264,7 +265,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      My Books
+      Python PEP8 编程规范总结
     </h1>
   
 
@@ -272,8 +273,16 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/coding/">coding</a>
+    </div>
+
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pep8/">pep8</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -281,28 +290,29 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <style>
-    .article-meta { display: none; }
-    #container .article .article-title { padding-right: 0; }
-    .article-header {
-        padding: 0;
-        padding-top: 26px;
-        border-left: none;
-        text-align: center;
-    }
-    .article-header:hover { border-left: none; }
-    .article-title { font-size: 1.6em }
-    .article-entry hr { margin: 0;}
-    .article-meta,
-    #container .article-info-post.article-info { display: none;}
-    #container .article .article-title { padding: 0; }
-</style>
-
-
-          
-        <ul>
-<li><a href="http://zhangzhk.com/testbook/">test</a></li>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这篇博客主要总结一些 python PEP8 的编程规范。</p>
+<a id="more"></a>
+<h2 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h2><ul>
+<li>尽量单独使用小写字母‘l’，大写字母‘O’等容易混淆的字母。</li>
+<li>模块命名尽量短小，使用全部小写的方式，可以使用下划线。</li>
+<li>包命名尽量短小，使用全部小写的方式，不可以使用下划线。</li>
+<li>类的命名使用CapWords的方式，模块内部使用的类采用_CapWords的方式。</li>
+<li>异常命名使用CapWords+Error后缀的方式。</li>
+<li>全局变量尽量只在模块内有效，类似C语言中的static。实现方法有两种，一是<strong>all</strong>机制;二是前缀一个下划线。</li>
+<li>函数命名使用全部小写的方式，可以使用下划线。</li>
+<li>常量命名使用全部大写的方式，可以使用下划线。</li>
+<li>类的属性（方法和变量）命名使用全部小写的方式，可以使用下划线。</li>
+<li>类的属性有3种作用域public、non-public和subclass API，可以理解成C++中的public、private、protected，non-public属性前，前缀一条下划线。</li>
+<li>类的属性若与关键字名字冲突，后缀一下划线，尽量不要使用缩略等其他方式。</li>
+<li>为避免与子类属性命名冲突，在类的一些属性前，前缀两条下划线。比如：类Foo中声明<strong>a,访问时，只能通过Foo._Foo</strong>a，避免歧义。如果子类也叫Foo，那就无能为力了。</li>
+<li>类的方法第一个参数必须是self，而静态方法第一个参数必须是cls。</li>
 </ul>
+<h2 id="代码编排"><a href="#代码编排" class="headerlink" title="代码编排"></a>代码编排</h2><ul>
+<li>缩进。4个空格的缩进（编辑器都可以完成此功能），不使用Tap，更不能混合使用Tap和空格。</li>
+<li>每行最大长度79，换行可以使用反斜杠，最好使用圆括号。换行点要在操作符的后边敲回车。</li>
+<li>类和top-level函数定义之间空两行；类中的方法定义之间空一行；函数内逻辑无关段落之间空一行；其他地方尽量不要再空行</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://www.douban.com/note/134971609/" target="_blank" rel="external">PEP8 Python 编码规范整理</a></p>
 
       
     </div>
@@ -310,10 +320,59 @@
   </div>
   
     
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2018/01/09/python-pep8-program-standard/">Python PEP8 编程规范总结</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
+        <p><span>Created:</span>2018-01-09, 14:39:19</p>
+        <p><span>Updated:</span>2018-01-09, 14:46:10</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2018/01/09/python-pep8-program-standard/" title="Python PEP8 编程规范总结">http://zhangzhk.com/2018/01/09/python-pep8-program-standard/</a>
+            <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2018/01/09/python-pep8-program-standard/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
 
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/01/02/gitbook/">
+                    Gitbook
+                </a>
+            </div>
+        
+    </nav>
 
   
 </article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命名规范"><span class="toc-number">2.</span> <span class="toc-text">命名规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码编排"><span class="toc-number">3.</span> <span class="toc-text">代码编排</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
 
 
 
@@ -331,7 +390,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"My Books　| Homepage of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Python PEP8 编程规范总结　| Homepage of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -344,6 +403,48 @@
 
 
 
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://zhangzhk.com/2018/01/09/python-pep8-program-standard/';
+            this.page.identifier = '2018/01/09/python-pep8-program-standard/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//zhangzhk.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/01/02/gitbook/" title="Next: Gitbook">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/01/09/python-pep8-program-standard/">Python PEP8 编程规范总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/02/gitbook/">Gitbook</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/02/setting-kodi/">Kodi 设置教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/python-programming-for-spark/">Spark 的 Python 编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/how-to-use-purdue-cluster/">如何使用远程计算资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/problem-in-python-development/">Python 开发过程中遇到问题总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/19/build-python-development-environment-in-mac/">Mac 中多版本 Python 开发环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/22/understanding-mnist-tutorial-pure-tf/">深入剖析 mnist_tutorial_pure_tf.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/commands-of-git/">Git 使用方法与常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/understanding-fully-connected-feed/">深入剖析 fully_connected_feed.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/manage-two-github-accounts-in-one-computer/">在一台设备上管理两个 Github 账号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a></li></ul>
 
 
 
