@@ -3,6 +3,70 @@
   
     
     <entry>
+      <title><![CDATA[Python 多线程编程]]></title>
+      <url>/2018/01/13/python-multi-threads/</url>
+      <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><a id="more"></a>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>]]></content>
+      
+        <categories>
+            
+            <category> coding </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Python 参数解析]]></title>
+      <url>/2018/01/13/python-argparse-module/</url>
+      <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><a id="more"></a>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>]]></content>
+      
+        <categories>
+            
+            <category> coding </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Python 中 Logging 模块使用方法]]></title>
+      <url>/2018/01/13/python-logging-module/</url>
+      <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><a id="more"></a>
+<h2 id="logging-基本用法"><a href="#logging-基本用法" class="headerlink" title="logging 基本用法"></a>logging 基本用法</h2><h2 id="logging-数据流"><a href="#logging-数据流" class="headerlink" title="logging 数据流"></a>logging 数据流</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.python.org/2/howto/logging.html#logging-basic-tutorial" target="_blank" rel="external">Logging HOWTO</a><br>[2] <a href="https://docs.python.org/2/howto/logging-cookbook.html" target="_blank" rel="external">Logging Cookbook</a><br>[3] <a href="https://docs.python.org/2/library/logging.html" target="_blank" rel="external">Logging facility for Python</a><br>[4] <a href="http://www.zlovezl.cn/articles/replacing-print-simple-introduction-to-logging/" target="_blank" rel="external">替换你的print(logging模块超简明指南)</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> coding </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Python PEP8 编程规范总结]]></title>
       <url>/2018/01/09/python-pep8-program-standard/</url>
       <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这篇博客主要总结一些 python PEP8 的编程规范。</p>
@@ -60,7 +124,7 @@
     
     <entry>
       <title><![CDATA[Gitbook]]></title>
-      <url>/2018/01/02/gitbook/</url>
+      <url>/2018/01/02/gitbook-tutorial/</url>
       <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><a id="more"></a>
 <h2 id="安装-gitbook"><a href="#安装-gitbook" class="headerlink" title="安装 gitbook"></a>安装 gitbook</h2><p>我们可以使用 nodejs 的 npm 包管理器来安装 gitbook，nodejs 的安装方法参考我的<a href="http://zhangzhk.com/2017/09/13/how-to-create-blog-by-hexo/">这篇博客</a>。使用以下命令安装 gitbook:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install gitbook -g</div></pre></td></tr></table></figure>
