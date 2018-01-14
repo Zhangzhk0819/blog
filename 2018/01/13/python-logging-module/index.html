@@ -15,18 +15,20 @@
 
 
 
-<meta name="description" content="简介">
+<meta name="description" content="简介在代码调试过程中，我们使用最多的方法是 print 函数，在我们需要知道中间变量的值时，插入一句 print 函数即可。但这种方法存在一个问题，那就是在程序调试完以后我们需要一个一个把 print 函数删掉或者注释掉。logging 模块能非常好得解决这个问题，通过设置 severity level，我们可以方便得控制在控制台打印的信息，另外我们也可以同时把日志信息输出到多个目的地，比如控制台">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 中 Logging 模块使用方法">
 <meta property="og:url" content="http://zhangzhk.com/2018/01/13/python-logging-module/index.html">
 <meta property="og:site_name" content="Homepage of Zhikun Zhang">
-<meta property="og:description" content="简介">
+<meta property="og:description" content="简介在代码调试过程中，我们使用最多的方法是 print 函数，在我们需要知道中间变量的值时，插入一句 print 函数即可。但这种方法存在一个问题，那就是在程序调试完以后我们需要一个一个把 print 函数删掉或者注释掉。logging 模块能非常好得解决这个问题，通过设置 severity level，我们可以方便得控制在控制台打印的信息，另外我们也可以同时把日志信息输出到多个目的地，比如控制台">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-13T16:46:08.840Z">
+<meta property="og:image" content="http://zhangzhk.com/images/python-logging-flow.png">
+<meta property="og:updated_time" content="2018-01-13T23:55:47.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 中 Logging 模块使用方法">
-<meta name="twitter:description" content="简介">
+<meta name="twitter:description" content="简介在代码调试过程中，我们使用最多的方法是 print 函数，在我们需要知道中间变量的值时，插入一句 print 函数即可。但这种方法存在一个问题，那就是在程序调试完以后我们需要一个一个把 print 函数删掉或者注释掉。logging 模块能非常好得解决这个问题，通过设置 severity level，我们可以方便得控制在控制台打印的信息，另外我们也可以同时把日志信息输出到多个目的地，比如控制台">
+<meta name="twitter:image" content="http://zhangzhk.com/images/python-logging-flow.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -163,7 +165,7 @@
                         
                             <li><a href="/archives/">Blog</a></li>
                         
-                            <li><a href="/books">Books</a></li>
+                            <li><a href="/books/">Books</a></li>
                         
                             <li><a href="/tags/">Tags</a></li>
                         
@@ -226,7 +228,7 @@
                 
                     <li><a href="/archives/">Blog</a></li>
                 
-                    <li><a href="/books">Books</a></li>
+                    <li><a href="/books/">Books</a></li>
                 
                     <li><a href="/tags/">Tags</a></li>
                 
@@ -290,8 +292,23 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><a id="more"></a>
-<h2 id="logging-基本用法"><a href="#logging-基本用法" class="headerlink" title="logging 基本用法"></a>logging 基本用法</h2><h2 id="logging-数据流"><a href="#logging-数据流" class="headerlink" title="logging 数据流"></a>logging 数据流</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.python.org/2/howto/logging.html#logging-basic-tutorial" target="_blank" rel="external">Logging HOWTO</a><br>[2] <a href="https://docs.python.org/2/howto/logging-cookbook.html" target="_blank" rel="external">Logging Cookbook</a><br>[3] <a href="https://docs.python.org/2/library/logging.html" target="_blank" rel="external">Logging facility for Python</a><br>[4] <a href="http://www.zlovezl.cn/articles/replacing-print-simple-introduction-to-logging/" target="_blank" rel="external">替换你的print(logging模块超简明指南)</a></p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在代码调试过程中，我们使用最多的方法是 print 函数，在我们需要知道中间变量的值时，插入一句 print 函数即可。但这种方法存在一个问题，那就是在程序调试完以后我们需要一个一个把 print 函数删掉或者注释掉。logging 模块能非常好得解决这个问题，通过设置 severity level，我们可以方便得控制在控制台打印的信息，另外我们也可以同时把日志信息输出到多个目的地，比如控制台，日志文件，网络位置等。</p>
+<a id="more"></a>
+<h2 id="logging-基本用法"><a href="#logging-基本用法" class="headerlink" title="logging 基本用法"></a>logging 基本用法</h2><p>Logging 的基本用法非常简单，比如下面这个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> logging</div><div class="line">logging.basicConfig(filename=<span class="string">'example.log'</span>,level=logging.DEBUG)</div><div class="line">logging.debug(<span class="string">'This message should go to the log file'</span>)</div><div class="line">logging.info(<span class="string">'So should this'</span>)</div><div class="line">logging.warning(<span class="string">'And this, too'</span>)</div></pre></td></tr></table></figure>
+<p>下面简单介绍一下该程序工作流程</p>
+<ul>
+<li>首先导入 logging 模块。</li>
+<li>然后利用函数 logging.basicConfig 设置 logger 的行为。其中，filename 指定日志文件，默认情况下，日志输出至控制台。level 指定记录日志的 severity level，logging 模块有 DEBUG, INFO, WARNING, ERROR, CRITICAL 五个从低到高的 severity level，logger 只输出与 level 参数指定级别相同更高级别的日志信息，比如，如果我们让 <code>level=logging.INFO</code>，上面程序中 logging.debug 信息在执行过程中将不会输出。当然，filenamelogging.basicConfig 可以传入很多参数，具体可以参考<a href="https://docs.python.org/2/library/logging.html#logging.basicConfig" target="_blank" rel="external">官方文档</a>。</li>
+<li>最后在需要记录日志的地方根据需要的 severity level 添加 logging.debug 等日志信息。</li>
+</ul>
+<p>Logging 模块的基本用法是通过创建 Loggers 对象来实现的，Loggers 对象提供了很多方法来操作其属性，比如 setLevel 方法可以用来改变其 severity level。我们可以通过以下程序在不同模块中创建 Loggers 对象：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">logger = logging.getLogger(__name__)</div></pre></td></tr></table></figure>
+<p>其中，<strong>name</strong> 是该模块的名字，当然我们也可以自己给该 logger 取一个名字。每次调用 logging.getLogger 便创建了一个指定名字的 logger，在同一个线程中，不管调用多少次该函数，相同名字都指向同一个 logger 对象。</p>
+<p>Logging 模块通过层级结构来组织这些 loggers 对象，在同一个线程中，所有 loggers 对象都继承自 root logger，前面程序中的 logging.basicConfig 便创建了一个 root logger。loggers 对象之间的继承关系用类似于<code>a.b.c</code>的方式表示，如果子对象指定了属性，则使用它自己的属性进行输出，如果没有则使用其父对象的属性进行输出，比如前面的 logging.basicConfig 函数设置了 root logger 的属性，如果后面创建的子对象都没有设置属性，那么 root logger 的属性将在所有 logger 对象间共享。</p>
+<h2 id="logging-工作流程"><a href="#logging-工作流程" class="headerlink" title="logging 工作流程"></a>logging 工作流程</h2><p>上一节介绍的是 logging 模块的基本用法，利用上面这些知识进行基本的程序调试已经没有问题了。然而，logging 模块的功能并不仅仅于此，事实上，Logging 模块包含 Loggers, Handlers, Filters 和 Formatters 等多个类，我们可以利用这些类来对日志进行更加精细化的控制。在这之前，我们需要了解 logging 模块的工作流程，如下图所示：</p>
+<p><img src="/images/python-logging-flow.png" width="50%" height="50%" align="center/"></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.python.org/2/howto/logging.html" target="_blank" rel="external">Logging HOWTO</a><br>[2] <a href="https://docs.python.org/2/howto/logging-cookbook.html" target="_blank" rel="external">Logging Cookbook</a><br>[3] <a href="https://docs.python.org/2/library/logging.html" target="_blank" rel="external">Logging facility for Python</a><br>[4] <a href="http://www.zlovezl.cn/articles/replacing-print-simple-introduction-to-logging/" target="_blank" rel="external">替换你的print(logging模块超简明指南)</a><br>[5] <a href="http://cblog.xyz/article/41" target="_blank" rel="external">logging的用法</a></p>
 
       
     </div>
@@ -303,7 +320,7 @@
         <p><span>Title:</span><a href="/2018/01/13/python-logging-module/">Python 中 Logging 模块使用方法</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
         <p><span>Created:</span>2018-01-13, 11:35:09</p>
-        <p><span>Updated:</span>2018-01-13, 11:46:08</p>
+        <p><span>Updated:</span>2018-01-13, 18:55:47</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2018/01/13/python-logging-module/" title="Python 中 Logging 模块使用方法">http://zhangzhk.com/2018/01/13/python-logging-module/</a>
             <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2018/01/13/python-logging-module/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
@@ -339,7 +356,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#logging-基本用法"><span class="toc-number">2.</span> <span class="toc-text">logging 基本用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#logging-数据流"><span class="toc-number">3.</span> <span class="toc-text">logging 数据流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#logging-基本用法"><span class="toc-number">2.</span> <span class="toc-text">logging 基本用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#logging-工作流程"><span class="toc-number">3.</span> <span class="toc-text">logging 工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
         
     </div>
     <style>
