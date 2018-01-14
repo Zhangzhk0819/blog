@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Homepage of Zhikun Zhang">
 <meta property="og:description" content="简介Hexo 是一种基于 node.js 的静态博客框架。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-14T00:55:46.346Z">
+<meta property="og:updated_time" content="2018-01-14T00:59:25.192Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何利用 Hexo 在 Github 上搭建个人博客">
 <meta name="twitter:description" content="简介Hexo 是一种基于 node.js 的静态博客框架。">
@@ -331,8 +331,8 @@
 <h2 id="博客插图"><a href="#博客插图" class="headerlink" title="博客插图"></a>博客插图</h2><p>由于所有的博客都是使用 markdown 进行编辑的，而 markdown 的插图一般需要外链，下面提供三种插图方法：</p>
 <ul>
 <li>在 source 文件夹中建立 images 文件夹，把需要插入的图片放到该文件夹中，然后通过相对路径 /images/image_name 进行访问。这种方法是最简单的，但由于 github page 一般空间限制为 1G，所以当图片比较多时这种方法不太合适。</li>
-<li>把图片上传到第三方图床，网上很多人推荐七牛网，但似乎目前免费空间只有1G了，如果图片较多就需要花钱了。</li>
-<li>直接使用 github 当图床，其实就是创建一个新的 repository，可以命名为 blog_images，然后直接通过网页把需要插入的图片上传到该 repository 中。下面说一下如何获取访问地址，首先进入新建的 repository，点开需要插入的那张图片，复制浏览器中地址栏中的地址，把地址中的 blob 改成 raw 就好了，这一步很重要。</li>
+<li>把图片上传到第三方图床，网上很多人推荐七牛网，但似乎目前免费空间只有1G了，如果图片较多就需要花钱了。另外，这些第三方图床说不定什么时候倒闭了或者被墙了就麻烦了。</li>
+<li>直接使用 github 当图床，其实就是创建一个新的 repository，可以命名为 blog_images，然后直接通过网页把需要插入的图片上传到该 repository 中。下面说一下如何获取访问地址，首先进入新建的 repository，点开需要插入的那张图片，复制浏览器中地址栏中的地址，把地址中的 blob 改成 raw 就好了，这一步很重要。虽然每个 repository 也有 1G 容量的限制，但是 reposiroty 的数量是没有限制的，你懂的。个人比较推荐这种方法。</li>
 </ul>
 <p>正常情况下，markdown 插入图片的语法是<code>![title](address)</code>，但这种方法不能改变插入图片的大小和位置。因此我们可以通过下面的 html 语句来设置插入图片的格式：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;img src=&quot;address&quot; width=50% height=50% align=center/&gt;</div></pre></td></tr></table></figure>
@@ -352,7 +352,7 @@
         <p><span>Title:</span><a href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
         <p><span>Created:</span>2017-09-13, 21:26:30</p>
-        <p><span>Updated:</span>2018-01-13, 19:55:46</p>
+        <p><span>Updated:</span>2018-01-13, 19:59:25</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2017/09/13/how-to-create-blog-by-hexo/" title="如何利用 Hexo 在 Github 上搭建个人博客">http://zhangzhk.com/2017/09/13/how-to-create-blog-by-hexo/</a>
             <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2017/09/13/how-to-create-blog-by-hexo/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
