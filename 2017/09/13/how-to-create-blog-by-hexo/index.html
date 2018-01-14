@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Homepage of Zhikun Zhang">
 <meta property="og:description" content="简介Hexo 是一种基于 node.js 的静态博客框架。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-02T16:39:21.213Z">
+<meta property="og:updated_time" content="2018-01-14T00:55:46.346Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何利用 Hexo 在 Github 上搭建个人博客">
 <meta name="twitter:description" content="简介Hexo 是一种基于 node.js 的静态博客框架。">
@@ -328,6 +328,15 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> https://github.com/MOxFIVE/hexo-theme-yelee themes/yelee</div></pre></td></tr></table></figure>
 <p>上面的链接为主题模板的 github 地址，下载的主题放在 /blog/themes 文件夹下面。事实上，打开 themes 文件夹我们发现里面已经有一个默认模板 landscape 在里面了。</p>
 <p>最后把 blog 文件夹里面的 _config.yml 文件的 theme 字段修改成对应的主题名字就好了。</p>
+<h2 id="博客插图"><a href="#博客插图" class="headerlink" title="博客插图"></a>博客插图</h2><p>由于所有的博客都是使用 markdown 进行编辑的，而 markdown 的插图一般需要外链，下面提供三种插图方法：</p>
+<ul>
+<li>在 source 文件夹中建立 images 文件夹，把需要插入的图片放到该文件夹中，然后通过相对路径 /images/image_name 进行访问。这种方法是最简单的，但由于 github page 一般空间限制为 1G，所以当图片比较多时这种方法不太合适。</li>
+<li>把图片上传到第三方图床，网上很多人推荐七牛网，但似乎目前免费空间只有1G了，如果图片较多就需要花钱了。</li>
+<li>直接使用 github 当图床，其实就是创建一个新的 repository，可以命名为 blog_images，然后直接通过网页把需要插入的图片上传到该 repository 中。下面说一下如何获取访问地址，首先进入新建的 repository，点开需要插入的那张图片，复制浏览器中地址栏中的地址，把地址中的 blob 改成 raw 就好了，这一步很重要。</li>
+</ul>
+<p>正常情况下，markdown 插入图片的语法是<code>![title](address)</code>，但这种方法不能改变插入图片的大小和位置。因此我们可以通过下面的 html 语句来设置插入图片的格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;img src=&quot;address&quot; width=50% height=50% align=center/&gt;</div></pre></td></tr></table></figure>
+<p>这条语句可以实现图片大小的设置，但是在我的博客中还不能实现居中对其，不知道是不是主题的原因。</p>
 <h2 id="域名申请"><a href="#域名申请" class="headerlink" title="域名申请"></a>域名申请</h2><h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><ul>
 <li><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo 官方文档</a></li>
 <li><a href="http://moxfive.coding.me/yelee/5.Vendor/baidu-share.html" target="_blank" rel="external">Yelee 主题使用说明</a></li>
@@ -343,7 +352,7 @@
         <p><span>Title:</span><a href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
         <p><span>Created:</span>2017-09-13, 21:26:30</p>
-        <p><span>Updated:</span>2018-01-02, 11:39:21</p>
+        <p><span>Updated:</span>2018-01-13, 19:55:46</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2017/09/13/how-to-create-blog-by-hexo/" title="如何利用 Hexo 在 Github 上搭建个人博客">http://zhangzhk.com/2017/09/13/how-to-create-blog-by-hexo/</a>
             <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2017/09/13/how-to-create-blog-by-hexo/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
@@ -373,7 +382,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-node-js-和-hexo"><span class="toc-number">2.</span> <span class="toc-text">安装 node.js 和 hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#把-hexo-部署到-github-上"><span class="toc-number">3.</span> <span class="toc-text">把 hexo 部署到 github 上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装主题"><span class="toc-number">4.</span> <span class="toc-text">安装主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#域名申请"><span class="toc-number">5.</span> <span class="toc-text">域名申请</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有用链接"><span class="toc-number">6.</span> <span class="toc-text">有用链接</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-node-js-和-hexo"><span class="toc-number">2.</span> <span class="toc-text">安装 node.js 和 hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#把-hexo-部署到-github-上"><span class="toc-number">3.</span> <span class="toc-text">把 hexo 部署到 github 上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装主题"><span class="toc-number">4.</span> <span class="toc-text">安装主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客插图"><span class="toc-number">5.</span> <span class="toc-text">博客插图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#域名申请"><span class="toc-number">6.</span> <span class="toc-text">域名申请</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有用链接"><span class="toc-number">7.</span> <span class="toc-text">有用链接</span></a></li></ol>
         
     </div>
     <style>
