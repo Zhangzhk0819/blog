@@ -24,7 +24,7 @@
 <meta property="og:description" content="简介在代码调试过程中，我们使用最多的方法是 print 函数，在我们需要知道中间变量的值时，插入一句 print 函数即可。但这种方法存在一个问题，那就是在程序调试完以后我们需要一个一个把 print 函数删掉或者注释掉。logging 模块能非常好得解决这个问题，通过设置 severity level，我们可以方便得控制在控制台打印的信息，另外我们也可以同时把日志信息输出到多个目的地，比如控制台">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://zhangzhk.com/images/python-logging-flow.png">
-<meta property="og:updated_time" content="2018-01-14T00:56:42.480Z">
+<meta property="og:updated_time" content="2018-01-20T20:56:31.945Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 中 Logging 模块使用方法">
 <meta name="twitter:description" content="简介在代码调试过程中，我们使用最多的方法是 print 函数，在我们需要知道中间变量的值时，插入一句 print 函数即可。但这种方法存在一个问题，那就是在程序调试完以后我们需要一个一个把 print 函数删掉或者注释掉。logging 模块能非常好得解决这个问题，通过设置 severity level，我们可以方便得控制在控制台打印的信息，另外我们也可以同时把日志信息输出到多个目的地，比如控制台">
@@ -308,6 +308,11 @@
 <p>Logging 模块通过层级结构来组织这些 loggers 对象，在同一个线程中，所有 loggers 对象都继承自 root logger，前面程序中的 logging.basicConfig 便创建了一个 root logger。loggers 对象之间的继承关系用类似于<code>a.b.c</code>的方式表示，如果子对象指定了属性，则使用它自己的属性进行输出，如果没有则使用其父对象的属性进行输出，比如前面的 logging.basicConfig 函数设置了 root logger 的属性，如果后面创建的子对象都没有设置属性，那么 root logger 的属性将在所有 logger 对象间共享。</p>
 <h2 id="logging-工作流程"><a href="#logging-工作流程" class="headerlink" title="logging 工作流程"></a>logging 工作流程</h2><p>上一节介绍的是 logging 模块的基本用法，利用上面这些知识进行基本的程序调试已经没有问题了。然而，logging 模块的功能并不仅仅于此，事实上，Logging 模块包含 Loggers, Handlers, Filters 和 Formatters 等多个类，我们可以利用这些类来对日志进行更加精细化的控制。在这之前，我们需要了解 logging 模块的工作流程，如下图所示：</p>
 <p><img src="/images/python-logging-flow.png" width="50%" height="50%" align="center/"></p>
+<ul>
+<li>Loggers 类是整个 logger 的载体，一般使用 getLogger 方法来创建。然后我们可以为创建好的 Logger 实体设置 severity level（调用方法 Logger.setLevel()），设置 Filters（filter 能比 severity level 更精细化的控制 logger 向后面 handler 的输出，一个 logger 可以设置多个 filter，所有 filter 的过滤关系是串联的，调用方法 Logger.addFilter()），设置 Handlers（handler 的作用是指定 logger 的最终输出去向，比如可以终端输出，可以写入日志文件，可以放入某个网络服务器等，一个 loggers 可以设置多个 handler，调用方法 Logger.addHandler()）</li>
+<li>Hanlder 类指定 logger 的输出去向，常用的 Handler 有 StreamHandler, FileHandler 和 SocketHandler 等。跟 Logger 类一样，我们也可以为 Handler 设置 severity level 和 filter，用法和 logger 也差不多，这样可以对最终输出进行更加精细化的控制。另外，我们可以设置最后的输出格式（调用方法 setFormatter()）</li>
+<li>Formatters 和 Filters 类顾名思义就是设置最终的输出格式和滤波器</li>
+</ul>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.python.org/2/howto/logging.html" target="_blank" rel="external">Logging HOWTO</a><br>[2] <a href="https://docs.python.org/2/howto/logging-cookbook.html" target="_blank" rel="external">Logging Cookbook</a><br>[3] <a href="https://docs.python.org/2/library/logging.html" target="_blank" rel="external">Logging facility for Python</a><br>[4] <a href="http://www.zlovezl.cn/articles/replacing-print-simple-introduction-to-logging/" target="_blank" rel="external">替换你的print(logging模块超简明指南)</a><br>[5] <a href="http://cblog.xyz/article/41" target="_blank" rel="external">logging的用法</a></p>
 
       
@@ -320,7 +325,7 @@
         <p><span>Title:</span><a href="/2018/01/13/python-logging-module/">Python 中 Logging 模块使用方法</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
         <p><span>Created:</span>2018-01-13, 11:35:09</p>
-        <p><span>Updated:</span>2018-01-13, 19:56:42</p>
+        <p><span>Updated:</span>2018-01-20, 15:56:31</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2018/01/13/python-logging-module/" title="Python 中 Logging 模块使用方法">http://zhangzhk.com/2018/01/13/python-logging-module/</a>
             <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2018/01/13/python-logging-module/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
