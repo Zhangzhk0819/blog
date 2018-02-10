@@ -3,10 +3,22 @@
   
     
     <entry>
-      <title><![CDATA[Vim-Shortcut]]></title>
+      <title><![CDATA[Vim 快捷方式总结]]></title>
       <url>/2018/02/09/vim-shortcut/</url>
       <content type="html"></content>
       
+        <categories>
+            
+            <category> coding </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> vim </tag>
+            
+        </tags>
         
     </entry>
     
