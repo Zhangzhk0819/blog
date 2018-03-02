@@ -555,6 +555,17 @@
 <li>克隆项目到本地<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> https://github.com/folder-of-project folder-to-save</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<h2 id="Commit-类别"><a href="#Commit-类别" class="headerlink" title="Commit 类别"></a>Commit 类别</h2><ul>
+<li>init：项目初始化（用于项目初始化或其他某种行为的开始描述，不影响代码）</li>
+<li>feat：新功能（feature）</li>
+<li>fix：修补bug</li>
+<li>docs：文档（documentation）</li>
+<li>opt：优化和改善，比如弹窗进行确认提示等相关的，不会改动逻辑和具体功能等</li>
+<li>style： 格式（不影响代码运行的变动）</li>
+<li>refactor：重构（即不是新增功能，也不是修改bug的代码变动）</li>
+<li>test：增加测试</li>
+<li>other：用于难以分类的类别（不建议使用，但一些如删除不必要的文件，更新.ignore之类的可以使用）</li>
+</ul>
 <a id="more"></a>
 <h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><ul>
 <li><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰教程</a></li>
