@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Homepage of Zhikun Zhang">
 <meta property="og:description" content="这篇博客将介绍 MySQL 的安装，配置及其使用方法，另外，还会介绍如何使用 phpMyAdmin 这个工具来实现通过网页管理 MySQL 数据库。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-24T18:57:21.688Z">
+<meta property="og:updated_time" content="2018-10-24T23:05:12.607Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL+phpMyAdmin 安装与使用方法">
 <meta name="twitter:description" content="这篇博客将介绍 MySQL 的安装，配置及其使用方法，另外，还会介绍如何使用 phpMyAdmin 这个工具来实现通过网页管理 MySQL 数据库。">
@@ -304,7 +304,7 @@
 <h2 id="利用-phpMyAdmin-来管理-MySQL"><a href="#利用-phpMyAdmin-来管理-MySQL" class="headerlink" title="利用 phpMyAdmin 来管理 MySQL"></a>利用 phpMyAdmin 来管理 MySQL</h2><p>要管理 MySQL，如果用命令行比较麻烦，开源的 phpMyAdmin 采用C/S的模式，方便管理。接着我们就装一个 phpMyAdmin。它是由 php 开发的，首先<a href="http://www.phpmyadmin.net/home_page/downloads.php" target="_blank" rel="external">下载</a>文件，将下载下来的文件解压放在 /Library/WebServer/Documents/ 目录下，完整的目录为：/Library/WebServer/Documents/phpmyadmin/。该目录为 Apache PHP 的文件目录，由于 Mac 中已经预装了 Apache 和 PHP，所以这里只需要把下载下来的文件放到 Apache 服务器文件目录就好了。</p>
 <p>进入这个目录，输入命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cp config.sample.inc.php config.inc.php</div><div class="line">vim config.inc.php</div></pre></td></tr></table></figure></p>
 <p>按照下面进行修改：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$cfg[&apos;blowfish_secret&apos;] = &apos;&apos;;</div><div class="line">$cfg[&apos;Servers&apos;][$i][&apos;host&apos;] = &apos;127.0.0.1&apos;;</div></pre></td></tr></table></figure></p>
-<p>现在可以在浏览器中输入URL: <a href="http://localhost/phpmyadmin/，" target="_blank" rel="external">http://localhost/phpmyadmin/，</a> 用户名为 root，密码为安装时设置的密码，就可以 login 到 MySQL 的管理界面。</p>
+<p>现在可以在浏览器中输入URL: <a href="http://localhost/phpmyadmin/" target="_blank" rel="external">http://localhost/phpmyadmin/</a>，用户名为 root，密码为安装时设置的密码，就可以 login 到 MySQL 的管理界面。</p>
 <h2 id="Python-连接-MySQL"><a href="#Python-连接-MySQL" class="headerlink" title="Python 连接 MySQL"></a>Python 连接 MySQL</h2><p>MySQLdb 是 Python 连接 MySQL 最流行的一个驱动，因为它是用 C 语言写成的，效率非常高。它的缺点是由于年久失修，只支持 Python2.x，对于使用 Python3.x 的同学可以用它的 Fork 版本 mysqlclient，它可以完全兼容 MySQLdb。在 MacOS 和 Linux 上，mysqlclient 的安装也很简单，直接用 pip 或 conda 安装就好了：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pip install mysqlclient</div><div class="line">conda install mysqlclient</div></pre></td></tr></table></figure></p>
 <p>当然，Python 连接 MySQL 还有很多其他的驱动，感兴趣的同学可以参考 <a href="https://foofish.net/python-mysql.html" target="_blank" rel="external">[4]</a> 来了解它们的优缺点。</p>
 <p>需要注意的是，即使安装了 mysqlclient，在写 python 代码的时候，也需要 import MySQLdb，而不是 import mysqlclient，否则会报错。</p>
@@ -322,7 +322,7 @@
         <p><span>Title:</span><a href="/2018/10/23/mysql-tutorial/">MySQL+phpMyAdmin 安装与使用方法</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
         <p><span>Created:</span>2018-10-23, 23:41:35</p>
-        <p><span>Updated:</span>2018-10-24, 14:57:21</p>
+        <p><span>Updated:</span>2018-10-24, 19:05:12</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2018/10/23/mysql-tutorial/" title="MySQL+phpMyAdmin 安装与使用方法">http://zhangzhk.com/2018/10/23/mysql-tutorial/</a>
             <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2018/10/23/mysql-tutorial/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
