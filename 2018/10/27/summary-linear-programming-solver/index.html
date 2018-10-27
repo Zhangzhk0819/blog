@@ -15,14 +15,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Categories">
-<meta property="og:url" content="http://zhangzhk.com/categories/index.html">
+<meta name="description" content="目前的一个研究课题，需要求解一个大规模的线性规划问题，变量规模至少在 10 万的水平，需要找到找到一个高效的求解器。为此，专门花时间对比了 CBC, GLPK 等开源求解器和 CPLEX, GUROBI 等商用求解器，并对比了求解器配套及 CVXOPT, CVXPY, PuLP 等第三方 python 接口的求解效率。">
+<meta name="keywords" content="python,linear programming">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性规划求解器总结与比较">
+<meta property="og:url" content="http://zhangzhk.com/2018/10/27/summary-linear-programming-solver/index.html">
 <meta property="og:site_name" content="Homepage of Zhikun Zhang">
+<meta property="og:description" content="目前的一个研究课题，需要求解一个大规模的线性规划问题，变量规模至少在 10 万的水平，需要找到找到一个高效的求解器。为此，专门花时间对比了 CBC, GLPK 等开源求解器和 CPLEX, GUROBI 等商用求解器，并对比了求解器配套及 CVXOPT, CVXPY, PuLP 等第三方 python 接口的求解效率。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-13T17:21:34.697Z">
+<meta property="og:updated_time" content="2018-10-27T14:09:01.659Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Categories">
+<meta name="twitter:title" content="线性规划求解器总结与比较">
+<meta name="twitter:description" content="目前的一个研究课题，需要求解一个大规模的线性规划问题，变量规模至少在 10 万的水平，需要找到找到一个高效的求解器。为此，专门花时间对比了 CBC, GLPK 等开源求解器和 CPLEX, GUROBI 等商用求解器，并对比了求解器配套及 CVXOPT, CVXPY, PuLP 等第三方 python 接口的求解效率。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -54,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Categories | Homepage of Zhikun Zhang</title>
+<title>线性规划求解器总结与比较 | Homepage of Zhikun Zhang</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -64,7 +68,7 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -242,11 +246,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="categories-" class="article article-type-categories" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-summary-linear-programming-solver" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/categories/index.html" class="article-date">
-      <time datetime="2017-09-21T18:04:13.000Z" itemprop="datePublished">2017-09-21</time>
+      <a href="/2018/10/27/summary-linear-programming-solver/" class="article-date">
+      <time datetime="2018-10-27T13:34:13.000Z" itemprop="datePublished">2018-10-27</time>
 </a>
 
 
@@ -261,7 +265,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Categories
+      线性规划求解器总结与比较
     </h1>
   
 
@@ -269,8 +273,16 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/optimization/">optimization</a>
+    </div>
+
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linear-programming/">linear programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -278,36 +290,69 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <style>
-    .article-meta { display: none; }
-    #container .article .article-title { padding-right: 0; }
-    .article-header {
-        padding: 0;
-        padding-top: 26px;
-        border-left: none;
-        text-align: center;
-    }
-    .article-header:hover { border-left: none; }
-    .article-title { font-size: 1.6em }
-    .article-entry hr { margin: 0;}
-    .article-meta,
-    #container .article-info-post.article-info { display: none;}
-    #container .article .article-title { padding: 0; }
-</style>
+        <p>目前的一个研究课题，需要求解一个大规模的线性规划问题，变量规模至少在 10 万的水平，需要找到找到一个高效的求解器。为此，专门花时间对比了 CBC, GLPK 等开源求解器和 CPLEX, GUROBI 等商用求解器，并对比了求解器配套及 CVXOPT, CVXPY, PuLP 等第三方 python 接口的求解效率。<br><a id="more"></a></p>
+<h2 id="求解器安装与使用"><a href="#求解器安装与使用" class="headerlink" title="求解器安装与使用"></a>求解器安装与使用</h2><h3 id="CBC"><a href="#CBC" class="headerlink" title="CBC"></a>CBC</h3><h3 id="GLPK"><a href="#GLPK" class="headerlink" title="GLPK"></a>GLPK</h3><h3 id="CPLEX"><a href="#CPLEX" class="headerlink" title="CPLEX"></a>CPLEX</h3><h3 id="GUROBI"><a href="#GUROBI" class="headerlink" title="GUROBI"></a>GUROBI</h3><h2 id="Python-第三方接口安装与使用"><a href="#Python-第三方接口安装与使用" class="headerlink" title="Python 第三方接口安装与使用"></a>Python 第三方接口安装与使用</h2><h3 id="CVXOPT"><a href="#CVXOPT" class="headerlink" title="CVXOPT"></a>CVXOPT</h3><h3 id="PuLP"><a href="#PuLP" class="headerlink" title="PuLP"></a>PuLP</h3><h3 id="CVXPY"><a href="#CVXPY" class="headerlink" title="CVXPY"></a>CVXPY</h3><h2 id="求解器及其-python-接口的性能比较"><a href="#求解器及其-python-接口的性能比较" class="headerlink" title="求解器及其 python 接口的性能比较"></a>求解器及其 python 接口的性能比较</h2><p>下面列出的结果仅仅基于我目前一个关于最小流的研究课题，更全面的分析与比较可以参考文档<a href="/files/Comparison-of-Open-Source-Linear-Programming-Solvers.pdf">[1]</a></p>
+<h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><p>[1] <a href="/files/Comparison-of-Open-Source-Linear-Programming-Solvers.pdf">Comparison of Open-Source Linear Programming Solvers</a></p>
 
-
-          
-        
       
     </div>
     
   </div>
   
     
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2018/10/27/summary-linear-programming-solver/">线性规划求解器总结与比较</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
+        <p><span>Created:</span>2018-10-27, 09:34:13</p>
+        <p><span>Updated:</span>2018-10-27, 10:09:01</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2018/10/27/summary-linear-programming-solver/" title="线性规划求解器总结与比较">http://zhangzhk.com/2018/10/27/summary-linear-programming-solver/</a>
+            <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2018/10/27/summary-linear-programming-solver/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
 
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/10/23/mysql-tutorial/">
+                    MySQL+phpMyAdmin 安装与使用方法
+                </a>
+            </div>
+        
+    </nav>
 
   
 </article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#求解器安装与使用"><span class="toc-number">1.</span> <span class="toc-text">求解器安装与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CBC"><span class="toc-number">1.1.</span> <span class="toc-text">CBC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GLPK"><span class="toc-number">1.2.</span> <span class="toc-text">GLPK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CPLEX"><span class="toc-number">1.3.</span> <span class="toc-text">CPLEX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GUROBI"><span class="toc-number">1.4.</span> <span class="toc-text">GUROBI</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-第三方接口安装与使用"><span class="toc-number">2.</span> <span class="toc-text">Python 第三方接口安装与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CVXOPT"><span class="toc-number">2.1.</span> <span class="toc-text">CVXOPT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PuLP"><span class="toc-number">2.2.</span> <span class="toc-text">PuLP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CVXPY"><span class="toc-number">2.3.</span> <span class="toc-text">CVXPY</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#求解器及其-python-接口的性能比较"><span class="toc-number">3.</span> <span class="toc-text">求解器及其 python 接口的性能比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有用链接"><span class="toc-number">4.</span> <span class="toc-text">有用链接</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
 
 
 
@@ -325,7 +370,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Categories　| Homepage of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"线性规划求解器总结与比较　| Homepage of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -338,6 +383,48 @@
 
 
 
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://zhangzhk.com/2018/10/27/summary-linear-programming-solver/';
+            this.page.identifier = '2018/10/27/summary-linear-programming-solver/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//zhangzhk.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/10/23/mysql-tutorial/" title="Next: MySQL+phpMyAdmin 安装与使用方法">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/10/27/summary-linear-programming-solver/">线性规划求解器总结与比较</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/mysql-tutorial/">MySQL+phpMyAdmin 安装与使用方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/09/vim-shortcut/">Vim 快捷方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/20/python-data-structure/">Python 基本数据结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/20/python-numpy-module/">Python 第三方库 Numpy</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/python-multi-threads/">Python 多线程编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/python-argparse-module/">Python 参数解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/python-logging-module/">Python 中 Logging 模块使用方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/09/python-pep8-program-standard/">Python PEP8 编程规范总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/02/gitbook-tutorial/">Gitbook</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/02/setting-kodi/">Kodi 设置教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/python-programming-for-spark/">Spark 的 Python 编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/how-to-use-purdue-cluster/">如何使用远程计算资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/problem-in-python-development/">Python 开发过程中遇到问题总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/19/build-python-development-environment-in-mac/">Mac 中多版本 Python 开发环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/22/understanding-mnist-tutorial-pure-tf/">深入剖析 mnist_tutorial_pure_tf.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/commands-of-git/">Git 使用方法与常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/understanding-fully-connected-feed/">深入剖析 fully_connected_feed.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/manage-two-github-accounts-in-one-computer/">在一台设备上管理两个 Github 账号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a></li></ul>
 
 
 

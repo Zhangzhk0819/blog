@@ -3,6 +3,31 @@
   
     
     <entry>
+      <title><![CDATA[线性规划求解器总结与比较]]></title>
+      <url>/2018/10/27/summary-linear-programming-solver/</url>
+      <content type="html"><![CDATA[<p>目前的一个研究课题，需要求解一个大规模的线性规划问题，变量规模至少在 10 万的水平，需要找到找到一个高效的求解器。为此，专门花时间对比了 CBC, GLPK 等开源求解器和 CPLEX, GUROBI 等商用求解器，并对比了求解器配套及 CVXOPT, CVXPY, PuLP 等第三方 python 接口的求解效率。<br><a id="more"></a></p>
+<h2 id="求解器安装与使用"><a href="#求解器安装与使用" class="headerlink" title="求解器安装与使用"></a>求解器安装与使用</h2><h3 id="CBC"><a href="#CBC" class="headerlink" title="CBC"></a>CBC</h3><h3 id="GLPK"><a href="#GLPK" class="headerlink" title="GLPK"></a>GLPK</h3><h3 id="CPLEX"><a href="#CPLEX" class="headerlink" title="CPLEX"></a>CPLEX</h3><h3 id="GUROBI"><a href="#GUROBI" class="headerlink" title="GUROBI"></a>GUROBI</h3><h2 id="Python-第三方接口安装与使用"><a href="#Python-第三方接口安装与使用" class="headerlink" title="Python 第三方接口安装与使用"></a>Python 第三方接口安装与使用</h2><h3 id="CVXOPT"><a href="#CVXOPT" class="headerlink" title="CVXOPT"></a>CVXOPT</h3><h3 id="PuLP"><a href="#PuLP" class="headerlink" title="PuLP"></a>PuLP</h3><h3 id="CVXPY"><a href="#CVXPY" class="headerlink" title="CVXPY"></a>CVXPY</h3><h2 id="求解器及其-python-接口的性能比较"><a href="#求解器及其-python-接口的性能比较" class="headerlink" title="求解器及其 python 接口的性能比较"></a>求解器及其 python 接口的性能比较</h2><p>下面列出的结果仅仅基于我目前一个关于最小流的研究课题，更全面的分析与比较可以参考文档<a href="/files/Comparison-of-Open-Source-Linear-Programming-Solvers.pdf">[1]</a></p>
+<h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><p>[1] <a href="/files/Comparison-of-Open-Source-Linear-Programming-Solvers.pdf">Comparison of Open-Source Linear Programming Solvers</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> optimization </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> linear programming </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[MySQL+phpMyAdmin 安装与使用方法]]></title>
       <url>/2018/10/23/mysql-tutorial/</url>
       <content type="html"><![CDATA[<p>这篇博客将介绍 MySQL 的安装，配置及其使用方法，另外，还会介绍如何使用 phpMyAdmin 这个工具来实现通过网页管理 MySQL 数据库。<br><a id="more"></a></p>
@@ -267,7 +292,7 @@
 </ul>
 <p>使用 gitbook.com 并关联 github</p>
 <h2 id="发布到-github-page"><a href="#发布到-github-page" class="headerlink" title="发布到 github page"></a>发布到 github page</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> git@github.com:repository.git</div></pre></td></tr></table></figure>
-<p>使用这个<a href="/file/deploy.sh">脚本</a>快速部署到 github page。</p>
+<p>使用这个<a href="/files/deploy.sh">脚本</a>快速部署到 github page。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git add deploy.sh</div><div class="line">$ git commit -m <span class="string">"Commit deploy.sh to master repository"</span></div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ chmod +x deploy.sh</div></pre></td></tr></table></figure>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="http://www.chengweiyang.cn/gitbook/index.html" target="_blank" rel="external">GitBook 简明教程</a></p>
@@ -331,7 +356,7 @@
 </ul>
 <p>安装好字幕插件后，播放视频时可以在右下角找到字幕按钮，下载想要的字幕就可以了。当然有些搜出来的字幕不同步，换一个就好了。</p>
 <h3 id="直播插件"><a href="#直播插件" class="headerlink" title="直播插件"></a>直播插件</h3><ul>
-<li>PVR IPTV simple client: 安装方法为，主界面 -&gt; add-ons -&gt; my add-ons -&gt; PVR clients -&gt; PVR IPTV simple client。安装完以后也需要在 configure 里面设置一下，configure -&gt; general，location 选择 local path，m3u playlist path 这里首先下载 <a href="/file/playlist.m3u">m3u</a> 文件放在任意位置，然后 m3u playlist path 设置成这个 m3u 文件的存放地址就好了。这个 m3u 文件列的是直播源，其中很多直播源过段时间可能会失效，我会保持更新，当然一些国外节目也可以在 <a href="http://iptv.filmover.com/" target="_blank" rel="external">[3]</a> 中找，按照 m3u 文件的格式自己更新，每次更新完 m3u 文件后都要重启 kodi 才能生效。设置好以后就可以在主界面的 TV -&gt; channel 中看到添加的电视节目了。</li>
+<li>PVR IPTV simple client: 安装方法为，主界面 -&gt; add-ons -&gt; my add-ons -&gt; PVR clients -&gt; PVR IPTV simple client。安装完以后也需要在 configure 里面设置一下，configure -&gt; general，location 选择 local path，m3u playlist path 这里首先下载 <a href="/files/playlist.m3u">m3u</a> 文件放在任意位置，然后 m3u playlist path 设置成这个 m3u 文件的存放地址就好了。这个 m3u 文件列的是直播源，其中很多直播源过段时间可能会失效，我会保持更新，当然一些国外节目也可以在 <a href="http://iptv.filmover.com/" target="_blank" rel="external">[3]</a> 中找，按照 m3u 文件的格式自己更新，每次更新完 m3u 文件后都要重启 kodi 才能生效。设置好以后就可以在主界面的 TV -&gt; channel 中看到添加的电视节目了。</li>
 </ul>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://kodi.tv/" target="_blank" rel="external">Kodi 官网</a><br>[2] <a href="https://www.macworld.co.uk/how-to/iosapps/how-install-kodi-on-iphone-or-ipad-without-jailbreaking-3634908/" target="_blank" rel="external">在不越狱的 iOS 系统上安装 Kodi</a><br>[3] <a href="http://iptv.filmover.com/" target="_blank" rel="external">m3u 播放源</a></p>
 ]]></content>
