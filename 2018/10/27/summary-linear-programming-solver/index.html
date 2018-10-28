@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Homepage of Zhikun Zhang">
 <meta property="og:description" content="目前的一个研究课题，需要求解一个大规模的线性规划问题，变量规模至少在 10 万的水平，需要找到找到一个高效的求解器。为此，专门花时间对比了 CBC, GLPK 等开源求解器和 CPLEX, GUROBI 等商用求解器，并对比了求解器配套及 CVXOPT, CVXPY, PuLP 等第三方 python 接口的求解效率。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-27T14:09:01.659Z">
+<meta property="og:updated_time" content="2018-10-28T22:46:35.456Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性规划求解器总结与比较">
 <meta name="twitter:description" content="目前的一个研究课题，需要求解一个大规模的线性规划问题，变量规模至少在 10 万的水平，需要找到找到一个高效的求解器。为此，专门花时间对比了 CBC, GLPK 等开源求解器和 CPLEX, GUROBI 等商用求解器，并对比了求解器配套及 CVXOPT, CVXPY, PuLP 等第三方 python 接口的求解效率。">
@@ -291,8 +291,15 @@
       
           
         <p>目前的一个研究课题，需要求解一个大规模的线性规划问题，变量规模至少在 10 万的水平，需要找到找到一个高效的求解器。为此，专门花时间对比了 CBC, GLPK 等开源求解器和 CPLEX, GUROBI 等商用求解器，并对比了求解器配套及 CVXOPT, CVXPY, PuLP 等第三方 python 接口的求解效率。<br><a id="more"></a></p>
-<h2 id="求解器安装与使用"><a href="#求解器安装与使用" class="headerlink" title="求解器安装与使用"></a>求解器安装与使用</h2><h3 id="CBC"><a href="#CBC" class="headerlink" title="CBC"></a>CBC</h3><h3 id="GLPK"><a href="#GLPK" class="headerlink" title="GLPK"></a>GLPK</h3><h3 id="CPLEX"><a href="#CPLEX" class="headerlink" title="CPLEX"></a>CPLEX</h3><h3 id="GUROBI"><a href="#GUROBI" class="headerlink" title="GUROBI"></a>GUROBI</h3><h2 id="Python-第三方接口安装与使用"><a href="#Python-第三方接口安装与使用" class="headerlink" title="Python 第三方接口安装与使用"></a>Python 第三方接口安装与使用</h2><h3 id="CVXOPT"><a href="#CVXOPT" class="headerlink" title="CVXOPT"></a>CVXOPT</h3><h3 id="PuLP"><a href="#PuLP" class="headerlink" title="PuLP"></a>PuLP</h3><h3 id="CVXPY"><a href="#CVXPY" class="headerlink" title="CVXPY"></a>CVXPY</h3><h2 id="求解器及其-python-接口的性能比较"><a href="#求解器及其-python-接口的性能比较" class="headerlink" title="求解器及其 python 接口的性能比较"></a>求解器及其 python 接口的性能比较</h2><p>下面列出的结果仅仅基于我目前一个关于最小流的研究课题，更全面的分析与比较可以参考文档<a href="/files/Comparison-of-Open-Source-Linear-Programming-Solvers.pdf">[1]</a></p>
-<h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><p>[1] <a href="/files/Comparison-of-Open-Source-Linear-Programming-Solvers.pdf">Comparison of Open-Source Linear Programming Solvers</a></p>
+<h2 id="求解器安装与使用"><a href="#求解器安装与使用" class="headerlink" title="求解器安装与使用"></a>求解器安装与使用</h2><p>这篇教程主要介绍类 UNIX 系统（包括 Linux, Mac OS, AIX, Cygwin 和 MSys 等）的安装与使用，window 下的安装由于笔者并没有亲自试验过，所以如果需要，大家可以自行在网上查找资料。</p>
+<h3 id="CBC"><a href="#CBC" class="headerlink" title="CBC"></a>CBC</h3><p>CBC 是开源基金会 <a href="https://www.coin-or.org/" target="_blank" rel="external">COIN-OR</a> (Computational Infrastructure for Operations Research) 开发的线性规划求解器。该基金会开发了大量的运筹学工具，截止 2011 年，已经有开发并维护了 48 个项目。</p>
+<p>CBC 有很多安装方案，这里仅介绍笔者实验成功过的 Git 源码安装的方式，其他方式可以参考<a href="https://projects.coin-or.org/svn/Cbc/trunk/INSTALL" target="_blank" rel="external">官方文档</a>。</p>
+<p>假设我们想要安装稳定的 2.9 版本，cd 到我们想要安装 CBC 的目录，然后执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> --branch=stable/2.9 https://github.com/coin-or/Cbc Cbc-2.9</div></pre></td></tr></table></figure></p>
+<p>下载完 CBC 源码后还要下载相应的依赖，否则会报错：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> Cbc-2.9</div><div class="line">git <span class="built_in">clone</span> --branch=stable/0.8 https://github.com/coin-or-tools/BuildTools</div><div class="line">./BuildTools/get.dependencies.sh fetch</div></pre></td></tr></table></figure></p>
+<p>有了源码和依赖，我们就可以执行典型的 Linux 源码安装步骤了：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">../configure</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure></p>
+<p>CBC 有一个 COIN-OR 官方开发的 Python 接口 CyLP。安装方法可以参考<a href="http://mpy.github.io/CyLPdoc/" target="_blank" rel="external">官方文档</a>，不过按照教程，笔者尝试了各种方法都没有成功，这里就不详细讲解了。如果有人安装成功了，可以在评论区分享你的经验。</p>
+<h3 id="GLPK"><a href="#GLPK" class="headerlink" title="GLPK"></a>GLPK</h3><h3 id="CPLEX"><a href="#CPLEX" class="headerlink" title="CPLEX"></a>CPLEX</h3><h3 id="GUROBI"><a href="#GUROBI" class="headerlink" title="GUROBI"></a>GUROBI</h3><h2 id="Python-第三方接口安装与使用"><a href="#Python-第三方接口安装与使用" class="headerlink" title="Python 第三方接口安装与使用"></a>Python 第三方接口安装与使用</h2><h3 id="CVXOPT"><a href="#CVXOPT" class="headerlink" title="CVXOPT"></a>CVXOPT</h3><h3 id="PuLP"><a href="#PuLP" class="headerlink" title="PuLP"></a>PuLP</h3><h3 id="CVXPY"><a href="#CVXPY" class="headerlink" title="CVXPY"></a>CVXPY</h3><h2 id="求解器及其-python-接口的性能比较"><a href="#求解器及其-python-接口的性能比较" class="headerlink" title="求解器及其 python 接口的性能比较"></a>求解器及其 python 接口的性能比较</h2><p>下面列出的结果仅仅基于我目前一个关于最小流的研究课题，更全面的分析与比较可以参考文档<a href="/files/Comparison-of-Open-Source-Linear-Programming-Solvers.pdf">[1]</a></p>
+<h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><p>[1] <a href="/files/Comparison-of-Open-Source-Linear-Programming-Solvers.pdf">Comparison of Open-Source Linear Programming Solvers</a><br>[2] <a href="https://projects.coin-or.org/svn/Cbc/trunk/INSTALL" target="_blank" rel="external">CBC install</a></p>
 
       
     </div>
@@ -304,7 +311,7 @@
         <p><span>Title:</span><a href="/2018/10/27/summary-linear-programming-solver/">线性规划求解器总结与比较</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
         <p><span>Created:</span>2018-10-27, 09:34:13</p>
-        <p><span>Updated:</span>2018-10-27, 10:09:01</p>
+        <p><span>Updated:</span>2018-10-28, 18:46:35</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2018/10/27/summary-linear-programming-solver/" title="线性规划求解器总结与比较">http://zhangzhk.com/2018/10/27/summary-linear-programming-solver/</a>
             <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2018/10/27/summary-linear-programming-solver/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
