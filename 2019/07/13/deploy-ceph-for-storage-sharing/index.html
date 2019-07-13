@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Homepage of Zhikun Zhang">
 <meta property="og:description" content="简介Ceph 是一个分布式文件存储系统，其工作原理可以参考官方文档。本博客的主要目的是搭建 ceph 分布式集群，实现多个服务器的存储共享，这在 python 的多进程运行中非常方便。这样一来，我们只需要使用 pycharm 与其中一台服务器同步文件，其他所有服务器都能同时访问并运行。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-13T08:07:28.295Z">
+<meta property="og:updated_time" content="2019-07-13T11:53:19.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 Ceph 实现多服务器存储共享">
 <meta name="twitter:description" content="简介Ceph 是一个分布式文件存储系统，其工作原理可以参考官方文档。本博客的主要目的是搭建 ceph 分布式集群，实现多个服务器的存储共享，这在 python 的多进程运行中非常方便。这样一来，我们只需要使用 pycharm 与其中一台服务器同步文件，其他所有服务器都能同时访问并运行。">
@@ -392,7 +392,29 @@
 </ol>
 <p>如果想要添加新的 OSD 节点，可以在机器准备和 ceph 安装后，重复第6-9步进行安装。</p>
 <h2 id="安装-cephfs-文件系统"><a href="#安装-cephfs-文件系统" class="headerlink" title="安装 cephfs 文件系统"></a>安装 cephfs 文件系统</h2><p>有了 ceph 集群，安装 cephfs 文件系统相对来说比较简单，本部分主要参考教程[3]。</p>
-<h2 id="创建使用共享目录的新用户"><a href="#创建使用共享目录的新用户" class="headerlink" title="创建使用共享目录的新用户"></a>创建使用共享目录的新用户</h2><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><p>[1] <a href="http://docs.ceph.org.cn/" target="_blank" rel="external">Ceph 官方文档</a><br>[2] <a href="https://www.cnblogs.com/zengzhihua/p/9884341.html" target="_blank" rel="external">Ceph/共享存储 汇总</a><br>[3] <a href="https://www.howtoing.com/how-to-mount-cephfs-on-centos-7" target="_blank" rel="external">如何在CentOS 7上安装CephFS</a><br>[4] <a href="https://www.jianshu.com/p/c22ff79c4452" target="_blank" rel="external">CephFS 使用</a></p>
+<ol>
+<li><p>创建 MDS 服务器（管理节点）<br>如果要运行并挂载 cephfs 文件系统，必须至少有一个元数据服务器（ceph MDS），可以在管理节点上使用 ceph-deploy 命令将 ceph MDS 安装到 OSD 节点上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ceph-deploy mds create node1</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建 data pool 和 metadata pool（ceph 节点）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ceph osd pool create cephfs_data 128</div><div class="line">ceph osd pool create cephfs_metadata 128</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建 cephfs 文件系统</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ceph fs new cephfs cephfs_metadata cephfs_data</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>其中 cephfs 为文件系统名称，可以自己指定。</p>
+<ol>
+<li>检查 MDS 服务器列表和状态<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ceph fs ls</div><div class="line">ceph mds stat</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="挂载-cephfs-文件系统"><a href="#挂载-cephfs-文件系统" class="headerlink" title="挂载 cephfs 文件系统"></a>挂载 cephfs 文件系统</h2><p>上一步已经在 ceph 集群中安装好了 cephfs 文件系统，接下来就可以在客户机上挂载 cephfs 文件系统了。一个 cephfs 文件系统可以挂载很多客户机，因此这些客户机可以共享 cephfs 指定的存储空间。需要注意的是，ceph 集群中的节点本身便可以作为客户机。</p>
+<p>创建 cephfs 目录并远程挂载<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo mkdir -p /mnt/cephfs</div><div class="line">sudo mount -t ceph &lt;monitor-ip&gt;:6789:/ /mnt/cephfs -o name=admin,secret=&lt;admin-key&gt;</div></pre></td></tr></table></figure></p>
+<p>其中<monitor-ip>为 monitor 节点的 ip 地址，<admin-key>可以通过以下命令得到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ceph auth get client.admin</div></pre></td></tr></table></figure></admin-key></monitor-ip></p>
+<h2 id="创建新用户并指定家目录为挂载的-cephfs-文件系统"><a href="#创建新用户并指定家目录为挂载的-cephfs-文件系统" class="headerlink" title="创建新用户并指定家目录为挂载的 cephfs 文件系统"></a>创建新用户并指定家目录为挂载的 cephfs 文件系统</h2><p>最简单的方法是在每台客户机上分别创建用户 user-name，方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo useradd -d /mnt/cephfs/user-name -m user-name</div><div class="line">sudo passwd user-name</div><div class="line">echo &quot;user-name ALL = (root) NOPASSWD:ALL&quot; | sudo tee /etc/sudoers.d/user-name</div><div class="line">sudo chmod 0440 /etc/sudoers.d/user-name</div></pre></td></tr></table></figure></p>
+<p>如果需要管理的用户很多，可以使用[LDAP]来集中式管理，有时间的话接下来会部署一个LDAP并出一个教程。</p>
+<p>至此，所有服务器上的 user-name 用户都可以共享 cephfs 文件系统指定的存储空间。</p>
+<h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><p>[1] <a href="http://docs.ceph.org.cn/" target="_blank" rel="external">Ceph 官方文档</a><br>[2] <a href="https://www.cnblogs.com/zengzhihua/p/9884341.html" target="_blank" rel="external">Ceph/共享存储 汇总</a><br>[3] <a href="https://www.howtoing.com/how-to-mount-cephfs-on-centos-7" target="_blank" rel="external">如何在CentOS 7上安装CephFS</a><br>[4] <a href="https://www.jianshu.com/p/c22ff79c4452" target="_blank" rel="external">CephFS 使用</a><br>[5] </p>
 
       
     </div>
@@ -404,7 +426,7 @@
         <p><span>Title:</span><a href="/2019/07/13/deploy-ceph-for-storage-sharing/">使用 Ceph 实现多服务器存储共享</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
         <p><span>Created:</span>2019-07-13, 11:00:01</p>
-        <p><span>Updated:</span>2019-07-13, 16:07:28</p>
+        <p><span>Updated:</span>2019-07-13, 19:53:19</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2019/07/13/deploy-ceph-for-storage-sharing/" title="使用 Ceph 实现多服务器存储共享">http://zhangzhk.com/2019/07/13/deploy-ceph-for-storage-sharing/</a>
             <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2019/07/13/deploy-ceph-for-storage-sharing/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
@@ -434,7 +456,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署-ceph-集群"><span class="toc-number">2.</span> <span class="toc-text">部署 ceph 集群</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机器准备"><span class="toc-number">2.1.</span> <span class="toc-text">机器准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ceph-节点安装"><span class="toc-number">2.2.</span> <span class="toc-text">ceph 节点安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搭建集群"><span class="toc-number">2.3.</span> <span class="toc-text">搭建集群</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-cephfs-文件系统"><span class="toc-number">3.</span> <span class="toc-text">安装 cephfs 文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建使用共享目录的新用户"><span class="toc-number">4.</span> <span class="toc-text">创建使用共享目录的新用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-number">5.</span> <span class="toc-text">后记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有用链接"><span class="toc-number">6.</span> <span class="toc-text">有用链接</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署-ceph-集群"><span class="toc-number">2.</span> <span class="toc-text">部署 ceph 集群</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机器准备"><span class="toc-number">2.1.</span> <span class="toc-text">机器准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ceph-节点安装"><span class="toc-number">2.2.</span> <span class="toc-text">ceph 节点安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搭建集群"><span class="toc-number">2.3.</span> <span class="toc-text">搭建集群</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-cephfs-文件系统"><span class="toc-number">3.</span> <span class="toc-text">安装 cephfs 文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#挂载-cephfs-文件系统"><span class="toc-number">4.</span> <span class="toc-text">挂载 cephfs 文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建新用户并指定家目录为挂载的-cephfs-文件系统"><span class="toc-number">5.</span> <span class="toc-text">创建新用户并指定家目录为挂载的 cephfs 文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有用链接"><span class="toc-number">6.</span> <span class="toc-text">有用链接</span></a></li></ol>
         
     </div>
     <style>
