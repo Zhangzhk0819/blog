@@ -3,6 +3,30 @@
   
     
     <entry>
+      <title><![CDATA[使用 Ceph 实现多服务器存储共享]]></title>
+      <url>/2019/07/13/deploy-ceph-for-storage-sharing/</url>
+      <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Hexo 是一种基于 node.js 的静态博客框架。</p>
+<a id="more"></a>
+<h2 id="部署-ceph-集群"><a href="#部署-ceph-集群" class="headerlink" title="部署 ceph 集群"></a>部署 ceph 集群</h2><h2 id="安装-cephfs-文件系统"><a href="#安装-cephfs-文件系统" class="headerlink" title="安装 cephfs 文件系统"></a>安装 cephfs 文件系统</h2><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2>]]></content>
+      
+        <categories>
+            
+            <category> coding </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> ceph </tag>
+            
+            <tag> distributed storage </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[线性规划求解器总结与比较]]></title>
       <url>/2018/10/27/summary-linear-programming-solver/</url>
       <content type="html"><![CDATA[<p>目前的一个研究课题，需要求解一个大规模的线性规划问题，变量规模至少在 10 万的水平，需要找到找到一个高效的求解器。为此，专门花时间对比了 CBC, GLPK 等开源求解器和 CPLEX, GUROBI 等商用求解器，并对比了求解器官方 Python 接口及 CVXOPT, CVXPY, PuLP 等第三方 python 接口的求解效率。<br><a id="more"></a></p>

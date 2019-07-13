@@ -183,7 +183,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/adversarial/">adversarial</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cleverhans/">cleverhans</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cluster/">cluster</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-programming/">linear programming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/">machine learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pep8/">pep8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpmyadmin/">phpmyadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/">security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/adversarial/">adversarial</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ceph/">ceph</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cleverhans/">cleverhans</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cluster/">cluster</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-storage/">distributed storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-programming/">linear programming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/">machine learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pep8/">pep8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpmyadmin/">phpmyadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/">security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a></li></ul>
                     </div>
                 </section>
                 
@@ -248,11 +248,79 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-how-to-use-purdue-cluster" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/10/30/how-to-use-purdue-cluster/" class="article-date">
+      <time datetime="2017-10-30T15:24:48.000Z" itemprop="datePublished">2017-10-30</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/30/how-to-use-purdue-cluster/">如何使用远程计算资源</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>在普渡学习期间，为了提高训练模型的速度，获得了使用多个远程计算资源的权限，包括课题组自己搭建的 swarm 和 crater 服务器，普渡计算中心集群 Conte [1]，以及匹兹堡超算中心（Pittsburgh Supercomputing Center）Bridges 计算集群。下面记录一下使用各个远程计算资源的方法。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/coding/">coding</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cluster/">cluster</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/">ssh</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/10/30/how-to-use-purdue-cluster/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-problem-in-python-development" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2017/10/25/problem-in-python-development/" class="article-date">
-      <time datetime="2017-10-25T18:56:26.000Z" itemprop="datePublished">2017-10-25</time>
+      <time datetime="2017-10-25T06:56:26.000Z" itemprop="datePublished">2017-10-25</time>
 </a>
 
 
@@ -320,7 +388,7 @@
   
     <div class="article-meta">
       <a href="/2017/10/19/build-python-development-environment-in-mac/" class="article-date">
-      <time datetime="2017-10-19T19:14:48.000Z" itemprop="datePublished">2017-10-19</time>
+      <time datetime="2017-10-19T07:14:48.000Z" itemprop="datePublished">2017-10-19</time>
 </a>
 
 
@@ -388,7 +456,7 @@
   
     <div class="article-meta">
       <a href="/2017/09/22/understanding-mnist-tutorial-pure-tf/" class="article-date">
-      <time datetime="2017-09-22T21:37:16.000Z" itemprop="datePublished">2017-09-22</time>
+      <time datetime="2017-09-22T09:37:16.000Z" itemprop="datePublished">2017-09-22</time>
 </a>
 
 
@@ -456,7 +524,7 @@
   
     <div class="article-meta">
       <a href="/2017/09/21/commands-of-git/" class="article-date">
-      <time datetime="2017-09-21T19:35:53.000Z" itemprop="datePublished">2017-09-21</time>
+      <time datetime="2017-09-21T07:35:53.000Z" itemprop="datePublished">2017-09-21</time>
 </a>
 
 
@@ -535,7 +603,7 @@
   
     <div class="article-meta">
       <a href="/2017/09/21/understanding-fully-connected-feed/" class="article-date">
-      <time datetime="2017-09-21T14:07:41.000Z" itemprop="datePublished">2017-09-21</time>
+      <time datetime="2017-09-21T02:07:41.000Z" itemprop="datePublished">2017-09-21</time>
 </a>
 
 
@@ -603,7 +671,7 @@
   
     <div class="article-meta">
       <a href="/2017/09/17/manage-two-github-accounts-in-one-computer/" class="article-date">
-      <time datetime="2017-09-18T03:58:05.000Z" itemprop="datePublished">2017-09-17</time>
+      <time datetime="2017-09-17T15:58:05.000Z" itemprop="datePublished">2017-09-17</time>
 </a>
 
 
@@ -667,7 +735,7 @@
   
     <div class="article-meta">
       <a href="/2017/09/13/how-to-create-blog-by-hexo/" class="article-date">
-      <time datetime="2017-09-14T01:26:30.000Z" itemprop="datePublished">2017-09-13</time>
+      <time datetime="2017-09-13T13:26:30.000Z" itemprop="datePublished">2017-09-13</time>
 </a>
 
 
@@ -742,7 +810,7 @@
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                2017-2018 Zhikun Zhang
+                2017-2019 Zhikun Zhang
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
