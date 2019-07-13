@@ -5,9 +5,110 @@
     <entry>
       <title><![CDATA[使用 Ceph 实现多服务器存储共享]]></title>
       <url>/2019/07/13/deploy-ceph-for-storage-sharing/</url>
-      <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Hexo 是一种基于 node.js 的静态博客框架。</p>
+      <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Ceph 是一个分布式文件存储系统，其工作原理可以参考<a href="http://docs.ceph.org.cn/" target="_blank" rel="external">官方文档</a>。本博客的主要目的是搭建 ceph 分布式集群，实现多个服务器的存储共享，这在 python 的多进程运行中非常方便。这样一来，我们只需要使用 pycharm 与其中一台服务器同步文件，其他所有服务器都能同时访问并运行。</p>
 <a id="more"></a>
-<h2 id="部署-ceph-集群"><a href="#部署-ceph-集群" class="headerlink" title="部署 ceph 集群"></a>部署 ceph 集群</h2><h2 id="安装-cephfs-文件系统"><a href="#安装-cephfs-文件系统" class="headerlink" title="安装 cephfs 文件系统"></a>安装 cephfs 文件系统</h2><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2>]]></content>
+<h2 id="部署-ceph-集群"><a href="#部署-ceph-集群" class="headerlink" title="部署 ceph 集群"></a>部署 ceph 集群</h2><p>这部分内容主要参考[1]，通过执行以下命令亲测可以顺利搭建集群。</p>
+<h3 id="机器准备"><a href="#机器准备" class="headerlink" title="机器准备"></a>机器准备</h3><p>本教程部署一个管理节点，一个 monitor 节点和三个 osd 节点：</p>
+<ul>
+<li>管理节点：admin-node</li>
+<li>monitor 节点：node1</li>
+<li>osd 节点：node1, node2, node3</li>
+</ul>
+<ol>
+<li>修改四台机器的主机名，以管理节点为例：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cp /etc/hostname /etc/hostname.bak</div><div class="line">vim /etc/hostname</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>其中第一条命令对之前的 hostname 文件进行备份，这是操作 linux 系统文件时的一个好习惯。</p>
+<ol>
+<li>修改四台机器的 hosts 文件，以管理节点为例：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cp /etc/hosts /etc/hosts.bak</div><div class="line">vim /etc/hosts</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">192.168.0.100 admin-node</div><div class="line">192.168.0.101 node1</div><div class="line">192.168.0.102 node2</div><div class="line">192.168.0.103 node3</div></pre></td></tr></table></figure>
+<p>其中不同机器的 IP 根据实际情况填写。</p>
+<h3 id="ceph-节点安装"><a href="#ceph-节点安装" class="headerlink" title="ceph 节点安装"></a>ceph 节点安装</h3><ol>
+<li>安装 NTP 服务（所有节点）<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install ntp ntpdate ntp-doc</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>需要注意的是，当某些源不能用的时候安装比较慢，此时可以把那些源备份掉，比如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mv ambarim.repo ambarim.repo.bak</div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>创建部署 ceph 的用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 在目录 ceph-user-folder 创建用户 ceph-user-name</div><div class="line">sudo useradd -d /ceph-user-folder -m ceph-user-name</div><div class="line"># 修改 ceph-user-name 用户的密码</div><div class="line">sudo passwd ceph-user-name</div><div class="line"># 为 ceph-user-name 用户添加 sudo 权限</div><div class="line">echo &quot;ceph-user-name ALL = (root) NOPASSWD:ALL&quot; | sudo tee /etc/sudoers.d/ceph-user-name</div><div class="line">sudo chmod 0440 /etc/sudoers.d/cehph-user-name</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置管理节点免密登录其他节点（管理节点）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># 在管理节点上切换用户至刚刚创建的 ceph-user-name</div><div class="line">su - ceph-user-name</div><div class="line"># 生成密钥对</div><div class="line">ssh-gen</div><div class="line"># 将公钥拷贝到 ceph 节点</div><div class="line">ssh-copy-id ceph-user-name@node1</div><div class="line">ssh-copy-id ceph-user-name@node2</div><div class="line">ssh-copy-id ceph-user-name@node3</div><div class="line"># 修改 ~/.ssh/config 文件</div><div class="line">sudo vim ~/.ssh/config</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>加入以下配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Host admin-node</div><div class="line">   Hostname admin-node</div><div class="line">   User ceph-user-name</div><div class="line">Host node1</div><div class="line">   Hostname node1</div><div class="line">   User ceph-user-name</div><div class="line">Host node2</div><div class="line">   Hostname node2</div><div class="line">   User ceph-user-name</div><div class="line">Host node3</div><div class="line">   Hostname node3</div><div class="line">   User ceph-user-name</div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>关闭防火墙（ceph 节点）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo systemctl stop firewalld</div><div class="line">sudo systemctl disable firewalld</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置 TTY 终端（ceph 节点）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 编辑 /etc/sudoers 文件</div><div class="line">sudo visudo</div><div class="line"># 注释掉 Defaults requiretty 选项</div></pre></td></tr></table></figure>
+</li>
+<li><p>关闭 selinux（ceph 节点）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo setenforce 0</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置 epel 源（管理节点）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install -y yum-utils &amp;&amp; sudo yum-config-manager --add-repo https://dl.fedoraproject.org/pub/epel/7/x86_64/ &amp;&amp; sudo yum install --nogpgcheck -y epel-release &amp;&amp; sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7 &amp;&amp; sudo rm /etc/yum.repos.d/dl.fedoraproject.org*</div></pre></td></tr></table></figure>
+</li>
+<li><p>把软件包源加入软件库（管理节点）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vim /etc/yum.repos.d/ceph.repo</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>添加以下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">[Ceph]</div><div class="line">name=Ceph packages for $basearch</div><div class="line">baseurl=http://mirrors.aliyun.com/ceph/rpm-jewel/el7/x86_64/</div><div class="line">enabled=1</div><div class="line">gpgcheck=0</div><div class="line">type=rpm-md</div><div class="line">gpgkey=https://mirrors.aliyun.com/ceph/keys/release.asc</div><div class="line">priority=1</div><div class="line"></div><div class="line">[Ceph-noarch]</div><div class="line">name=Ceph noarch packages</div><div class="line">baseurl=http://mirrors.aliyun.com/ceph/rpm-jewel/el7/noarch/</div><div class="line">enabled=1</div><div class="line">gpgcheck=0</div><div class="line">type=rpm-md</div><div class="line">gpgkey=https://mirrors.aliyun.com/ceph/keys/release.asc</div><div class="line">priority=1</div><div class="line"></div><div class="line">[ceph-source]</div><div class="line">name=Ceph source packages</div><div class="line">baseurl=http://mirrors.aliyun.com/ceph/rpm-jewel/el7/SRPMS/</div><div class="line">enabled=1</div><div class="line">gpgcheck=0</div><div class="line">type=rpm-md</div><div class="line">gpgkey=https://mirrors.aliyun.com/ceph/keys/release.asc</div><div class="line">priority=1</div></pre></td></tr></table></figure></p>
+<ol>
+<li>安装 ceph-deploy（管理节点）<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo yum update</div><div class="line">sudo yum install ceph-deploy</div><div class="line">sudo yum install yum-plugin-priorities</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这一步时间可能比较长，请耐心等待。</p>
+<h3 id="搭建集群"><a href="#搭建集群" class="headerlink" title="搭建集群"></a>搭建集群</h3><p>集群搭建主要在管理节点上进行，用到上一步安装的 ceph-deploy 程序。</p>
+<ol>
+<li><p>创建安装文件夹，存储安装配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd ~</div><div class="line">mkdir my-cluster</div><div class="line">cd my-cluster</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建集群并初始化 monitor 节点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ceph-deploy new node1</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>其中设置 node1 为 monitor 节点。</p>
+<ol>
+<li><p>修改配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed -i &apos;$a\osd pool default size = 2&apos; ceph.conf</div></pre></td></tr></table></figure>
+</li>
+<li><p>在各个节点上安装 ceph<br>教程[2]提供的方法是直接在管理节点上执行以下命令就能在所有节点上安装 ceph。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ceph-deploy install admin-node node1 node2 node3</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>然而在我的安装过程中，只有管理节点能成功安装，其他节点都报错。解决方案是直接登录其他节点先把 ceph 安装好，然后在管理节点上执行 ceph-deploy 命令。首先在节点上添加 epel 源：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/yum.repo.d/epel.repo</div></pre></td></tr></table></figure></p>
+<p>添加以下内容并保存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>然后使用 yum 进行安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum -y install ceph</div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>初始化 monitor 节点，并收集所有秘钥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ceph-deploy mon create-initial</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加三个 OSD<br>首先登陆到 ceph 节点，给每个 OSD 守护进程创建一个目录，并添加权限，以 node1 为例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ssh node1</div><div class="line">sudo mkdir /var/local/osd0</div><div class="line">sudo chmod 777 /var/local/osd0/</div><div class="line">exit</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>其中，需要为不同 ceph 节点指定不同的 osd 编号。</p>
+<p>然后从管理节点执行 ceph-deploy 来准备 OSD。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ceph-deploy osd prepare node1:/var/local/osd0 node2:/var/local/osd1 node3:/var/local/osd2</div></pre></td></tr></table></figure></p>
+<p>最后激活 OSD。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ceph-deploy osd activate node1:/var/local/osd0 node2:/var/local/osd1 node3:/var/local/osd2</div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>把配置文件和 admin 秘钥拷贝到管理节点和 ceph 节点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ceph-deploy admin admin-node node1 node2 node3</div></pre></td></tr></table></figure>
+</li>
+<li><p>在每个节点上添加对 ceph.client.admin.keyring 的操作权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo chmod +r /etc/ceph/ceph.client.admin.keyring</div></pre></td></tr></table></figure>
+</li>
+<li><p>检查集群健康状况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ceph -s</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如果想要添加新的 OSD 节点，可以在机器准备和 ceph 安装后，重复第6-9步进行安装。</p>
+<h2 id="安装-cephfs-文件系统"><a href="#安装-cephfs-文件系统" class="headerlink" title="安装 cephfs 文件系统"></a>安装 cephfs 文件系统</h2><p>有了 ceph 集群，安装 cephfs 文件系统相对来说比较简单，本部分主要参考教程[3]。</p>
+<h2 id="创建使用共享目录的新用户"><a href="#创建使用共享目录的新用户" class="headerlink" title="创建使用共享目录的新用户"></a>创建使用共享目录的新用户</h2><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><p>[1] <a href="http://docs.ceph.org.cn/" target="_blank" rel="external">Ceph 官方文档</a><br>[2] <a href="https://www.cnblogs.com/zengzhihua/p/9884341.html" target="_blank" rel="external">Ceph/共享存储 汇总</a><br>[3] <a href="https://www.howtoing.com/how-to-mount-cephfs-on-centos-7" target="_blank" rel="external">如何在CentOS 7上安装CephFS</a><br>[4] <a href="https://www.jianshu.com/p/c22ff79c4452" target="_blank" rel="external">CephFS 使用</a></p>
+]]></content>
       
         <categories>
             
