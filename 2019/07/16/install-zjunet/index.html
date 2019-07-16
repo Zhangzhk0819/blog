@@ -15,18 +15,14 @@
 
 
 
-<meta name="description" content="在普渡学习期间，为了提高训练模型的速度，获得了使用多个远程计算资源的权限，包括课题组自己搭建的 swarm 和 crater 服务器，普渡计算中心集群 Conte [1]，以及匹兹堡超算中心（Pittsburgh Supercomputing Center）Bridges 计算集群。下面记录一下使用各个远程计算资源的方法。">
-<meta name="keywords" content="cluster,ssh">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何使用远程计算资源">
-<meta property="og:url" content="http://zhangzhk.com/2017/10/30/how-to-use-purdue-cluster/index.html">
+<meta property="og:title" content="Install-Zjunet">
+<meta property="og:url" content="http://zhangzhk.com/2019/07/16/install-zjunet/index.html">
 <meta property="og:site_name" content="Homepage of Zhikun Zhang">
-<meta property="og:description" content="在普渡学习期间，为了提高训练模型的速度，获得了使用多个远程计算资源的权限，包括课题组自己搭建的 swarm 和 crater 服务器，普渡计算中心集群 Conte [1]，以及匹兹堡超算中心（Pittsburgh Supercomputing Center）Bridges 计算集群。下面记录一下使用各个远程计算资源的方法。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-02T16:34:03.123Z">
+<meta property="og:updated_time" content="2019-07-16T09:06:55.046Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何使用远程计算资源">
-<meta name="twitter:description" content="在普渡学习期间，为了提高训练模型的速度，获得了使用多个远程计算资源的权限，包括课题组自己搭建的 swarm 和 crater 服务器，普渡计算中心集群 Conte [1]，以及匹兹堡超算中心（Pittsburgh Supercomputing Center）Bridges 计算集群。下面记录一下使用各个远程计算资源的方法。">
+<meta name="twitter:title" content="Install-Zjunet">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -58,7 +54,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>如何使用远程计算资源 | Homepage of Zhikun Zhang</title>
+<title>Install-Zjunet | Homepage of Zhikun Zhang</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -246,11 +242,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-how-to-use-purdue-cluster" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-install-zjunet" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/10/30/how-to-use-purdue-cluster/" class="article-date">
-      <time datetime="2017-10-30T15:24:48.000Z" itemprop="datePublished">2017-10-30</time>
+      <a href="/2019/07/16/install-zjunet/" class="article-date">
+      <time datetime="2019-07-16T09:06:55.000Z" itemprop="datePublished">2019-07-16</time>
 </a>
 
 
@@ -265,7 +261,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      如何使用远程计算资源
+      Install-Zjunet
     </h1>
   
 
@@ -273,16 +269,8 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/coding/">coding</a>
-    </div>
-
 
         
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cluster/">cluster</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/">ssh</a></li></ul>
-    </div>
-
         <div class="clearfix"></div>
       </div>
       
@@ -290,23 +278,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>在普渡学习期间，为了提高训练模型的速度，获得了使用多个远程计算资源的权限，包括课题组自己搭建的 swarm 和 crater 服务器，普渡计算中心集群 Conte [1]，以及匹兹堡超算中心（Pittsburgh Supercomputing Center）Bridges 计算集群。下面记录一下使用各个远程计算资源的方法。</p>
-<a id="more"></a>
-<h2 id="swarm-和-crater"><a href="#swarm-和-crater" class="headerlink" title="swarm 和 crater"></a>swarm 和 crater</h2><h3 id="远程登录主机"><a href="#远程登录主机" class="headerlink" title="远程登录主机"></a>远程登录主机</h3><p>在 macos 或 Linux 中，可以直接使用 ssh 命令登录远程主机，使用方法为</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh username_in_remote_host@remote_host</div></pre></td></tr></table></figure>
-<p>其中，username_in_remote_host 是自己在远程主机上拥有的用户名，remote_host 是远程主机的 IP 地址或者域名。登录远程主机以后就跟在自己电脑上一样操作了。另外，可以使用下面的 scp 命令在本地主机和远程主机之间传输文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ scp path_to_local_file username_in_remote_host@remote_host:path_to_remote_file</div></pre></td></tr></table></figure>
-<p>值得一提的是，我们可以在本地使用多个 shell 登录远程主机，而且在远程主机上可以使用同样的命令登录另外一台远程主机，比如说课题组还有一台服务器 crater 只能通过内网访问，而我的 mac 只能连无线网，无法接入内网，只能通过 ssh 先连接到可以外网访问的服务器 swarm，然后在 swarm 上再通过 ssh 连接 crater。</p>
-<h3 id="ssh-免密登录"><a href="#ssh-免密登录" class="headerlink" title="ssh 免密登录"></a>ssh 免密登录</h3><p>正常情况下，每次在本地使用 ssh 和 scp 的时候，都需要输入一次远程主机的登录密码，非常麻烦。为方便起见，我们可以使用 ssh 秘钥对来进行免密登录。</p>
-<p>首先，在本地主机使用<code>ssh-keygen</code>命令产生秘钥对，密钥对默认存放在 ~/.ssh 文件夹中，需要注意的是，在产生秘钥过程中会提示设置密码，我们直接按回车键，表示不设置密码，否则就失去了免密登录的意义了。接下来使用 scp 命令把 ~/.ssh 文件夹中的 id_rsa.pub 文件远程拷贝到远程主机的 ~/.ssh 文件夹（如果没有，可以使用<code>mkdir .ssh</code>命令创建）中，接下来使用下面命令对远程主机中的 id_rsa.pub 进行重命名</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mv id_rsa.pub authorized_keys</div></pre></td></tr></table></figure>
-<p>这个时候当我们再在本地执行 ssh 命令时，不需要输密码就能进入远程主机了。</p>
-<h2 id="Conte"><a href="#Conte" class="headerlink" title="Conte"></a>Conte</h2><p>front end，计算集群</p>
-<h3 id="存储空间使用"><a href="#存储空间使用" class="headerlink" title="存储空间使用"></a>存储空间使用</h3><h3 id="提交任务"><a href="#提交任务" class="headerlink" title="提交任务"></a>提交任务</h3><h2 id="Bridges"><a href="#Bridges" class="headerlink" title="Bridges"></a>Bridges</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li><a href="https://www.rcac.purdue.edu/knowledge/conte" target="_blank" rel="external">Conte user guide</a></li>
-<li><a href="https://www.psc.edu/bridges/user-guide" target="_blank" rel="external">Bridges user guide</a></li>
-</ol>
-
+        
       
     </div>
     
@@ -314,13 +286,13 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2017/10/30/how-to-use-purdue-cluster/">如何使用远程计算资源</a></p>
+        <p><span>Title:</span><a href="/2019/07/16/install-zjunet/">Install-Zjunet</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
-        <p><span>Created:</span>2017-10-30, 23:24:48</p>
-        <p><span>Updated:</span>2018-01-03, 00:34:03</p>
+        <p><span>Created:</span>2019-07-16, 17:06:55</p>
+        <p><span>Updated:</span>2019-07-16, 17:06:55</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2017/10/30/how-to-use-purdue-cluster/" title="如何使用远程计算资源">http://zhangzhk.com/2017/10/30/how-to-use-purdue-cluster/</a>
-            <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2017/10/30/how-to-use-purdue-cluster/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2019/07/16/install-zjunet/" title="Install-Zjunet">http://zhangzhk.com/2019/07/16/install-zjunet/</a>
+            <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2019/07/16/install-zjunet/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -332,16 +304,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/12/05/python-programming-for-spark/">
-                    Spark 的 Python 编程
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/10/25/problem-in-python-development/">
-                    Python 开发过程中遇到问题总结
+                <a href="/2019/07/13/deploy-ceph-for-storage-sharing/">
+                    使用 Ceph 实现多服务器存储共享
                 </a>
             </div>
         
@@ -353,7 +319,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#swarm-和-crater"><span class="toc-number">1.</span> <span class="toc-text">swarm 和 crater</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#远程登录主机"><span class="toc-number">1.1.</span> <span class="toc-text">远程登录主机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ssh-免密登录"><span class="toc-number">1.2.</span> <span class="toc-text">ssh 免密登录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conte"><span class="toc-number">2.</span> <span class="toc-text">Conte</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#存储空间使用"><span class="toc-number">2.1.</span> <span class="toc-text">存储空间使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交任务"><span class="toc-number">2.2.</span> <span class="toc-text">提交任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bridges"><span class="toc-number">3.</span> <span class="toc-text">Bridges</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+            
         
     </div>
     <style>
@@ -389,7 +355,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"如何使用远程计算资源　| Homepage of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Install-Zjunet　| Homepage of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -408,8 +374,8 @@
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function(){
-            this.page.url = 'http://zhangzhk.com/2017/10/30/how-to-use-purdue-cluster/';
-            this.page.identifier = '2017/10/30/how-to-use-purdue-cluster/';
+            this.page.url = 'http://zhangzhk.com/2019/07/16/install-zjunet/';
+            this.page.identifier = '2019/07/16/install-zjunet/';
         };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
@@ -431,15 +397,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/12/05/python-programming-for-spark/" title="Pre: Spark 的 Python 编程">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
         
 
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/10/25/problem-in-python-development/" title="Next: Python 开发过程中遇到问题总结">
+            <a href="/2019/07/13/deploy-ceph-for-storage-sharing/" title="Next: 使用 Ceph 实现多服务器存储共享">
                 <i class="fa fa-angle-right"></i>
             </a>
         
