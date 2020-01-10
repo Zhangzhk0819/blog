@@ -3,13 +3,34 @@
   
     
     <entry>
-      <title><![CDATA[Linux 使用 Zjunet 连接浙大 VPN]]></title>
+      <title><![CDATA[MacOS 提升效率工具总结]]></title>
+      <url>/2019/07/16/macos-efficiency-tools/</url>
+      <content type="html"><![CDATA[<p>这篇博客主要介绍 Linux 服务器如何连接浙大 VPN。<br><a id="more"></a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> tools </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> macos </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Linux 服务器使用 Zjunet 连接浙大 VPN]]></title>
       <url>/2019/07/16/install-zjunet/</url>
-      <content type="html"><![CDATA[<p>这篇博客主要介绍 Linux 主机如何连接浙大 VPN。<br><a id="more"></a></p>
+      <content type="html"><![CDATA[<p>这篇博客主要介绍 Linux 服务器如何连接浙大 VPN。<br><a id="more"></a></p>
 <h2 id="安装-zjunet"><a href="#安装-zjunet" class="headerlink" title="安装 zjunet"></a>安装 zjunet</h2><p>由于在 vpn 设置好之前是无法连接外网的，所以只能手动下载 zjunet rpm 包到本地，然后通过 scp 上传到 Linux 服务器。另外，zjunet 依赖于 xl2tpd 程序，也需要通过 rpm 包安装。具体命令如下：<br>本地下载 <a href="https://github.com/QSCTech/zjunet/releases" target="_blank" rel="external">zjunet</a> 和 <a href="https://centos.pkgs.org/7/epel-x86_64/xl2tpd-1.3.8-3.el7.x86_64.rpm.html" target="_blank" rel="external">xl2tpd</a> rpm 包，并执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">scp ./zjunet.rpm root@server_ip:~/zjunet.rpm</div><div class="line">scp ./xl2tpd.rpm root@server_ip:~/xl2tpd.rpm</div></pre></td></tr></table></figure></p>
 <p>两个包的名字根据具体下载文件名确定，下面命令类似。</p>
 <p>通过 ssh 登录到远程服务器并执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum -y install xl2tpd.rpm</div><div class="line">yum -y install zjunet.rpm</div></pre></td></tr></table></figure></p>
-<p>如果安装 zjunet 时提示缺少 dnsutils 这个包，可以首先执行以下命令忽略依赖然后安装，主要是因为这个包是 Ubuntu 里面的，在 CentOS 里面没有这个包，相同功能对应另外一个包。忽略以后似乎对链接 vpn 没啥影响。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -i zjunet.rpm --nodeps</div></pre></td></tr></table></figure></p>
+<p>如果安装 zjunet 时提示缺少 dnsutils 这个包，可以首先执行以下命令忽略依赖然后安装，主要是因为这个包是 Ubuntu 里面的，在 CentOS 里面没有这个包，相同功能对应另外一个包。忽略以后似乎对连接 vpn 没啥影响。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -i zjunet.rpm --nodeps</div></pre></td></tr></table></figure></p>
 <h2 id="连接浙大-vpn"><a href="#连接浙大-vpn" class="headerlink" title="连接浙大 vpn"></a>连接浙大 vpn</h2><p>安装好 zjunet 后可以直接在终端输入<code>zjunet</code>来查看可用命令，当然也可以通过该命令判断程序是否正确安装。常用的命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 添加 vpn 用户</div><div class="line">zjunet user add</div><div class="line"># 连接 vpn</div><div class="line">zjunet vpn -c</div><div class="line"># 断开 vpn</div><div class="line">zjunet vpn -d</div></pre></td></tr></table></figure></p>
 <h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><p>[1] <a href="https://centos.pkgs.org/7/epel-x86_64/xl2tpd-1.3.8-3.el7.x86_64.rpm.html" target="_blank" rel="external">xl2tpd rpm 包下载</a><br>[2] <a href="https://github.com/QSCTech/zjunet/releases" target="_blank" rel="external">zjunet rpm 包下载</a></p>
 ]]></content>

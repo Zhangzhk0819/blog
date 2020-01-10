@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="由于 Mac 上很多系统软件依赖于其自带的 python 环境，如果直接使用系统自带的 python 环境进行开发，很可能会把该环境搞乱，威胁系统安全，因此在开发的时候我们最好能在独立的环境中进行开发。另外，在 python 开发过程中，经常需要在不同版本之间切换，特别是 2.7 和 3.5，因此需要搭建一个方便 python 版本切换的开发环境。">
-<meta name="keywords" content="python,mac">
+<meta name="description" content="这篇博客主要介绍 Linux 服务器如何连接浙大 VPN。">
+<meta name="keywords" content="macos">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac 中多版本 Python 开发环境搭建">
-<meta property="og:url" content="http://zhangzhk.com/2017/10/19/build-python-development-environment-in-mac/index.html">
+<meta property="og:title" content="MacOS 提升效率工具总结">
+<meta property="og:url" content="http://zhangzhk.com/2019/07/16/macos-efficiency-tools/index.html">
 <meta property="og:site_name" content="Homepage of Zhikun Zhang">
-<meta property="og:description" content="由于 Mac 上很多系统软件依赖于其自带的 python 环境，如果直接使用系统自带的 python 环境进行开发，很可能会把该环境搞乱，威胁系统安全，因此在开发的时候我们最好能在独立的环境中进行开发。另外，在 python 开发过程中，经常需要在不同版本之间切换，特别是 2.7 和 3.5，因此需要搭建一个方便 python 版本切换的开发环境。">
+<meta property="og:description" content="这篇博客主要介绍 Linux 服务器如何连接浙大 VPN。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-23T21:50:37.000Z">
+<meta property="og:updated_time" content="2019-07-16T13:52:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac 中多版本 Python 开发环境搭建">
-<meta name="twitter:description" content="由于 Mac 上很多系统软件依赖于其自带的 python 环境，如果直接使用系统自带的 python 环境进行开发，很可能会把该环境搞乱，威胁系统安全，因此在开发的时候我们最好能在独立的环境中进行开发。另外，在 python 开发过程中，经常需要在不同版本之间切换，特别是 2.7 和 3.5，因此需要搭建一个方便 python 版本切换的开发环境。">
+<meta name="twitter:title" content="MacOS 提升效率工具总结">
+<meta name="twitter:description" content="这篇博客主要介绍 Linux 服务器如何连接浙大 VPN。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -58,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Mac 中多版本 Python 开发环境搭建 | Homepage of Zhikun Zhang</title>
+<title>MacOS 提升效率工具总结 | Homepage of Zhikun Zhang</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -246,11 +246,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-build-python-development-environment-in-mac" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-macos-efficiency-tools" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/10/19/build-python-development-environment-in-mac/" class="article-date">
-      <time datetime="2017-10-19T13:14:48.000Z" itemprop="datePublished">2017-10-19</time>
+      <a href="/2019/07/16/macos-efficiency-tools/" class="article-date">
+      <time datetime="2019-07-16T19:29:48.000Z" itemprop="datePublished">2019-07-16</time>
 </a>
 
 
@@ -265,7 +265,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Mac 中多版本 Python 开发环境搭建
+      MacOS 提升效率工具总结
     </h1>
   
 
@@ -274,13 +274,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/coding/">coding</a>
+    <a class="article-category-link" href="/categories/tools/">tools</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macos/">macos</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -290,56 +290,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>由于 Mac 上很多系统软件依赖于其自带的 python 环境，如果直接使用系统自带的 python 环境进行开发，很可能会把该环境搞乱，威胁系统安全，因此在开发的时候我们最好能在独立的环境中进行开发。另外，在 python 开发过程中，经常需要在不同版本之间切换，特别是 2.7 和 3.5，因此需要搭建一个方便 python 版本切换的开发环境。<br><a id="more"></a></p>
-<p>下面详细介绍 mac 中多版本 python 开发环境的搭建方法。</p>
-<h2 id="安装-homebrew"><a href="#安装-homebrew" class="headerlink" title="安装 homebrew"></a>安装 homebrew</h2><p>在各个版本的 Linux 系统中，可以使用包管理工具来快速安装各种软件，比如 Ubuntu 的 apt-get，Debian/Kali 的 dpkg，Fedora 的 yum 等。同样，在 Mac 系统中，也有一个比较好用的包管理系统，那就是 homebrew。Mac 系统默认是没有 homebrew 的，需要通过以下命令安装：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ /usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></div></pre></td></tr></table></figure>
-<p>安装完成后就可以通过 brew intall pakage-name 命令来安装各种软件了。在这篇博客中主要用来安装下面的 pyenv 和 pyenv-virtualenv。</p>
-<h2 id="安装-pyenv"><a href="#安装-pyenv" class="headerlink" title="安装 pyenv"></a>安装 pyenv</h2><p>Mac 系统一般自带有 python 2.7，为了方便 python 版本切换，我们可以通过 pyenv 这个软件来进行快速管理。pyenv 可以管理 python2, python3 以及 annaconda, miniconda 在内的各种 python 发行版本，所有版本文件都存放在 ~/.pyenv/versions 文件夹里面。</p>
-<p>首先利用下面命令安装 pyenv:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install pyenv</div></pre></td></tr></table></figure>
-<p>然后通过以下两条命令把环境变量写入 ~/.bash_profile 中：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'export PYENV_ROOT="$HOME/.pyenv"'</span> &gt;&gt; ~/.bash_profile</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'export PATH="$PYENV_ROOT/bin:$PATH"'</span> &gt;&gt; ~/.bash_profile</div></pre></td></tr></table></figure>
-<p>接下来通过把 pyenv init 写入 shell 来开启 shims 和自动补齐功能：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> -e <span class="string">'if command -v pyenv 1&gt;/dev/null 2&gt;&amp;1; then\n  eval "$(pyenv init -)"\nfi'</span> &gt;&gt; ~/.bash_profile</div></pre></td></tr></table></figure>
-<p>这个时候就可以通过 pyenv 来管理 python 版本了，下面简单介绍 pyenv 的几条常用命令。</p>
-<p>查看本机安装的 python 版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pyenv versions</div></pre></td></tr></table></figure>
-<p>星号表示当前正在使用的 Python 版本。使用 python -V 确认版本。</p>
-<p>查看可安装的 python 版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv install -l</div></pre></td></tr></table></figure>
-<p>Python 安装与卸载</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pyenv install 2.7.3   <span class="comment"># 安装python</span></div><div class="line">$ pyenv uninstall 2.7.3 <span class="comment"># 卸载python</span></div></pre></td></tr></table></figure>
-<p>Python 版本切换</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ pyenv global 2.7.3  <span class="comment"># 设置全局的 Python 版本，通过将版本号写入 ~/.pyenv/version 文件的方式。</span></div><div class="line">$ pyenv <span class="built_in">local</span> 2.7.3 <span class="comment"># 设置 Python 本地版本，通过将版本号写入当前目录下的 .python-version 文件的方式。</span></div><div class="line">$ pyenv shell 2.7.3 <span class="comment"># 设置面向 shell 的 Python 版本，通过设置当前 shell 的 PYENV_VERSION 环境变量的方式。</span></div><div class="line">$ pyenv shell --<span class="built_in">unset</span> <span class="comment"># 取消当前 shell 设定的版本。</span></div><div class="line">$ pyenv <span class="built_in">rehash</span>  <span class="comment"># 创建垫片路径（为所有已安装的可执行文件创建 shims，如：~/.pyenv/versions/*/bin/*，因此，每当你增删了 Python 版本或带有可执行文件的包（如 pip）以后，都应该执行一次本命令）</span></div></pre></td></tr></table></figure>
-<p>python 的使用优先级为 shell &gt; local &gt; global。</p>
-<h2 id="安装-pyenv-virtualenv"><a href="#安装-pyenv-virtualenv" class="headerlink" title="安装 pyenv-virtualenv"></a>安装 pyenv-virtualenv</h2><p>pyenv-virtual 是用来管理虚拟环境的。这里我们需要认真区分版本管理和环境管理的区别，版本管理用于管理 python 的不同发行版本，而环境管理用于为不同项目定制开发环境。在 pyenv 中，环境是从版本中派生出来的，可以继承所属版本的第三方包，也可以为特定项目定制第三方包，而又不至于影响原始的 python 版本。对于 pyenv 来说，虚拟环境和版本一样，也存放在 ~/.pyenv/versions 文件夹中，其管理跟版本管理类似，可以使用 uninstall, global, local 等命令。</p>
-<p>我们同样使用 homebrew 来安装 pyenv-virtualenv：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install pyenv-virtualenv</div></pre></td></tr></table></figure>
-<p>之后，我们就可以通过以下命令来创建虚拟环境了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv virtualenv &lt;python-version&gt; &lt;virtualenv-name&gt;</div></pre></td></tr></table></figure>
-<p>其中，python-version 是虚拟环境的版本类型，virtualenv-name 为该虚拟环境的名字，可以自己任取。</p>
-<p>接下来就可以通过下面命令激活和关闭虚拟环境了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pyenv activate virtualenv-name</div><div class="line">pyenv deactivate</div></pre></td></tr></table></figure>
-<p>激活后 shell 的最前端会出现，(virtualenv-name)，代表已经进入虚拟环境。</p>
-<p>如果我们想每次进入某个项目便自动激活特定虚拟环境，可以通过 local 命令来设置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv <span class="built_in">local</span> virtualenv-name</div></pre></td></tr></table></figure>
-<h2 id="安装-pip"><a href="#安装-pip" class="headerlink" title="安装 pip"></a>安装 pip</h2><p>pip 是 python 的包安装工具，安装 pip 后，所有的 python 包都可以通过 pip isntall pkg 进行安装。首先通过下面命令获取 pip 安装脚本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ wget https://bootstrap.pypa.io/get-pip.py</div></pre></td></tr></table></figure>
-<p>wget 是一个好用的文件下载工具，下载的文件放在当前文件夹中。如果还没有安装 wget，也可以通过 homebrew 进行安装。</p>
-<p>接下来就可以用 python 执行该安装脚本了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo python get-pip.py</div></pre></td></tr></table></figure>
-<p>需要注意的是，由于我们使用了 pyenv 来管理 python 版本，每次使用 pip 都是把相应的包安装到当前系统使用的 python 版本中。如果我们在虚拟环境中，那么相应的包便安装到相应的虚拟环境中了。</p>
-<h2 id="Python-开发常用软件"><a href="#Python-开发常用软件" class="headerlink" title="Python 开发常用软件"></a>Python 开发常用软件</h2><p>在 python 开发过程中，使用一些软件能大大加快开发进程，这些软件都可以通过 pip 进行安装。</p>
-<ul>
-<li>ipython</li>
-</ul>
-<h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><ul>
-<li><a href="https://brew.sh/index_zh-cn.html" target="_blank" rel="external">homebrew 官网</a></li>
-<li><a href="http://www.jb51.net/article/76931.htm" target="_blank" rel="external">在Mac OS上搭建Python的开发环境</a></li>
-<li><a href="http://einverne.github.io/post/2017/04/pyenv.html" target="_blank" rel="external">使用 pyenv 管理 Python 版本</a></li>
-<li><a href="https://github.com/pyenv/pyenv#homebrew-on-mac-os-x" target="_blank" rel="external">Pyenv github</a></li>
-</ul>
+        <p>这篇博客主要介绍 Linux 服务器如何连接浙大 VPN。<br><a id="more"></a></p>
 
       
     </div>
@@ -348,13 +299,13 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2017/10/19/build-python-development-environment-in-mac/">Mac 中多版本 Python 开发环境搭建</a></p>
+        <p><span>Title:</span><a href="/2019/07/16/macos-efficiency-tools/">MacOS 提升效率工具总结</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
-        <p><span>Created:</span>2017-10-19, 15:14:48</p>
-        <p><span>Updated:</span>2017-10-23, 23:50:37</p>
+        <p><span>Created:</span>2019-07-16, 21:29:48</p>
+        <p><span>Updated:</span>2019-07-16, 15:52:31</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2017/10/19/build-python-development-environment-in-mac/" title="Mac 中多版本 Python 开发环境搭建">http://zhangzhk.com/2017/10/19/build-python-development-environment-in-mac/</a>
-            <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2017/10/19/build-python-development-environment-in-mac/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2019/07/16/macos-efficiency-tools/" title="MacOS 提升效率工具总结">http://zhangzhk.com/2019/07/16/macos-efficiency-tools/</a>
+            <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2019/07/16/macos-efficiency-tools/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -366,16 +317,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/10/25/problem-in-python-development/">
-                    Python 开发过程中遇到问题总结
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/09/22/understanding-mnist-tutorial-pure-tf/">
-                    深入剖析 mnist_tutorial_pure_tf.py
+                <a href="/2019/07/16/install-zjunet/">
+                    Linux 服务器使用 Zjunet 连接浙大 VPN
                 </a>
             </div>
         
@@ -387,7 +332,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-homebrew"><span class="toc-number">1.</span> <span class="toc-text">安装 homebrew</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-pyenv"><span class="toc-number">2.</span> <span class="toc-text">安装 pyenv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-pyenv-virtualenv"><span class="toc-number">3.</span> <span class="toc-text">安装 pyenv-virtualenv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-pip"><span class="toc-number">4.</span> <span class="toc-text">安装 pip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-开发常用软件"><span class="toc-number">5.</span> <span class="toc-text">Python 开发常用软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有用链接"><span class="toc-number">6.</span> <span class="toc-text">有用链接</span></a></li></ol>
+            
         
     </div>
     <style>
@@ -423,7 +368,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Mac 中多版本 Python 开发环境搭建　| Homepage of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"MacOS 提升效率工具总结　| Homepage of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -442,8 +387,8 @@
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function(){
-            this.page.url = 'http://zhangzhk.com/2017/10/19/build-python-development-environment-in-mac/';
-            this.page.identifier = '2017/10/19/build-python-development-environment-in-mac/';
+            this.page.url = 'http://zhangzhk.com/2019/07/16/macos-efficiency-tools/';
+            this.page.identifier = '2019/07/16/macos-efficiency-tools/';
         };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
@@ -465,15 +410,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/10/25/problem-in-python-development/" title="Pre: Python 开发过程中遇到问题总结">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
         
 
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/09/22/understanding-mnist-tutorial-pure-tf/" title="Next: 深入剖析 mnist_tutorial_pure_tf.py">
+            <a href="/2019/07/16/install-zjunet/" title="Next: Linux 服务器使用 Zjunet 连接浙大 VPN">
                 <i class="fa fa-angle-right"></i>
             </a>
         

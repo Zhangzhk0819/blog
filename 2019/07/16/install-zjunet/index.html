@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="这篇博客主要介绍 Linux 主机如何连接浙大 VPN。">
+<meta name="description" content="这篇博客主要介绍 Linux 服务器如何连接浙大 VPN。">
 <meta name="keywords" content="vpn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux 使用 Zjunet 连接浙大 VPN">
+<meta property="og:title" content="Linux 服务器使用 Zjunet 连接浙大 VPN">
 <meta property="og:url" content="http://zhangzhk.com/2019/07/16/install-zjunet/index.html">
 <meta property="og:site_name" content="Homepage of Zhikun Zhang">
-<meta property="og:description" content="这篇博客主要介绍 Linux 主机如何连接浙大 VPN。">
+<meta property="og:description" content="这篇博客主要介绍 Linux 服务器如何连接浙大 VPN。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-16T13:18:15.153Z">
+<meta property="og:updated_time" content="2019-07-16T13:21:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux 使用 Zjunet 连接浙大 VPN">
-<meta name="twitter:description" content="这篇博客主要介绍 Linux 主机如何连接浙大 VPN。">
+<meta name="twitter:title" content="Linux 服务器使用 Zjunet 连接浙大 VPN">
+<meta name="twitter:description" content="这篇博客主要介绍 Linux 服务器如何连接浙大 VPN。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -58,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Linux 使用 Zjunet 连接浙大 VPN | Homepage of Zhikun Zhang</title>
+<title>Linux 服务器使用 Zjunet 连接浙大 VPN | Homepage of Zhikun Zhang</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -183,7 +183,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/adversarial/">adversarial</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ceph/">ceph</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cleverhans/">cleverhans</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cluster/">cluster</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-storage/">distributed storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-programming/">linear programming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/">machine learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pep8/">pep8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpmyadmin/">phpmyadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/">security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/">vpn</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/adversarial/">adversarial</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ceph/">ceph</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cleverhans/">cleverhans</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cluster/">cluster</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-storage/">distributed storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-programming/">linear programming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/">machine learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macos/">macos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pep8/">pep8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpmyadmin/">phpmyadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/">security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/">vpn</a></li></ul>
                     </div>
                 </section>
                 
@@ -250,7 +250,7 @@
   
     <div class="article-meta">
       <a href="/2019/07/16/install-zjunet/" class="article-date">
-      <time datetime="2019-07-16T09:06:55.000Z" itemprop="datePublished">2019-07-16</time>
+      <time datetime="2019-07-16T15:06:55.000Z" itemprop="datePublished">2019-07-16</time>
 </a>
 
 
@@ -265,7 +265,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Linux 使用 Zjunet 连接浙大 VPN
+      Linux 服务器使用 Zjunet 连接浙大 VPN
     </h1>
   
 
@@ -290,11 +290,11 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>这篇博客主要介绍 Linux 主机如何连接浙大 VPN。<br><a id="more"></a></p>
+        <p>这篇博客主要介绍 Linux 服务器如何连接浙大 VPN。<br><a id="more"></a></p>
 <h2 id="安装-zjunet"><a href="#安装-zjunet" class="headerlink" title="安装 zjunet"></a>安装 zjunet</h2><p>由于在 vpn 设置好之前是无法连接外网的，所以只能手动下载 zjunet rpm 包到本地，然后通过 scp 上传到 Linux 服务器。另外，zjunet 依赖于 xl2tpd 程序，也需要通过 rpm 包安装。具体命令如下：<br>本地下载 <a href="https://github.com/QSCTech/zjunet/releases" target="_blank" rel="external">zjunet</a> 和 <a href="https://centos.pkgs.org/7/epel-x86_64/xl2tpd-1.3.8-3.el7.x86_64.rpm.html" target="_blank" rel="external">xl2tpd</a> rpm 包，并执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">scp ./zjunet.rpm root@server_ip:~/zjunet.rpm</div><div class="line">scp ./xl2tpd.rpm root@server_ip:~/xl2tpd.rpm</div></pre></td></tr></table></figure></p>
 <p>两个包的名字根据具体下载文件名确定，下面命令类似。</p>
 <p>通过 ssh 登录到远程服务器并执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum -y install xl2tpd.rpm</div><div class="line">yum -y install zjunet.rpm</div></pre></td></tr></table></figure></p>
-<p>如果安装 zjunet 时提示缺少 dnsutils 这个包，可以首先执行以下命令忽略依赖然后安装，主要是因为这个包是 Ubuntu 里面的，在 CentOS 里面没有这个包，相同功能对应另外一个包。忽略以后似乎对链接 vpn 没啥影响。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -i zjunet.rpm --nodeps</div></pre></td></tr></table></figure></p>
+<p>如果安装 zjunet 时提示缺少 dnsutils 这个包，可以首先执行以下命令忽略依赖然后安装，主要是因为这个包是 Ubuntu 里面的，在 CentOS 里面没有这个包，相同功能对应另外一个包。忽略以后似乎对连接 vpn 没啥影响。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -i zjunet.rpm --nodeps</div></pre></td></tr></table></figure></p>
 <h2 id="连接浙大-vpn"><a href="#连接浙大-vpn" class="headerlink" title="连接浙大 vpn"></a>连接浙大 vpn</h2><p>安装好 zjunet 后可以直接在终端输入<code>zjunet</code>来查看可用命令，当然也可以通过该命令判断程序是否正确安装。常用的命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 添加 vpn 用户</div><div class="line">zjunet user add</div><div class="line"># 连接 vpn</div><div class="line">zjunet vpn -c</div><div class="line"># 断开 vpn</div><div class="line">zjunet vpn -d</div></pre></td></tr></table></figure></p>
 <h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><p>[1] <a href="https://centos.pkgs.org/7/epel-x86_64/xl2tpd-1.3.8-3.el7.x86_64.rpm.html" target="_blank" rel="external">xl2tpd rpm 包下载</a><br>[2] <a href="https://github.com/QSCTech/zjunet/releases" target="_blank" rel="external">zjunet rpm 包下载</a></p>
 
@@ -305,12 +305,12 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2019/07/16/install-zjunet/">Linux 使用 Zjunet 连接浙大 VPN</a></p>
+        <p><span>Title:</span><a href="/2019/07/16/install-zjunet/">Linux 服务器使用 Zjunet 连接浙大 VPN</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
         <p><span>Created:</span>2019-07-16, 17:06:55</p>
-        <p><span>Updated:</span>2019-07-16, 21:18:15</p>
+        <p><span>Updated:</span>2019-07-16, 15:21:34</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2019/07/16/install-zjunet/" title="Linux 使用 Zjunet 连接浙大 VPN">http://zhangzhk.com/2019/07/16/install-zjunet/</a>
+            <span>Full URL:</span><a class="post-url" href="/2019/07/16/install-zjunet/" title="Linux 服务器使用 Zjunet 连接浙大 VPN">http://zhangzhk.com/2019/07/16/install-zjunet/</a>
             <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2019/07/16/install-zjunet/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -322,6 +322,12 @@
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/07/16/macos-efficiency-tools/">
+                    MacOS 提升效率工具总结
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -374,7 +380,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Linux 使用 Zjunet 连接浙大 VPN　| Homepage of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Linux 服务器使用 Zjunet 连接浙大 VPN　| Homepage of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -416,7 +422,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+            <a href="/2019/07/16/macos-efficiency-tools/" title="Pre: MacOS 提升效率工具总结">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -428,7 +436,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/16/install-zjunet/">Linux 使用 Zjunet 连接浙大 VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/13/deploy-ceph-for-storage-sharing/">使用 Ceph 实现多服务器存储共享</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/27/summary-linear-programming-solver/">线性规划求解器总结与比较</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/mysql-tutorial/">MySQL+phpMyAdmin 安装与使用方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/09/vim-shortcut/">Vim 快捷方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/python-argparse-module/">Python 参数解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/python-logging-module/">Python 中 Logging 模块使用方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/09/python-pep8-program-standard/">Python PEP8 编程规范总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/02/gitbook-tutorial/">Gitbook</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/02/setting-kodi/">Kodi 设置教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/python-programming-for-spark/">Spark 的 Python 编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/how-to-use-purdue-cluster/">如何使用远程计算资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/problem-in-python-development/">Python 开发过程中遇到问题总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/19/build-python-development-environment-in-mac/">Mac 中多版本 Python 开发环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/22/understanding-mnist-tutorial-pure-tf/">深入剖析 mnist_tutorial_pure_tf.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/commands-of-git/">Git 使用方法与常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/understanding-fully-connected-feed/">深入剖析 fully_connected_feed.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/manage-two-github-accounts-in-one-computer/">在一台设备上管理两个 Github 账号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/16/macos-efficiency-tools/">MacOS 提升效率工具总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/16/install-zjunet/">Linux 服务器使用 Zjunet 连接浙大 VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/13/deploy-ceph-for-storage-sharing/">使用 Ceph 实现多服务器存储共享</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/27/summary-linear-programming-solver/">线性规划求解器总结与比较</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/mysql-tutorial/">MySQL+phpMyAdmin 安装与使用方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/09/vim-shortcut/">Vim 快捷方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/python-argparse-module/">Python 参数解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/python-logging-module/">Python 中 Logging 模块使用方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/09/python-pep8-program-standard/">Python PEP8 编程规范总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/02/gitbook-tutorial/">Gitbook</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/02/setting-kodi/">Kodi 设置教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/python-programming-for-spark/">Spark 的 Python 编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/how-to-use-purdue-cluster/">如何使用远程计算资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/problem-in-python-development/">Python 开发过程中遇到问题总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/19/build-python-development-environment-in-mac/">Mac 中多版本 Python 开发环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/22/understanding-mnist-tutorial-pure-tf/">深入剖析 mnist_tutorial_pure_tf.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/commands-of-git/">Git 使用方法与常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/understanding-fully-connected-feed/">深入剖析 fully_connected_feed.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/manage-two-github-accounts-in-one-computer/">在一台设备上管理两个 Github 账号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a></li></ul>
 
 
 
@@ -442,7 +450,7 @@
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                2017-2019 Zhikun Zhang
+                2017-2020 Zhikun Zhang
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
