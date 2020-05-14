@@ -1,1 +1,1 @@
-My blog is blog.zhangzhk.com
+My blog is [blog.zhangzhk.com](blog.zhangzhk.com)
