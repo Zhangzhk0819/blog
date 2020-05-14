@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Zhikun Zhang" />
+
+
+
+<meta name="description" content="目前的一个研究课题，需要求解一个大规模的线性规划问题，变量规模至少在 10 万的水平，需要找到找到一个高效的求解器。为此，专门花时间对比了 CBC, GLPK 等开源求解器和 CPLEX, GUROBI 等商用求解器，并对比了求解器官方 Python 接口及 CVXOPT, CVXPY, PuLP 等第三方 python 接口的求解效率。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性规划求解器总结与比较">
+<meta property="og:url" content="http://zhangzhk.com/2018/10/27/summary-linear-programming-solver/index.html">
+<meta property="og:site_name" content="Blog of Zhikun Zhang">
+<meta property="og:description" content="目前的一个研究课题，需要求解一个大规模的线性规划问题，变量规模至少在 10 万的水平，需要找到找到一个高效的求解器。为此，专门花时间对比了 CBC, GLPK 等开源求解器和 CPLEX, GUROBI 等商用求解器，并对比了求解器官方 Python 接口及 CVXOPT, CVXPY, PuLP 等第三方 python 接口的求解效率。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-10-27T07:34:13.000Z">
+<meta property="article:modified_time" content="2018-10-30T19:24:18.889Z">
+<meta property="article:author" content="Zhikun Zhang">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="linear programming">
+<meta name="twitter:card" content="summary">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Blog of Zhikun Zhang" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>线性规划求解器总结与比较 | Blog of Zhikun Zhang</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: 
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Zhikun Zhang</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/adversarial/" rel="tag">adversarial</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ceph/" rel="tag">ceph</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cleverhans/" rel="tag">cleverhans</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cluster/" rel="tag">cluster</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/" rel="tag">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-storage/" rel="tag">distributed storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-programming/" rel="tag">linear programming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/" rel="tag">machine learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macos/" rel="tag">macos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pep8/" rel="tag">pep8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpmyadmin/" rel="tag">phpmyadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/" rel="tag">security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/" rel="tag">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/" rel="tag">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/" rel="tag">vpn</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/" target="_blank" rel="noopener">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/" target="_blank" rel="noopener">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Zhikun Zhang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Zhikun Zhang</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-summary-linear-programming-solver" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/10/27/summary-linear-programming-solver/" class="article-date">
+      <time datetime="2018-10-27T07:34:13.000Z" itemprop="datePublished">2018-10-27</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      线性规划求解器总结与比较
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/optimization/">optimization</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linear-programming/" rel="tag">linear programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>目前的一个研究课题，需要求解一个大规模的线性规划问题，变量规模至少在 10 万的水平，需要找到找到一个高效的求解器。为此，专门花时间对比了 CBC, GLPK 等开源求解器和 CPLEX, GUROBI 等商用求解器，并对比了求解器官方 Python 接口及 CVXOPT, CVXPY, PuLP 等第三方 python 接口的求解效率。</p>
+<a id="more"></a>
+
+
+
+<h2 id="求解器及官方-Python-接口安装与使用"><a href="#求解器及官方-Python-接口安装与使用" class="headerlink" title="求解器及官方 Python 接口安装与使用"></a>求解器及官方 Python 接口安装与使用</h2><p>这篇教程主要介绍类 UNIX 系统（包括 Linux, Mac OS, AIX, Cygwin 和 MSys 等）下的安装与使用，window 下的安装由于笔者并没有亲自试验过，就不详细讲解了。如果有需要，大家可以自行在网上查找资料。</p>
+<h3 id="CBC"><a href="#CBC" class="headerlink" title="CBC"></a>CBC</h3><p>CBC 是开源基金会 <a href="https://www.coin-or.org/" target="_blank" rel="noopener">COIN-OR</a> (Computational Infrastructure for Operations Research) 开发的线性规划求解器。该基金会开发了大量的运筹学工具，截止 2011 年，已经开发并维护了 48 个项目。</p>
+<p>CBC 有很多安装方案，这里仅介绍笔者实验成功过的 Git 源码安装的方式，其他方式可以参考<a href="https://projects.coin-or.org/svn/Cbc/trunk/INSTALL" target="_blank" rel="noopener">官方文档</a>。</p>
+<p>假设我们想要安装稳定的 2.9 版本，cd 到我们想要安装 CBC 的目录，然后执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --branch=stable/2.9 https://github.com/coin-or/Cbc Cbc-2.9</span><br></pre></td></tr></table></figure>
+
+<p>下载完 CBC 源码后还要下载相应的依赖，否则会报错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Cbc-2.9</span><br><span class="line">git <span class="built_in">clone</span> --branch=stable/0.8 https://github.com/coin-or-tools/BuildTools</span><br><span class="line">./BuildTools/get.dependencies.sh fetch</span><br></pre></td></tr></table></figure>
+
+<p>有了源码和依赖，我们就可以执行典型的 Linux 源码安装步骤了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p>CBC 有一个 COIN-OR 官方开发的 Python 接口 CyLP。安装方法可以参考<a href="http://mpy.github.io/CyLPdoc/" target="_blank" rel="noopener">官方文档</a>，不过按照教程，笔者尝试了各种方法都没有成功，这里就不详细讲解了。如果有人安装成功了，可以在评论区分享你的经验。</p>
+<h3 id="GLPK"><a href="#GLPK" class="headerlink" title="GLPK"></a>GLPK</h3><p>GLPK (GNU Linear Programming Kit) 是 GNU 项目开发并维护的一个线性规划工具包。在 Ubuntu 和 MacOS 下安装 GLPK 非常简单，用它们相应的安装工具就好了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install glpk // Ubuntu</span><br><span class="line">sudo brew install glpk // MacOS</span><br></pre></td></tr></table></figure>
+
+<p>GLPK 好像没有官方 Python 接口，不过可以很容易得被后面讲到的 CVXOPT, PuLP 和 CVXPY 等第三方接口调用。</p>
+<h3 id="CPLEX"><a href="#CPLEX" class="headerlink" title="CPLEX"></a>CPLEX</h3><p>CPLEX 是 IBM 开发的一个商用线性规划求解器。社区版只能解决变量数量低于 1000 以及约束数量低于 1000 的问题。好在 IBM 提供了供高校学生和老师使用的完整版本，通过教育邮箱注册即可获得。首先前往购买学生版<a href="https://ibm.onthehub.com/WebStore/OfferingDetails.aspx?o=733c3d21-0ce1-e711-80fa-000d3af41938" target="_blank" rel="noopener">链接</a>，点击 add to cart，会跳转到登录和注册页面，此时可以用自己的教育邮箱注册一个账号，然后就可以免费获得 CPLEX 了。CPLEX 在 MacOS 上的安装非常简单，在自己的账户下载安装包，双击安装包，按提示一步步安装好就行。</p>
+<p>CPLEX 提供了官方 python 接口，需要通过安装文件里的 setup.py 文件进行安装，具体方法为 cd 到 CPLEX 的安装目录，然后运行 setup.py 进行安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> cplex_home_path/python</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+
+<p>直接运行 setup.py 将把 python 接口安装到默认位置，如果想要指定安装目录，可以指定 –home 参数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python setup.py install --home python_package_home/cplex</span><br></pre></td></tr></table></figure>
+
+<p>我一直使用 pyenv 来管理 python 环境（使用方法可以参考我之前的<a href="http://zhangzhk.com/2017/10/19/build-python-development-environment-in-mac/">博客</a>），所以在我的电脑上，python_package_home 一般在 <code>~/.pyenv/versions/anaconda/lib/python/site-packages/cplex</code>。使用这种方法，python 文件放在 CPLEX python 目录下的 <code>cplex/bin/python/cplex</code> 里面，在程序里面直接 import cplex 无法识别，需要把里层 cplex 目录里面的文件复制到外层 cplex 目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -ri path_to_site-packages/cplex/bin/python/cplex/* path_to_site-packages/cplex/</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以正常 import cplex 了，具体的编程方法可以参考 <a href="https://www.ibm.com/support/knowledgecenter/SSSA5P_12.7.0/ilog.odms.cplex.help/CPLEX/GettingStarted/topics/tutorials/ataglance/Python.html" target="_blank" rel="noopener">[5]</a>。</p>
+<h3 id="GUROBI"><a href="#GUROBI" class="headerlink" title="GUROBI"></a>GUROBI</h3><p>GUROBI 也是一个商用求解器，实测其性能比 CPLEX 可能要稍微好一点。一点点八卦，GUROBI 是 CPLEX 的三个创始人离职后开发的一个求解器，名字是三个创始人姓氏的前两个字母组合(Zonghao GU + Edward ROthberg + Robert BIxby)。</p>
+<p>安装方法也很简单，前往<a href="http://www.gurobi.com/downloads/gurobi-optimizer" target="_blank" rel="noopener">官网</a>下载相应版本，然后根据<a href="https://packages.gurobi.com/8.1/README.txt" target="_blank" rel="noopener">readme</a>的步骤安装。在 MacOS 下直接双击安装包就行。GUROBI 也提供了教育版 license <a href="http://www.gurobi.com/academia/for-universities" target="_blank" rel="noopener">[7]</a>，利用教育邮箱就能申请到一个有效的 license，然后根据官方教程安装即可使用。</p>
+<p>GUROBI 的 python 接口可以直接使用 conda 来安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels http://conda.anaconda.org/gurobi</span><br><span class="line">conda install gurobi</span><br></pre></td></tr></table></figure>
+
+<p>具体编程方法可以参看 <a href="http://www.gurobi.com/documentation/8.0/quickstart_mac/py_python_interface.html" target="_blank" rel="noopener">[13]</a>。</p>
+<h2 id="Python-第三方接口安装与使用"><a href="#Python-第三方接口安装与使用" class="headerlink" title="Python 第三方接口安装与使用"></a>Python 第三方接口安装与使用</h2><h3 id="CVXOPT"><a href="#CVXOPT" class="headerlink" title="CVXOPT"></a>CVXOPT</h3><p>CVXOPT 的安装非常简单，直接用 conda 安装就行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install cvxopt</span><br></pre></td></tr></table></figure>
+
+<p>CVXOPT 实际上是一个凸优化工具包，并自带有线性规划求解器，但效率不是很高。但它可以调用外部求解器 <a href="https://cvxopt.org/userguide/coneprog.html?highlight=lp#linear-programming" target="_blank" rel="noopener">[8]</a>，包括 <a href="https://www.gnu.org/software/glpk/glpk.html" target="_blank" rel="noopener">GLPK</a>, <a href="https://www.mosek.com/" target="_blank" rel="noopener">MOSEK</a> 和 <a href="https://www.mcs.anl.gov/hs/software/DSDP/" target="_blank" rel="noopener">DSDP</a>。</p>
+<p>CVXOPT 的使用方法可以参考它的官方文档 <a href="http://cvxopt.org/" target="_blank" rel="noopener">[9]</a>。</p>
+<h3 id="CVXPY"><a href="#CVXPY" class="headerlink" title="CVXPY"></a>CVXPY</h3><p>CVXPY 是 Stanford 的 Steven Boyd 课题组开发的，做凸优化的同学肯定看过他的《Convex Optimization》这本书。CVXPY 也可以用 conda 进行安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda install -c conda-forge lapack</span><br><span class="line">conda install -c cvxgrp cvxpy</span><br></pre></td></tr></table></figure>
+
+<p>CVXPY 是一个纯粹的 python 优化工具接口，它本身并没有实现任何求解器，都是根据问题类型调用相应的外部求解器 <a href="https://www.cvxpy.org/tutorial/advanced/index.html#choosing-a-solver" target="_blank" rel="noopener">[10]</a>，然后解析结果。对于线性规划问题，可以调用外部的 CBC, GLPK, CPLEX, GUROBI, MOSEK 等。需要注意的是，当需要调用 CBC 时，必须先安装其官方 python 接口 CyLP；当需要调用 CPLEX 时也需要先安装其官方 python 接口。</p>
+<p>CVXPY 的建模过程非常直观，可以使用 numpy 的 ndarray。具体使用方法可以参考它的官方文档 <a href="https://www.cvxpy.org/tutorial/intro/index.html" target="_blank" rel="noopener">[11]</a></p>
+<h3 id="PuLP"><a href="#PuLP" class="headerlink" title="PuLP"></a>PuLP</h3><p>PuLP 可以使用 pip 进行安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pulp</span><br></pre></td></tr></table></figure>
+
+<p>PulP 也可以调用 CBC, GLPK, CPLEX, GUROBI 等外部线性规划求解器。具体使用方法可以参考它的官方文档 <a href="https://pythonhosted.org/PuLP/index.html" target="_blank" rel="noopener">[12]</a></p>
+<h2 id="求解器及其-python-接口的性能比较"><a href="#求解器及其-python-接口的性能比较" class="headerlink" title="求解器及其 python 接口的性能比较"></a>求解器及其 python 接口的性能比较</h2><p>下面列出的结果仅仅基于我目前一个关于最小流的研究课题，更全面的分析与比较可以参考文档<a href="/files/Comparison-of-Open-Source-Linear-Programming-Solvers.pdf">[1]</a>。</p>
+<ul>
+<li>GLPK 对于变量规模很大的线性规划问题求解速度非常慢。</li>
+<li>CPLEX 求解大规模线性规划问题非常快，但是使用官方提供的方法建模时间非常长。实际测试，在变量规模为 65536 时，建模花费 20s 左右，求解花费不到 1s。当使用 CVXPY 调用 CPLEX 时，同样规模一共花费 5s 左右，推测主要时间也是花费在建模上面。</li>
+<li>比较 CVXPY 调用默认求解器，CPLEX, GUROBI，发现速度差距不大，相对来说 GUROBI 可能会稍微好一点。</li>
+</ul>
+<h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><p>[1] <a href="/files/Comparison-of-Open-Source-Linear-Programming-Solvers.pdf">Comparison of Open-Source Linear Programming Solvers</a><br>[2] <a href="https://projects.coin-or.org/svn/Cbc/trunk/INSTALL" target="_blank" rel="noopener">CBC install</a><br>[3] <a href="https://scaron.info/blog/linear-programming-in-python-with-cvxopt.html" target="_blank" rel="noopener">Linear Programming in Python with CVXOPT</a><br>[4] <a href="https://ibm.onthehub.com/WebStore/OfferingDetails.aspx?o=733c3d21-0ce1-e711-80fa-000d3af41938" target="_blank" rel="noopener">CLPEX for student</a><br>[5] <a href="https://www.ibm.com/support/knowledgecenter/SSSA5P_12.7.0/ilog.odms.cplex.help/CPLEX/GettingStarted/topics/tutorials/ataglance/Python.html" target="_blank" rel="noopener">Using the python API</a><br>[6] <a href="https://packages.gurobi.com/8.1/README.txt" target="_blank" rel="noopener">Installation tutorial</a><br>[7] <a href="http://www.gurobi.com/academia/for-universities" target="_blank" rel="noopener">Gurobi For Universities</a><br>[8] <a href="https://cvxopt.org/userguide/coneprog.html?highlight=lp#linear-programming" target="_blank" rel="noopener">Linear programming for cvxopt</a><br>[9] <a href="http://cvxopt.org/" target="_blank" rel="noopener">CVXOPT tutorial</a><br>[10] <a href="https://www.cvxpy.org/tutorial/advanced/index.html#choosing-a-solver" target="_blank" rel="noopener">Choosing a solver for CVXPY</a><br>[11] <a href="https://www.cvxpy.org/tutorial/intro/index.html" target="_blank" rel="noopener">CVXPY tutorial</a><br>[12] <a href="https://pythonhosted.org/PuLP/index.html" target="_blank" rel="noopener">PuLP tutorial</a><br>[13] <a href="http://www.gurobi.com/documentation/8.0/quickstart_mac/py_python_interface.html" target="_blank" rel="noopener">GUROBI python interface</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2018/10/27/summary-linear-programming-solver/">线性规划求解器总结与比较</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
+        <p><span>Created:</span>2018-10-27, 09:34:13</p>
+        <p><span>Updated:</span>2018-10-30, 20:24:18</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2018/10/27/summary-linear-programming-solver/" title="线性规划求解器总结与比较">http://zhangzhk.com/2018/10/27/summary-linear-programming-solver/</a>
+            <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2018/10/27/summary-linear-programming-solver/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/07/13/deploy-ceph-for-storage-sharing/">
+                    使用 Ceph 实现多服务器存储共享
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/10/23/mysql-tutorial/">
+                    MySQL+phpMyAdmin 安装与使用方法
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#求解器及官方-Python-接口安装与使用"><span class="toc-number">1.</span> <span class="toc-text">求解器及官方 Python 接口安装与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CBC"><span class="toc-number">1.1.</span> <span class="toc-text">CBC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GLPK"><span class="toc-number">1.2.</span> <span class="toc-text">GLPK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CPLEX"><span class="toc-number">1.3.</span> <span class="toc-text">CPLEX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GUROBI"><span class="toc-number">1.4.</span> <span class="toc-text">GUROBI</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-第三方接口安装与使用"><span class="toc-number">2.</span> <span class="toc-text">Python 第三方接口安装与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CVXOPT"><span class="toc-number">2.1.</span> <span class="toc-text">CVXOPT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CVXPY"><span class="toc-number">2.2.</span> <span class="toc-text">CVXPY</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PuLP"><span class="toc-number">2.3.</span> <span class="toc-text">PuLP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#求解器及其-python-接口的性能比较"><span class="toc-number">3.</span> <span class="toc-text">求解器及其 python 接口的性能比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有用链接"><span class="toc-number">4.</span> <span class="toc-text">有用链接</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"线性规划求解器总结与比较　| Blog of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/07/13/deploy-ceph-for-storage-sharing/" title="Pre: 使用 Ceph 实现多服务器存储共享">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/10/23/mysql-tutorial/" title="Next: MySQL+phpMyAdmin 安装与使用方法">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/05/14/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/14/test/">About</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/16/macos-efficiency-tools/">MacOS 提升效率工具总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/16/install-zjunet/">Linux 服务器使用 Zjunet 连接浙大 VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/13/deploy-ceph-for-storage-sharing/">使用 Ceph 实现多服务器存储共享</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/27/summary-linear-programming-solver/">线性规划求解器总结与比较</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/mysql-tutorial/">MySQL+phpMyAdmin 安装与使用方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/09/vim-shortcut/">Vim 快捷方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/python-argparse-module/">Python 参数解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/python-logging-module/">Python 中 Logging 模块使用方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/09/python-pep8-program-standard/">Python PEP8 编程规范总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/02/gitbook-tutorial/">Gitbook</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/02/setting-kodi/">Kodi 设置教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/python-programming-for-spark/">Spark 的 Python 编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/how-to-use-purdue-cluster/">如何使用远程计算资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/problem-in-python-development/">Python 开发过程中遇到问题总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/19/build-python-development-environment-in-mac/">Mac 中多版本 Python 开发环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/22/understanding-mnist-tutorial-pure-tf/">深入剖析 mnist_tutorial_pure_tf.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/commands-of-git/">Git 使用方法与常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/understanding-fully-connected-feed/">深入剖析 fully_connected_feed.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/manage-two-github-accounts-in-one-computer/">在一台设备上管理两个 Github 账号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2020 Zhikun Zhang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

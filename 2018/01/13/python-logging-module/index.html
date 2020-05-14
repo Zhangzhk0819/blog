@@ -15,17 +15,20 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="简介在代码调试过程中，我们使用最多的方法是 print 函数，在我们需要知道中间变量的值时，插入一句 print 函数即可。但这种方法存在一个问题，那就是在程序调试完以后我们需要一个一个把 print 函数删掉或者注释掉。logging 模块能非常好得解决这个问题，通过设置 severity level，我们可以方便得控制在控制台打印的信息，另外我们也可以同时把日志信息输出到多个目的地，比如控制台">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://zhangzhk.com/2020/05/14/hello-world/index.html">
+<meta property="og:title" content="Python 中 Logging 模块使用方法">
+<meta property="og:url" content="http://zhangzhk.com/2018/01/13/python-logging-module/index.html">
 <meta property="og:site_name" content="Blog of Zhikun Zhang">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="简介在代码调试过程中，我们使用最多的方法是 print 函数，在我们需要知道中间变量的值时，插入一句 print 函数即可。但这种方法存在一个问题，那就是在程序调试完以后我们需要一个一个把 print 函数删掉或者注释掉。logging 模块能非常好得解决这个问题，通过设置 severity level，我们可以方便得控制在控制台打印的信息，另外我们也可以同时把日志信息输出到多个目的地，比如控制台">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-05-14T12:29:52.552Z">
-<meta property="article:modified_time" content="2020-05-14T12:29:52.552Z">
+<meta property="og:image" content="http://zhangzhk.com/images/python-logging-flow.png">
+<meta property="article:published_time" content="2018-01-13T10:35:09.000Z">
+<meta property="article:modified_time" content="2018-01-20T20:56:31.945Z">
 <meta property="article:author" content="Zhikun Zhang">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://zhangzhk.com/images/python-logging-flow.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +62,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Hello World | Blog of Zhikun Zhang</title>
+<title>Python 中 Logging 模块使用方法 | Blog of Zhikun Zhang</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -259,11 +262,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-python-logging-module" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2020/05/14/hello-world/" class="article-date">
-      <time datetime="2020-05-14T12:29:52.552Z" itemprop="datePublished">2020-05-14</time>
+      <a href="/2018/01/13/python-logging-module/" class="article-date">
+      <time datetime="2018-01-13T10:35:09.000Z" itemprop="datePublished">2018-01-13</time>
 </a>
 
 
@@ -278,7 +281,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      Python 中 Logging 模块使用方法
     </h1>
   
 
@@ -286,8 +289,16 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/coding/">coding</a>
+    </div>
+
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -295,19 +306,32 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在代码调试过程中，我们使用最多的方法是 print 函数，在我们需要知道中间变量的值时，插入一句 print 函数即可。但这种方法存在一个问题，那就是在程序调试完以后我们需要一个一个把 print 函数删掉或者注释掉。logging 模块能非常好得解决这个问题，通过设置 severity level，我们可以方便得控制在控制台打印的信息，另外我们也可以同时把日志信息输出到多个目的地，比如控制台，日志文件，网络位置等。</p>
+<a id="more"></a>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h2 id="logging-基本用法"><a href="#logging-基本用法" class="headerlink" title="logging 基本用法"></a>logging 基本用法</h2><p>Logging 的基本用法非常简单，比如下面这个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.basicConfig(filename=<span class="string">'example.log'</span>,level=logging.DEBUG)</span><br><span class="line">logging.debug(<span class="string">'This message should go to the log file'</span>)</span><br><span class="line">logging.info(<span class="string">'So should this'</span>)</span><br><span class="line">logging.warning(<span class="string">'And this, too'</span>)</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>下面简单介绍一下该程序工作流程</p>
+<ul>
+<li>首先导入 logging 模块。</li>
+<li>然后利用函数 logging.basicConfig 设置 logger 的行为。其中，filename 指定日志文件，默认情况下，日志输出至控制台。level 指定记录日志的 severity level，logging 模块有 DEBUG, INFO, WARNING, ERROR, CRITICAL 五个从低到高的 severity level，logger 只输出与 level 参数指定级别相同更高级别的日志信息，比如，如果我们让 <code>level=logging.INFO</code>，上面程序中 logging.debug 信息在执行过程中将不会输出。当然，filenamelogging.basicConfig 可以传入很多参数，具体可以参考<a href="https://docs.python.org/2/library/logging.html#logging.basicConfig" target="_blank" rel="noopener">官方文档</a>。</li>
+<li>最后在需要记录日志的地方根据需要的 severity level 添加 logging.debug 等日志信息。</li>
+</ul>
+<p>Logging 模块的基本用法是通过创建 Loggers 对象来实现的，Loggers 对象提供了很多方法来操作其属性，比如 setLevel 方法可以用来改变其 severity level。我们可以通过以下程序在不同模块中创建 Loggers 对象：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger = logging.getLogger(__name__)</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>其中，<strong>name</strong> 是该模块的名字，当然我们也可以自己给该 logger 取一个名字。每次调用 logging.getLogger 便创建了一个指定名字的 logger，在同一个线程中，不管调用多少次该函数，相同名字都指向同一个 logger 对象。</p>
+<p>Logging 模块通过层级结构来组织这些 loggers 对象，在同一个线程中，所有 loggers 对象都继承自 root logger，前面程序中的 logging.basicConfig 便创建了一个 root logger。loggers 对象之间的继承关系用类似于<code>a.b.c</code>的方式表示，如果子对象指定了属性，则使用它自己的属性进行输出，如果没有则使用其父对象的属性进行输出，比如前面的 logging.basicConfig 函数设置了 root logger 的属性，如果后面创建的子对象都没有设置属性，那么 root logger 的属性将在所有 logger 对象间共享。</p>
+<h2 id="logging-工作流程"><a href="#logging-工作流程" class="headerlink" title="logging 工作流程"></a>logging 工作流程</h2><p>上一节介绍的是 logging 模块的基本用法，利用上面这些知识进行基本的程序调试已经没有问题了。然而，logging 模块的功能并不仅仅于此，事实上，Logging 模块包含 Loggers, Handlers, Filters 和 Formatters 等多个类，我们可以利用这些类来对日志进行更加精细化的控制。在这之前，我们需要了解 logging 模块的工作流程，如下图所示：</p>
+<img src="/images/python-logging-flow.png" width=50% height=50% align=center/>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<ul>
+<li>Loggers 类是整个 logger 的载体，一般使用 getLogger 方法来创建。然后我们可以为创建好的 Logger 实体设置 severity level（调用方法 Logger.setLevel()），设置 Filters（filter 能比 severity level 更精细化的控制 logger 向后面 handler 的输出，一个 logger 可以设置多个 filter，所有 filter 的过滤关系是串联的，调用方法 Logger.addFilter()），设置 Handlers（handler 的作用是指定 logger 的最终输出去向，比如可以终端输出，可以写入日志文件，可以放入某个网络服务器等，一个 loggers 可以设置多个 handler，调用方法 Logger.addHandler()）</li>
+<li>Hanlder 类指定 logger 的输出去向，常用的 Handler 有 StreamHandler, FileHandler 和 SocketHandler 等。跟 Logger 类一样，我们也可以为 Handler 设置 severity level 和 filter，用法和 logger 也差不多，这样可以对最终输出进行更加精细化的控制。另外，我们可以设置最后的输出格式（调用方法 setFormatter()）</li>
+<li>Formatters 和 Filters 类顾名思义就是设置最终的输出格式和滤波器</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.python.org/2/howto/logging.html" target="_blank" rel="noopener">Logging HOWTO</a><br>[2] <a href="https://docs.python.org/2/howto/logging-cookbook.html" target="_blank" rel="noopener">Logging Cookbook</a><br>[3] <a href="https://docs.python.org/2/library/logging.html" target="_blank" rel="noopener">Logging facility for Python</a><br>[4] <a href="http://www.zlovezl.cn/articles/replacing-print-simple-introduction-to-logging/" target="_blank" rel="noopener">替换你的print(logging模块超简明指南)</a><br>[5] <a href="http://cblog.xyz/article/41" target="_blank" rel="noopener">logging的用法</a></p>
 
       
     </div>
@@ -316,13 +340,13 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2020/05/14/hello-world/">Hello World</a></p>
+        <p><span>Title:</span><a href="/2018/01/13/python-logging-module/">Python 中 Logging 模块使用方法</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
-        <p><span>Created:</span>2020-05-14, 14:29:52</p>
-        <p><span>Updated:</span>2020-05-14, 14:29:52</p>
+        <p><span>Created:</span>2018-01-13, 11:35:09</p>
+        <p><span>Updated:</span>2018-01-20, 21:56:31</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2020/05/14/hello-world/" title="Hello World">http://zhangzhk.com/2020/05/14/hello-world/</a>
-            <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2020/05/14/hello-world/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2018/01/13/python-logging-module/" title="Python 中 Logging 模块使用方法">http://zhangzhk.com/2018/01/13/python-logging-module/</a>
+            <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2018/01/13/python-logging-module/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -334,10 +358,16 @@
 
     <nav id="article-nav">
         
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/01/13/python-argparse-module/">
+                    Python 参数解析
+                </a>
+            </div>
+        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2020/05/14/test/">
-                    About
+                <a href="/2018/01/09/python-pep8-program-standard/">
+                    Python PEP8 编程规范总结
                 </a>
             </div>
         
@@ -349,7 +379,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#logging-基本用法"><span class="toc-number">2.</span> <span class="toc-text">logging 基本用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#logging-工作流程"><span class="toc-number">3.</span> <span class="toc-text">logging 工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
         
     </div>
     <style>
@@ -385,7 +415,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Hello World　| Blog of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Python 中 Logging 模块使用方法　| Blog of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -405,13 +435,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+            <a href="/2018/01/13/python-argparse-module/" title="Pre: Python 参数解析">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2020/05/14/test/" title="Next: About">
+            <a href="/2018/01/09/python-pep8-program-standard/" title="Next: Python PEP8 编程规范总结">
                 <i class="fa fa-angle-right"></i>
             </a>
         

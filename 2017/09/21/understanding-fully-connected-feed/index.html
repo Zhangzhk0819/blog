@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Zhikun Zhang" />
+
+
+
+<meta name="description" content="简介fully_connected_feed.py 是 tensorflow 中训练 MINIST 数据集的简单示例，通过对该代码的学习，可以帮助我们更好得理解 python 的语法以及 tensorflow 的工作流程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入剖析 fully_connected_feed.py">
+<meta property="og:url" content="http://zhangzhk.com/2017/09/21/understanding-fully-connected-feed/index.html">
+<meta property="og:site_name" content="Blog of Zhikun Zhang">
+<meta property="og:description" content="简介fully_connected_feed.py 是 tensorflow 中训练 MINIST 数据集的简单示例，通过对该代码的学习，可以帮助我们更好得理解 python 的语法以及 tensorflow 的工作流程。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-09-21T08:07:41.000Z">
+<meta property="article:modified_time" content="2017-11-21T14:46:01.000Z">
+<meta property="article:author" content="Zhikun Zhang">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="tensorflow">
+<meta name="twitter:card" content="summary">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Blog of Zhikun Zhang" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>深入剖析 fully_connected_feed.py | Blog of Zhikun Zhang</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: 
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Zhikun Zhang</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/adversarial/" rel="tag">adversarial</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ceph/" rel="tag">ceph</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cleverhans/" rel="tag">cleverhans</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cluster/" rel="tag">cluster</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/" rel="tag">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-storage/" rel="tag">distributed storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-programming/" rel="tag">linear programming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/" rel="tag">machine learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macos/" rel="tag">macos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pep8/" rel="tag">pep8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpmyadmin/" rel="tag">phpmyadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/" rel="tag">security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/" rel="tag">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/" rel="tag">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/" rel="tag">vpn</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/" target="_blank" rel="noopener">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/" target="_blank" rel="noopener">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Zhikun Zhang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Zhikun Zhang</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-understanding-fully-connected-feed" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/09/21/understanding-fully-connected-feed/" class="article-date">
+      <time datetime="2017-09-21T08:07:41.000Z" itemprop="datePublished">2017-09-21</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      深入剖析 fully_connected_feed.py
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>fully_connected_feed.py 是 tensorflow 中训练 MINIST 数据集的简单示例，通过对该代码的学习，可以帮助我们更好得理解 python 的语法以及 tensorflow 的工作流程。</p>
+<a id="more"></a>
+
+<h2 id="代码详细注释"><a href="#代码详细注释" class="headerlink" title="代码详细注释"></a>代码详细注释</h2><p>由于Python是由社区推动的开源并且免费的开发语言，不受商业公司控制，因此，Python的改进往往比较激进，不兼容的情况时有发生。Python为了确保你能顺利过渡到新版本，特别提供了<strong>future</strong>模块，让你在旧的版本中试验新版本的一些特性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> absolute_import</span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> division</span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> print_function</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pylint: disable=missing-docstring</span></span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> six.moves <span class="keyword">import</span> xrange  <span class="comment"># pylint: disable=redefined-builtin</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> tensorflow.examples.tutorials.mnist <span class="keyword">import</span> input_data</span><br><span class="line"><span class="keyword">from</span> tensorflow.examples.tutorials.mnist <span class="keyword">import</span> mnist</span><br><span class="line"></span><br><span class="line"><span class="comment"># Basic model parameters as external flags.</span></span><br><span class="line">FLAGS = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">placeholder_inputs</span><span class="params">(batch_size)</span>:</span></span><br><span class="line">  images_placeholder = tf.placeholder(tf.float32, shape=(batch_size,</span><br><span class="line">                                                         mnist.IMAGE_PIXELS))</span><br><span class="line">  labels_placeholder = tf.placeholder(tf.int32, shape=(batch_size))</span><br><span class="line">  <span class="keyword">return</span> images_placeholder, labels_placeholder</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fill_feed_dict</span><span class="params">(data_set, images_pl, labels_pl)</span>:</span></span><br><span class="line">  images_feed, labels_feed = data_set.next_batch(FLAGS.batch_size,</span><br><span class="line">                                                 FLAGS.fake_data)</span><br><span class="line">  feed_dict = &#123;</span><br><span class="line">      images_pl: images_feed,</span><br><span class="line">      labels_pl: labels_feed,</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> feed_dict</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_eval</span><span class="params">(sess,</span></span></span><br><span class="line"><span class="function"><span class="params">            eval_correct,</span></span></span><br><span class="line"><span class="function"><span class="params">            images_placeholder,</span></span></span><br><span class="line"><span class="function"><span class="params">            labels_placeholder,</span></span></span><br><span class="line"><span class="function"><span class="params">            data_set)</span>:</span></span><br><span class="line">  true_count = <span class="number">0</span>  <span class="comment"># Counts the number of correct predictions.</span></span><br><span class="line">  steps_per_epoch = data_set.num_examples // FLAGS.batch_size</span><br><span class="line">  num_examples = steps_per_epoch * FLAGS.batch_size</span><br><span class="line">  <span class="keyword">for</span> step <span class="keyword">in</span> xrange(steps_per_epoch):</span><br><span class="line">    feed_dict = fill_feed_dict(data_set,</span><br><span class="line">                               images_placeholder,</span><br><span class="line">                               labels_placeholder)</span><br><span class="line">    true_count += sess.run(eval_correct, feed_dict=feed_dict)</span><br><span class="line">  precision = float(true_count) / num_examples</span><br><span class="line">  print(<span class="string">'  Num examples: %d  Num correct: %d  Precision @ 1: %0.04f'</span> %</span><br><span class="line">        (num_examples, true_count, precision))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_training</span><span class="params">()</span>:</span></span><br><span class="line">  <span class="keyword">with</span> tf.Graph().as_default():</span><br><span class="line">    <span class="comment"># Generate placeholders for the images and labels.</span></span><br><span class="line">    images_placeholder, labels_placeholder = placeholder_inputs(</span><br><span class="line">        FLAGS.batch_size)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Build a Graph that computes predictions from the inference model.</span></span><br><span class="line">    logits = mnist.inference(images_placeholder, FLAGS.hidden1, FLAGS.hidden2)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Add to the Graph the Ops for loss calculation.</span></span><br><span class="line">    loss = mnist.loss(logits, labels_placeholder)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Add to the Graph the Ops that calculate and apply gradients.</span></span><br><span class="line">    train_op = mnist.training(loss, FLAGS.learning_rate)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Add the Op to compare the logits to the labels during evaluation.</span></span><br><span class="line">    eval_correct = mnist.evaluation(logits, labels_placeholder)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Build the summary Tensor based on the TF collection of Summaries.</span></span><br><span class="line">    summary = tf.summary.merge_all()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Add the variable initializer Op.</span></span><br><span class="line">    init = tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create a saver for writing training checkpoints.</span></span><br><span class="line">    saver = tf.train.Saver()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create a session for running Ops on the Graph.</span></span><br><span class="line">    sess = tf.Session()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Instantiate a SummaryWriter to output summaries and the Graph.</span></span><br><span class="line">    summary_writer = tf.summary.FileWriter(FLAGS.log_dir, sess.graph)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># And then after everything is built:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Run the Op to initialize the variables.</span></span><br><span class="line">    sess.run(init)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Start the training loop.</span></span><br><span class="line">    <span class="keyword">for</span> step <span class="keyword">in</span> xrange(FLAGS.max_steps):</span><br><span class="line">      start_time = time.time()</span><br><span class="line"></span><br><span class="line">      <span class="comment"># Fill a feed dictionary with the actual set of images and labels</span></span><br><span class="line">      <span class="comment"># for this particular training step.</span></span><br><span class="line">      feed_dict = fill_feed_dict(data_sets.train, images_placeholder, labels_placeholder)</span><br><span class="line">      </span><br><span class="line">      _, loss_value = sess.run([train_op, loss], feed_dict=feed_dict)</span><br><span class="line"></span><br><span class="line">      duration = time.time() - start_time</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> step % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># Print status to stdout.</span></span><br><span class="line">        print(<span class="string">'Step %d: loss = %.2f (%.3f sec)'</span> % (step, loss_value, duration))</span><br><span class="line">        <span class="comment"># Update the events file.</span></span><br><span class="line">        summary_str = sess.run(summary, feed_dict=feed_dict)</span><br><span class="line">        summary_writer.add_summary(summary_str, step)</span><br><span class="line">        summary_writer.flush()</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (step + <span class="number">1</span>) % <span class="number">1000</span> == <span class="number">0</span> <span class="keyword">or</span> (step + <span class="number">1</span>) == FLAGS.max_steps:</span><br><span class="line">        checkpoint_file = os.path.join(FLAGS.log_dir, <span class="string">'model.ckpt'</span>)</span><br><span class="line">        saver.save(sess, checkpoint_file, global_step=step)</span><br><span class="line">        <span class="comment"># Evaluate against the training set.</span></span><br><span class="line">        print(<span class="string">'Training Data Eval:'</span>)</span><br><span class="line">        do_eval(sess, eval_correct, images_placeholder, labels_placeholder, data_sets.train)</span><br><span class="line">        <span class="comment"># Evaluate against the validation set.</span></span><br><span class="line">        print(<span class="string">'Validation Data Eval:'</span>)</span><br><span class="line">        do_eval(sess, eval_correct, images_placeholder, labels_placeholder, data_sets.validation)</span><br><span class="line">        <span class="comment"># Evaluate against the test set.</span></span><br><span class="line">        print(<span class="string">'Test Data Eval:'</span>)</span><br><span class="line">        do_eval(sess, eval_correct, images_placeholder, labels_placeholder, data_sets.test)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(_)</span>:</span></span><br><span class="line">  <span class="comment"># 把之前的 log 文件删除</span></span><br><span class="line">  <span class="keyword">if</span> tf.gfile.Exists(FLAGS.log_dir):</span><br><span class="line">    tf.gfile.DeleteRecursively(FLAGS.log_dir)</span><br><span class="line">  <span class="comment"># 重新创建 log 文件</span></span><br><span class="line">  tf.gfile.MakeDirs(FLAGS.log_dir)</span><br><span class="line">  <span class="comment"># 正式开始训练</span></span><br><span class="line">  run_training()</span><br></pre></td></tr></table></figure>
+
+<p>Python 中的 argparse 模块主要负责命令行解析。其主要作用是在 python 调用 .py 脚本文件是可以传入参数。比如对于以下程序，我们可以在命令行输入 <code>python fully_connected_feed.py --learning_rate 0.1 --max_steps 200</code>。其中 ArgumentParser() 函数的作用是定义一个 parser 实例。parser.add_argument() 函数的作用是添加输入命令参数，它的第一个参数为命令参数名称，第二个参数为命令参数类型，第三个参数为命令参数默认值，如果没有输入，那么取默认值，第四个参数为调用 help 时显示的内容。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># if 的作用是保证此文件被 import 时，不会执行 main 里面的内容</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>: </span><br><span class="line">  parser = argparse.ArgumentParser()</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--learning_rate'</span>,</span><br><span class="line">      type=float,</span><br><span class="line">      default=<span class="number">0.01</span>,</span><br><span class="line">      help=<span class="string">'Initial learning rate.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--max_steps'</span>,</span><br><span class="line">      type=int,</span><br><span class="line">      default=<span class="number">2000</span>,</span><br><span class="line">      help=<span class="string">'Number of steps to run trainer.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--hidden1'</span>,</span><br><span class="line">      type=int,</span><br><span class="line">      default=<span class="number">128</span>,</span><br><span class="line">      help=<span class="string">'Number of units in hidden layer 1.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--hidden2'</span>,</span><br><span class="line">      type=int,</span><br><span class="line">      default=<span class="number">32</span>,</span><br><span class="line">      help=<span class="string">'Number of units in hidden layer 2.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--batch_size'</span>,</span><br><span class="line">      type=int,</span><br><span class="line">      default=<span class="number">100</span>,</span><br><span class="line">      help=<span class="string">'Batch size.  Must divide evenly into the dataset sizes.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--input_data_dir'</span>,</span><br><span class="line">      type=str,</span><br><span class="line">      default=os.path.join(os.getenv(<span class="string">'TEST_TMPDIR'</span>, <span class="string">'/tmp'</span>),</span><br><span class="line">                           <span class="string">'tensorflow/mnist/input_data'</span>),</span><br><span class="line">      help=<span class="string">'Directory to put the input data.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--log_dir'</span>,</span><br><span class="line">      type=str,</span><br><span class="line">      default=os.path.join(os.getenv(<span class="string">'TEST_TMPDIR'</span>, <span class="string">'/tmp'</span>),</span><br><span class="line">                           <span class="string">'tensorflow/mnist/logs/fully_connected_feed'</span>),</span><br><span class="line">      help=<span class="string">'Directory to put the log data.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--fake_data'</span>,</span><br><span class="line">      default=<span class="literal">False</span>,</span><br><span class="line">      help=<span class="string">'If true, uses fake data for unit testing.'</span>,</span><br><span class="line">      action=<span class="string">'store_true'</span></span><br><span class="line">  )</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># parse_known_args() 函数的作用是把传入的参数读出来，并放到 FLAGS 里面，unparsed 里面存的是默认值。</span></span><br><span class="line">  FLAGS, unparsed = parser.parse_known_args() </span><br><span class="line">  <span class="comment"># 正式激活 main() 函数。</span></span><br><span class="line">  tf.app.run(main=main, argv=[sys.argv[<span class="number">0</span>]] + unparsed)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2017/09/21/understanding-fully-connected-feed/">深入剖析 fully_connected_feed.py</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
+        <p><span>Created:</span>2017-09-21, 10:07:41</p>
+        <p><span>Updated:</span>2017-11-21, 15:46:01</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2017/09/21/understanding-fully-connected-feed/" title="深入剖析 fully_connected_feed.py">http://zhangzhk.com/2017/09/21/understanding-fully-connected-feed/</a>
+            <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2017/09/21/understanding-fully-connected-feed/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/09/21/commands-of-git/">
+                    Git 使用方法与常用命令
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/09/17/manage-two-github-accounts-in-one-computer/">
+                    在一台设备上管理两个 Github 账号
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码详细注释"><span class="toc-number">2.</span> <span class="toc-text">代码详细注释</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"深入剖析 fully_connected_feed.py　| Blog of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/09/21/commands-of-git/" title="Pre: Git 使用方法与常用命令">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/09/17/manage-two-github-accounts-in-one-computer/" title="Next: 在一台设备上管理两个 Github 账号">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/05/14/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/14/test/">About</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/16/macos-efficiency-tools/">MacOS 提升效率工具总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/16/install-zjunet/">Linux 服务器使用 Zjunet 连接浙大 VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/13/deploy-ceph-for-storage-sharing/">使用 Ceph 实现多服务器存储共享</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/27/summary-linear-programming-solver/">线性规划求解器总结与比较</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/mysql-tutorial/">MySQL+phpMyAdmin 安装与使用方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/09/vim-shortcut/">Vim 快捷方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/python-argparse-module/">Python 参数解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/python-logging-module/">Python 中 Logging 模块使用方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/09/python-pep8-program-standard/">Python PEP8 编程规范总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/02/gitbook-tutorial/">Gitbook</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/02/setting-kodi/">Kodi 设置教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/python-programming-for-spark/">Spark 的 Python 编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/how-to-use-purdue-cluster/">如何使用远程计算资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/problem-in-python-development/">Python 开发过程中遇到问题总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/19/build-python-development-environment-in-mac/">Mac 中多版本 Python 开发环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/22/understanding-mnist-tutorial-pure-tf/">深入剖析 mnist_tutorial_pure_tf.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/commands-of-git/">Git 使用方法与常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/understanding-fully-connected-feed/">深入剖析 fully_connected_feed.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/manage-two-github-accounts-in-one-computer/">在一台设备上管理两个 Github 账号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2020 Zhikun Zhang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

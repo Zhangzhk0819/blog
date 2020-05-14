@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Zhikun Zhang" />
+
+
+
+<meta name="description" content="这篇博客将介绍 MySQL 的安装，配置及其使用方法，另外，还会介绍如何使用 phpMyAdmin 这个工具来实现 MySQL 数据库的网页管理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL+phpMyAdmin 安装与使用方法">
+<meta property="og:url" content="http://zhangzhk.com/2018/10/23/mysql-tutorial/index.html">
+<meta property="og:site_name" content="Blog of Zhikun Zhang">
+<meta property="og:description" content="这篇博客将介绍 MySQL 的安装，配置及其使用方法，另外，还会介绍如何使用 phpMyAdmin 这个工具来实现 MySQL 数据库的网页管理。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-10-23T21:41:35.000Z">
+<meta property="article:modified_time" content="2020-01-10T11:59:29.000Z">
+<meta property="article:author" content="Zhikun Zhang">
+<meta property="article:tag" content="database">
+<meta property="article:tag" content="phpmyadmin">
+<meta name="twitter:card" content="summary">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Blog of Zhikun Zhang" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>MySQL+phpMyAdmin 安装与使用方法 | Blog of Zhikun Zhang</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: 
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Zhikun Zhang</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/adversarial/" rel="tag">adversarial</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ceph/" rel="tag">ceph</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cleverhans/" rel="tag">cleverhans</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cluster/" rel="tag">cluster</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/" rel="tag">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-storage/" rel="tag">distributed storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-programming/" rel="tag">linear programming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/" rel="tag">machine learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macos/" rel="tag">macos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pep8/" rel="tag">pep8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpmyadmin/" rel="tag">phpmyadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/" rel="tag">security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/" rel="tag">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/" rel="tag">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/" rel="tag">vpn</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/" target="_blank" rel="noopener">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/" target="_blank" rel="noopener">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Zhikun Zhang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Zhikun Zhang</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-mysql-tutorial" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/10/23/mysql-tutorial/" class="article-date">
+      <time datetime="2018-10-23T21:41:35.000Z" itemprop="datePublished">2018-10-23</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MySQL+phpMyAdmin 安装与使用方法
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/data-management/">data management</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/database/" rel="tag">database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phpmyadmin/" rel="tag">phpmyadmin</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>这篇博客将介绍 MySQL 的安装，配置及其使用方法，另外，还会介绍如何使用 phpMyAdmin 这个工具来实现 MySQL 数据库的网页管理。</p>
+<a id="more"></a>
+
+
+
+<h2 id="安装与配置-MySQL"><a href="#安装与配置-MySQL" class="headerlink" title="安装与配置 MySQL"></a>安装与配置 MySQL</h2><h3 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h3><p>Mac 下安装 MySQL 非常简单，首先<a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">下载</a> MySQL 的 dmg 安装包，然后双击安装软件。安装过程中，最新版本的 MySQL 会要求输入 root 用户的密码，并选择用户认证方式。这里认证方式建议选择第二项，如果选择第一项有可能与后面的讲到的 phpMyAdmin 不兼容，导致无法正常访问。不过选择了第一项也没关系，后面将会介绍兼容 phpMyAdmin 的方法。</p>
+<p>安装完成后，把 MySQL 添加到环境变量中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<p>添加下列语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;bin</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，可以使用过下列命令访问 mysql：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h host_name -u user_name -p</span><br></pre></td></tr></table></figure>
+<p>回车后会要求输入密码，输入安装时设置的密码即可。其中 -h 参数指定 MySQL 所在服务器的地址，如果是 localhost，该参数可省略。-u 参数指定用户名，刚安装完只有 root 一个用户。如果登录成功，将会有 mysql 命令行提示，此时就可以通过 SQL 语句来操作数据库了。需要注意的是，此时只能本机访问 mysql，远程主机访问的设置后面将会讲到。</p>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>Linux 上的安装我只测试过[8]中介绍的 CentOS 安装，Ubuntu 没有亲自实验，有兴趣的可以参考 <a href="https://blog.csdn.net/lizuqingblog/article/details/18423751" target="_blank" rel="noopener">[3]</a> 中介绍的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 下载 mysql 的 repo 源</span><br><span class="line">wget http:&#x2F;&#x2F;repo.mysql.com&#x2F;mysql-community-release-el7-5.noarch.rpm</span><br><span class="line"># 安装mysql-community-release-el7-5.noarch.rpm包</span><br><span class="line">sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm</span><br><span class="line"># 安装 mysql 服务器</span><br><span class="line">sudo yum install mysql-server</span><br><span class="line"># 如果要安装客户端</span><br><span class="line">sudo yum install mysql-community-client</span><br><span class="line"># 开启 mysql 服务</span><br><span class="line">service mysql start</span><br><span class="line"># 使用 root 进入 mysql</span><br><span class="line">mysql -u root</span><br></pre></td></tr></table></figure>
+
+<p>注意此时的 mysql 没有密码。如果登录时显示错误 ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/var/lib/mysql/mysql.sock’，可以尝试执行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown root &#x2F;var&#x2F;lib&#x2F;mysql&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>接下来重置 root 用户密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u root password</span><br><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="使用宝塔面板"><a href="#使用宝塔面板" class="headerlink" title="使用宝塔面板"></a>使用宝塔面板</h3><p>宝塔面板[6]是一个可视化安装工具，可以通过浏览器一键安装 Apache 和 mysql 等常用网络工具。其安装也非常简单，执行以下两条命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -O install.sh http:&#x2F;&#x2F;download.bt.cn&#x2F;install&#x2F;install_6.0.sh</span><br><span class="line">sh install.sh</span><br></pre></td></tr></table></figure>
+<p>面板默认端口为8888，可以通过浏览器进行访问。需要注意的是，宝塔面板目前只支持 python 2，如果系统安装了 python 3 可能会安装失败。</p>
+<h2 id="MySQL-用户管理"><a href="#MySQL-用户管理" class="headerlink" title="MySQL 用户管理"></a>MySQL 用户管理</h2><h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER <span class="string">'username'</span>@<span class="string">'host'</span> IDENTIFIED BY <span class="string">'password'</span>;</span><br><span class="line">CREATE USER <span class="string">'username'</span>@<span class="string">'host'</span> IDENTIFIED WITH mysql_native_password BY <span class="string">'password'</span>;</span><br></pre></td></tr></table></figure>
+<p>如果安装 MySQL 时认证方式选择的第二种，直接用第一个语句创建新用户就好了。如果安装 MySQL 时认证方式选择的第一种，然后又想用 phpMyAdmin 来管理 MySQL，就需要用第二个语句来创建新用户。其中 WITH 语句把新用户的认证方式设置成了 phpMyAdmin 能识别的 mysql_native_password，然后就可以用这个创建的新用户和密码来登录 phpMyAdmin 了。</p>
+<h3 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GRANT privileges ON database_name.table_name TO <span class="string">'user_name'</span>@<span class="string">'host'</span>;</span><br><span class="line">GRANT ALL ON *.* TO <span class="string">'user_name'</span>@<span class="string">'%'</span>;</span><br><span class="line">FLUSH PRIVILEGES</span><br></pre></td></tr></table></figure>
+<p>第一个语句指定了给 username 具体的操作权限，数据库，数据表格以及主机地址。第二个语句赋予 username 所有操作权限，所有数据表格，并允许其从任意其他主机登录。最后一个语句刷新操作权限。</p>
+<h2 id="利用-phpMyAdmin-来管理-MySQL"><a href="#利用-phpMyAdmin-来管理-MySQL" class="headerlink" title="利用 phpMyAdmin 来管理 MySQL"></a>利用 phpMyAdmin 来管理 MySQL</h2><p>要管理 MySQL，用命令行非常麻烦，因此可以使用开源的 phpMyAdmin 通过网页进行管理。phpMyAdmin 的安装非常简单。</p>
+<h3 id="Mac-1"><a href="#Mac-1" class="headerlink" title="Mac"></a>Mac</h3><p>首先<a href="http://www.phpmyadmin.net/home_page/downloads.php" target="_blank" rel="noopener">下载</a>网页文件，并解压到 /Library/WebServer/Documents/ 目录下，完整的目录为：/Library/WebServer/Documents/phpmyadmin/。该目录为 Apache PHP 的文件目录，由于 Mac 中已经预装了 Apache 和 PHP，所以这里只需要把下载下来的文件放到 Apache 服务器文件目录就好了。</p>
+<h3 id="Linux-1"><a href="#Linux-1" class="headerlink" title="Linux"></a>Linux</h3><p>纯净的 Linux 系统一般没有预装 Apache 和 PHP，因此需要手动安装。</p>
+<ol>
+<li>安装 Apache<br>正常可以使用以下命令安装[7]<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y httpd</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>如果上面命令出现 No package httpd available 问题，可以尝试使用以下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum --disableexcludes&#x3D;all install -y httpd</span><br></pre></td></tr></table></figure>
+
+<p>然后配置并启动 Apache 服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 设置开机自动启动</span><br><span class="line">systemctl enable httpd.service</span><br><span class="line"># 手动启动</span><br><span class="line">systemctl start httpd.service</span><br><span class="line"># 手动停止</span><br><span class="line">systemctl stop httpd.service</span><br><span class="line"># 手动重启</span><br><span class="line">systemctl restart httpd.service</span><br></pre></td></tr></table></figure>
+
+<p>此时在浏览器输入服务器 ip 地址就能打开 Apache 的引导页了。</p>
+<ol start="2">
+<li><p>安装 PHP<br>在 CentOS 上如果直接执行<code>yum install php</code>可能安装的是 php5.4，而 phpmyadmin 至少需要 php5.5 以上的支持，所以这里我们介绍安装 php7 的安装方法[9]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 获取 php7 源</span><br><span class="line">rpm -Uvh https:&#x2F;&#x2F;mirror.webtatic.com&#x2F;yum&#x2F;el7&#x2F;webtatic-release.rpm</span><br><span class="line"># 安装 php7</span><br><span class="line">yum install php70w</span><br><span class="line"># 验证安装</span><br><span class="line">php -v</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装 phpmyadmin<br>phpmyadmin 的安装方式与 Mac 类似，可以使用 wget 下载源文件到 /var/www/html/ 目录[10]。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 获取资源</span><br><span class="line">wget https:&#x2F;&#x2F;files.phpmyadmin.net&#x2F;phpMyAdmin&#x2F;4.8.3&#x2F;phpMyAdmin-4.8.3-all-languages.tar.gz</span><br><span class="line"># 解压文件</span><br><span class="line">tar -zxvf phpMyAdmin-4.8.3-all-languages.tar.gz</span><br><span class="line"># 修改文件名</span><br><span class="line">mv phpMyAdmin-4.8.3-all-languages phpmyadmin</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装 php-mysqli<br>如果到此为止，登录 phpmyadmin 时可能提示缺少 php-mysqli，因此需要先安装一个 php-mysqli 包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install php-mysqli</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>进入 phpamyadmin 目录，输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp config.sample.inc.php config.inc.php</span><br><span class="line">vim config.inc.php</span><br></pre></td></tr></table></figure>
+
+<p>修改以下两项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$cfg[&#39;blowfish_secret&#39;] &#x3D; &#39;abcdefghigklmnopqrstuvwxyz123456789&#39;;</span><br><span class="line">$cfg[&#39;Servers&#39;][$i][&#39;host&#39;] &#x3D; &#39;127.0.0.1&#39;;</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器中输入URL: <a href="http://localhost/phpmyadmin/" target="_blank" rel="noopener">http://localhost/phpmyadmin/</a>便可以进入 phpmyadmin 登录界面。输入用户名 root 和之前设置的密码，就可以登录到 MySQL 的管理界面。</p>
+<h2 id="远程访问-MySQL"><a href="#远程访问-MySQL" class="headerlink" title="远程访问 MySQL"></a>远程访问 MySQL</h2><p>为了保护数据安全，默认情况下 MySQL 是不允许远程访问的。为了开启远程访问，需要修改 my.cnf 文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/mysql/my.cnf</span><br></pre></td></tr></table></figure>
+
+<p>修改下列三行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># skip-external-locking</span><br><span class="line"># skip-networking</span><br><span class="line">bind-address &#x3D; 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+<p>如果存在前面两条语句，直接注释掉，因为它们的作用是让 MySQL 不监听任何外部消息，而 bind-address 是指定可以访问 MySQL 的 IP 地址，0.0.0.0 表示允许所有外部 IP 访问。这个时候就可以在远程主机访问 MySQL 了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h host_name -u user_name -p</span><br></pre></td></tr></table></figure>
+
+<p>这里的 host_name 是安装了 MySQL 的服务器地址，user_name 这个用户必须被赋予了足够的权限（参考用户管理部分）。</p>
+<p>如果无法成功连接远程 mysql 服务器，检查一下远程服务器防火墙的 3306 端口是否开启，因为 MySQL 是通过这个端口来监听外部消息的。另外，如果服务器安装在内网，远程访问还有可能被路由器防火墙拦截，这个时候就只能联系公司或学校的网络管理人员，看能不能把这个端口打开了。如果经过以上配置还是无法远程连接，可以参考[11]中的方法进行排查。</p>
+<h2 id="Python-连接-MySQL"><a href="#Python-连接-MySQL" class="headerlink" title="Python 连接 MySQL"></a>Python 连接 MySQL</h2><p>MySQLdb 是 Python 连接 MySQL 最流行的一个驱动，因为它是用 C 语言写成的，效率非常高。它的缺点是由于年久失修，只支持 Python2.x，对于使用 Python3.x 的同学可以用它的 Fork 版本 mysqlclient，它可以完全兼容 MySQLdb。在 MacOS 和 Linux 上，mysqlclient 的安装也非常简单，直接用 pip 或 conda 安装即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install mysqlclient</span><br><span class="line">conda install mysqlclient</span><br></pre></td></tr></table></figure>
+
+<p>如果安装过程中报错，可能是缺少 python3-dev 和 libmysqlclient-dev 包，可以通过以下命令安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python3-dev libmysqlclient-dev</span><br></pre></td></tr></table></figure>
+
+<p>当然，Python 连接 MySQL 还有很多其他的驱动，感兴趣的同学可以参考 <a href="https://foofish.net/python-mysql.html" target="_blank" rel="noopener">[4]</a> 来了解它们的优缺点。</p>
+<p>需要注意的是，即使安装了 mysqlclient，在写 python 代码的时候，也需要 import MySQLdb，而不是 import mysqlclient，否则会报错。</p>
+<p>mysqlclient 是用原生 SQL 语言来实现数据库访问任务的，所以要求大家会使用 SQL 语言。下面用一个创建数据库的例子来展示 mysqlclient 的编程实现。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> MySQLdb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开数据库连接</span></span><br><span class="line">db = MySQLdb.connect(<span class="string">"host_name"</span>, <span class="string">"user_name"</span>, <span class="string">"password"</span>, <span class="string">"database_name"</span>, charset=<span class="string">'utf8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 cursor() 方法获取操作游标 </span></span><br><span class="line">cursor = db.cursor()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果数据表已经存在，使用 execute() 方法删除表</span></span><br><span class="line">cursor.execute(<span class="string">"DROP TABLE IF EXISTS EMPLOYEE"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建数据表SQL语句</span></span><br><span class="line">sql = <span class="string">"""CREATE TABLE employee (</span></span><br><span class="line"><span class="string">         first_name CHAR(20) NOT NULL,</span></span><br><span class="line"><span class="string">         last_name CHAR(20),</span></span><br><span class="line"><span class="string">         age INT,  </span></span><br><span class="line"><span class="string">         sex CHAR(1),</span></span><br><span class="line"><span class="string">         income FLOAT)"""</span></span><br><span class="line"></span><br><span class="line">cursor.execute(sql)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭数据库连接</span></span><br><span class="line">db.close()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><p>[1] <a href="https://blog.csdn.net/u010761000/article/details/17020627" target="_blank" rel="noopener">mac下配置php+mysql</a><br>[2] <a href="https://www.jb51.net/article/31850.htm" target="_blank" rel="noopener">MySQL创建用户与授权方法</a><br>[3] <a href="https://blog.csdn.net/lizuqingblog/article/details/18423751" target="_blank" rel="noopener">Linux(Ubuntu)下MySQL的安装与配置</a><br>[4] <a href="https://foofish.net/python-mysql.html" target="_blank" rel="noopener">用 Python 连接 MySQL 的几种姿势</a><br>[5] <a href="http://www.runoob.com/python/python-mysql.html" target="_blank" rel="noopener">Python 操作 MySQL 数据库</a><br>[6] <a href="https://www.bt.cn/download/linux.html" target="_blank" rel="noopener">宝塔面板</a><br>[7] <a href="https://www.jianshu.com/p/5b8903709e66" target="_blank" rel="noopener">CentOS 7下Apache的安装</a><br>[8] <a href="https://blog.csdn.net/a774630093/article/details/79270080" target="_blank" rel="noopener">CentOS7 64位安装mysql教程，亲测完美</a><br>[9] <a href="https://www.jianshu.com/p/8d42fe65170c" target="_blank" rel="noopener">CentOs 7 安装PHP开发环境</a><br>[10] <a href="https://blog.csdn.net/daicooper/article/details/84790083" target="_blank" rel="noopener">Centos 下 phpMyAdmin 安装</a><br>[11] <a href="https://blog.csdn.net/ynnmnm/article/details/45097857" target="_blank" rel="noopener">MySQL本地可以连接，远程连接不上的问题</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2018/10/23/mysql-tutorial/">MySQL+phpMyAdmin 安装与使用方法</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Zhikun Zhang</a></p>
+        <p><span>Created:</span>2018-10-23, 23:41:35</p>
+        <p><span>Updated:</span>2020-01-10, 12:59:29</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2018/10/23/mysql-tutorial/" title="MySQL+phpMyAdmin 安装与使用方法">http://zhangzhk.com/2018/10/23/mysql-tutorial/</a>
+            <span class="copy-path" data-clipboard-text="From http://zhangzhk.com/2018/10/23/mysql-tutorial/　　By Zhikun Zhang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/10/27/summary-linear-programming-solver/">
+                    线性规划求解器总结与比较
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/02/09/vim-shortcut/">
+                    Vim 快捷方式总结
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装与配置-MySQL"><span class="toc-number">1.</span> <span class="toc-text">安装与配置 MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mac"><span class="toc-number">1.1.</span> <span class="toc-text">Mac</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux"><span class="toc-number">1.2.</span> <span class="toc-text">Linux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用宝塔面板"><span class="toc-number">1.3.</span> <span class="toc-text">使用宝塔面板</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL-用户管理"><span class="toc-number">2.</span> <span class="toc-text">MySQL 用户管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建用户"><span class="toc-number">2.1.</span> <span class="toc-text">创建用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#授权"><span class="toc-number">2.2.</span> <span class="toc-text">授权</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用-phpMyAdmin-来管理-MySQL"><span class="toc-number">3.</span> <span class="toc-text">利用 phpMyAdmin 来管理 MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mac-1"><span class="toc-number">3.1.</span> <span class="toc-text">Mac</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-1"><span class="toc-number">3.2.</span> <span class="toc-text">Linux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">3.3.</span> <span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程访问-MySQL"><span class="toc-number">4.</span> <span class="toc-text">远程访问 MySQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-连接-MySQL"><span class="toc-number">5.</span> <span class="toc-text">Python 连接 MySQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有用链接"><span class="toc-number">6.</span> <span class="toc-text">有用链接</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"MySQL+phpMyAdmin 安装与使用方法　| Blog of Zhikun Zhang　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/10/27/summary-linear-programming-solver/" title="Pre: 线性规划求解器总结与比较">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/02/09/vim-shortcut/" title="Next: Vim 快捷方式总结">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/05/14/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/14/test/">About</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/16/macos-efficiency-tools/">MacOS 提升效率工具总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/16/install-zjunet/">Linux 服务器使用 Zjunet 连接浙大 VPN</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/13/deploy-ceph-for-storage-sharing/">使用 Ceph 实现多服务器存储共享</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/27/summary-linear-programming-solver/">线性规划求解器总结与比较</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/mysql-tutorial/">MySQL+phpMyAdmin 安装与使用方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/09/vim-shortcut/">Vim 快捷方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/python-argparse-module/">Python 参数解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/python-logging-module/">Python 中 Logging 模块使用方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/09/python-pep8-program-standard/">Python PEP8 编程规范总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/02/gitbook-tutorial/">Gitbook</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/02/setting-kodi/">Kodi 设置教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/python-programming-for-spark/">Spark 的 Python 编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/how-to-use-purdue-cluster/">如何使用远程计算资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/problem-in-python-development/">Python 开发过程中遇到问题总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/19/build-python-development-environment-in-mac/">Mac 中多版本 Python 开发环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/22/understanding-mnist-tutorial-pure-tf/">深入剖析 mnist_tutorial_pure_tf.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/commands-of-git/">Git 使用方法与常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/21/understanding-fully-connected-feed/">深入剖析 fully_connected_feed.py</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/manage-two-github-accounts-in-one-computer/">在一台设备上管理两个 Github 账号</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/13/how-to-create-blog-by-hexo/">如何利用 Hexo 在 Github 上搭建个人博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2020 Zhikun Zhang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
