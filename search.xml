@@ -1,38 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Git 使用方法与常用命令</title>
-    <url>/2017/09/21/commands-of-git/</url>
-    <content><![CDATA[<p>本文总结一些 Git 常用命令。</p>
-<a id="more"></a>
-
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><img src="/images/git_command.jpg" width=100% height=100% align=center/>
-
-<h2 id="Commit-类别"><a href="#Commit-类别" class="headerlink" title="Commit 类别"></a>Commit 类别</h2><ul>
-<li>init：项目初始化（用于项目初始化或其他某种行为的开始描述，不影响代码）</li>
-<li>feat：新功能（feature）</li>
-<li>fix：修补bug</li>
-<li>docs：文档（documentation）</li>
-<li>opt：优化和改善，比如弹窗进行确认提示等相关的，不会改动逻辑和具体功能等</li>
-<li>style： 格式（不影响代码运行的变动）</li>
-<li>refactor：重构（即不是新增功能，也不是修改bug的代码变动）</li>
-<li>test：增加测试</li>
-<li>other：用于难以分类的类别（不建议使用，但一些如删除不必要的文件，更新.ignore之类的可以使用）</li>
-</ul>
-<!-- more -->
-
-<h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><ul>
-<li><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰教程</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Mac 中多版本 Python 开发环境搭建</title>
     <url>/2017/10/19/build-python-development-environment-in-mac/</url>
     <content><![CDATA[<p>由于 Mac 上很多系统软件依赖于其自带的 python 环境，如果直接使用系统自带的 python 环境进行开发，很可能会把该环境搞乱，威胁系统安全，因此在开发的时候我们最好能在独立的环境中进行开发。另外，在 python 开发过程中，经常需要在不同版本之间切换，特别是 2.7 和 3.5，因此需要搭建一个方便 python 版本切换的开发环境。</p>
@@ -108,67 +76,35 @@
       </tags>
   </entry>
   <entry>
-    <title>Gitbook</title>
-    <url>/2018/01/02/gitbook-tutorial/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><a id="more"></a>
+    <title>Git 使用方法与常用命令</title>
+    <url>/2017/09/21/commands-of-git/</url>
+    <content><![CDATA[<p>本文总结一些 Git 常用命令。</p>
+<a id="more"></a>
 
-<h2 id="安装-gitbook"><a href="#安装-gitbook" class="headerlink" title="安装 gitbook"></a>安装 gitbook</h2><p>我们可以使用 nodejs 的 npm 包管理器来安装 gitbook，nodejs 的安装方法参考我的<a href="http://zhangzhk.com/2017/09/13/how-to-create-blog-by-hexo/">这篇博客</a>。使用以下命令安装 gitbook:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install gitbook -g</span><br></pre></td></tr></table></figure>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><img src="/images/git_command.jpg" width=100% height=100% align=center/>
 
-<h2 id="使用-gitbook"><a href="#使用-gitbook" class="headerlink" title="使用 gitbook"></a>使用 gitbook</h2><p>Gitbook 的使用很简单，主要是以下两条命令：</p>
-<ul>
-<li><code>gitbook init</code></li>
-<li><code>gitbook serve</code> </li>
+<h2 id="Commit-类别"><a href="#Commit-类别" class="headerlink" title="Commit 类别"></a>Commit 类别</h2><ul>
+<li>init：项目初始化（用于项目初始化或其他某种行为的开始描述，不影响代码）</li>
+<li>feat：新功能（feature）</li>
+<li>fix：修补bug</li>
+<li>docs：文档（documentation）</li>
+<li>opt：优化和改善，比如弹窗进行确认提示等相关的，不会改动逻辑和具体功能等</li>
+<li>style： 格式（不影响代码运行的变动）</li>
+<li>refactor：重构（即不是新增功能，也不是修改bug的代码变动）</li>
+<li>test：增加测试</li>
+<li>other：用于难以分类的类别（不建议使用，但一些如删除不必要的文件，更新.ignore之类的可以使用）</li>
 </ul>
-<p>使用 gitbook.com 并关联 github</p>
-<h2 id="发布到-github-page"><a href="#发布到-github-page" class="headerlink" title="发布到 github page"></a>发布到 github page</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:repository.git</span><br></pre></td></tr></table></figure>
+<!-- more -->
 
-<p>使用这个<a href="/files/deploy.sh">脚本</a>快速部署到 github page。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add deploy.sh</span><br><span class="line">$ git commit -m <span class="string">"Commit deploy.sh to master repository"</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ chmod +x deploy.sh</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="http://www.chengweiyang.cn/gitbook/index.html" target="_blank" rel="noopener">GitBook 简明教程</a></p>
+<h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><ul>
+<li><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰教程</a></li>
+</ul>
 ]]></content>
       <categories>
         <category>coding</category>
       </categories>
       <tags>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何使用远程计算资源</title>
-    <url>/2017/10/30/how-to-use-purdue-cluster/</url>
-    <content><![CDATA[<p>在普渡学习期间，为了提高训练模型的速度，获得了使用多个远程计算资源的权限，包括课题组自己搭建的 swarm 和 crater 服务器，普渡计算中心集群 Conte [1]，以及匹兹堡超算中心（Pittsburgh Supercomputing Center）Bridges 计算集群。下面记录一下使用各个远程计算资源的方法。</p>
-<a id="more"></a>
-
-<h2 id="swarm-和-crater"><a href="#swarm-和-crater" class="headerlink" title="swarm 和 crater"></a>swarm 和 crater</h2><h3 id="远程登录主机"><a href="#远程登录主机" class="headerlink" title="远程登录主机"></a>远程登录主机</h3><p>在 macos 或 Linux 中，可以直接使用 ssh 命令登录远程主机，使用方法为</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh username_in_remote_host@remote_host</span><br></pre></td></tr></table></figure>
-
-<p>其中，username_in_remote_host 是自己在远程主机上拥有的用户名，remote_host 是远程主机的 IP 地址或者域名。登录远程主机以后就跟在自己电脑上一样操作了。另外，可以使用下面的 scp 命令在本地主机和远程主机之间传输文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ scp path_to_local_file username_in_remote_host@remote_host:path_to_remote_file</span><br></pre></td></tr></table></figure>
-
-<p>值得一提的是，我们可以在本地使用多个 shell 登录远程主机，而且在远程主机上可以使用同样的命令登录另外一台远程主机，比如说课题组还有一台服务器 crater 只能通过内网访问，而我的 mac 只能连无线网，无法接入内网，只能通过 ssh 先连接到可以外网访问的服务器 swarm，然后在 swarm 上再通过 ssh 连接 crater。</p>
-<h3 id="ssh-免密登录"><a href="#ssh-免密登录" class="headerlink" title="ssh 免密登录"></a>ssh 免密登录</h3><p>正常情况下，每次在本地使用 ssh 和 scp 的时候，都需要输入一次远程主机的登录密码，非常麻烦。为方便起见，我们可以使用 ssh 秘钥对来进行免密登录。</p>
-<p>首先，在本地主机使用<code>ssh-keygen</code>命令产生秘钥对，密钥对默认存放在 ~/.ssh 文件夹中，需要注意的是，在产生秘钥过程中会提示设置密码，我们直接按回车键，表示不设置密码，否则就失去了免密登录的意义了。接下来使用 scp 命令把 ~/.ssh 文件夹中的 id_rsa.pub 文件远程拷贝到远程主机的 ~/.ssh 文件夹（如果没有，可以使用<code>mkdir .ssh</code>命令创建）中，接下来使用下面命令对远程主机中的 id_rsa.pub 进行重命名</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mv id_rsa.pub authorized_keys</span><br></pre></td></tr></table></figure>
-
-<p>这个时候当我们再在本地执行 ssh 命令时，不需要输密码就能进入远程主机了。</p>
-<h2 id="Conte"><a href="#Conte" class="headerlink" title="Conte"></a>Conte</h2><p>front end，计算集群</p>
-<h3 id="存储空间使用"><a href="#存储空间使用" class="headerlink" title="存储空间使用"></a>存储空间使用</h3><h3 id="提交任务"><a href="#提交任务" class="headerlink" title="提交任务"></a>提交任务</h3><h2 id="Bridges"><a href="#Bridges" class="headerlink" title="Bridges"></a>Bridges</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li><a href="https://www.rcac.purdue.edu/knowledge/conte" target="_blank" rel="noopener">Conte user guide</a></li>
-<li><a href="https://www.psc.edu/bridges/user-guide" target="_blank" rel="noopener">Bridges user guide</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-      <tags>
-        <tag>cluster</tag>
-        <tag>ssh</tag>
       </tags>
   </entry>
   <entry>
@@ -369,6 +305,38 @@
       </tags>
   </entry>
   <entry>
+    <title>如何使用远程计算资源</title>
+    <url>/2017/10/30/how-to-use-purdue-cluster/</url>
+    <content><![CDATA[<p>在普渡学习期间，为了提高训练模型的速度，获得了使用多个远程计算资源的权限，包括课题组自己搭建的 swarm 和 crater 服务器，普渡计算中心集群 Conte [1]，以及匹兹堡超算中心（Pittsburgh Supercomputing Center）Bridges 计算集群。下面记录一下使用各个远程计算资源的方法。</p>
+<a id="more"></a>
+
+<h2 id="swarm-和-crater"><a href="#swarm-和-crater" class="headerlink" title="swarm 和 crater"></a>swarm 和 crater</h2><h3 id="远程登录主机"><a href="#远程登录主机" class="headerlink" title="远程登录主机"></a>远程登录主机</h3><p>在 macos 或 Linux 中，可以直接使用 ssh 命令登录远程主机，使用方法为</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh username_in_remote_host@remote_host</span><br></pre></td></tr></table></figure>
+
+<p>其中，username_in_remote_host 是自己在远程主机上拥有的用户名，remote_host 是远程主机的 IP 地址或者域名。登录远程主机以后就跟在自己电脑上一样操作了。另外，可以使用下面的 scp 命令在本地主机和远程主机之间传输文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ scp path_to_local_file username_in_remote_host@remote_host:path_to_remote_file</span><br></pre></td></tr></table></figure>
+
+<p>值得一提的是，我们可以在本地使用多个 shell 登录远程主机，而且在远程主机上可以使用同样的命令登录另外一台远程主机，比如说课题组还有一台服务器 crater 只能通过内网访问，而我的 mac 只能连无线网，无法接入内网，只能通过 ssh 先连接到可以外网访问的服务器 swarm，然后在 swarm 上再通过 ssh 连接 crater。</p>
+<h3 id="ssh-免密登录"><a href="#ssh-免密登录" class="headerlink" title="ssh 免密登录"></a>ssh 免密登录</h3><p>正常情况下，每次在本地使用 ssh 和 scp 的时候，都需要输入一次远程主机的登录密码，非常麻烦。为方便起见，我们可以使用 ssh 秘钥对来进行免密登录。</p>
+<p>首先，在本地主机使用<code>ssh-keygen</code>命令产生秘钥对，密钥对默认存放在 ~/.ssh 文件夹中，需要注意的是，在产生秘钥过程中会提示设置密码，我们直接按回车键，表示不设置密码，否则就失去了免密登录的意义了。接下来使用 scp 命令把 ~/.ssh 文件夹中的 id_rsa.pub 文件远程拷贝到远程主机的 ~/.ssh 文件夹（如果没有，可以使用<code>mkdir .ssh</code>命令创建）中，接下来使用下面命令对远程主机中的 id_rsa.pub 进行重命名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mv id_rsa.pub authorized_keys</span><br></pre></td></tr></table></figure>
+
+<p>这个时候当我们再在本地执行 ssh 命令时，不需要输密码就能进入远程主机了。</p>
+<h2 id="Conte"><a href="#Conte" class="headerlink" title="Conte"></a>Conte</h2><p>front end，计算集群</p>
+<h3 id="存储空间使用"><a href="#存储空间使用" class="headerlink" title="存储空间使用"></a>存储空间使用</h3><h3 id="提交任务"><a href="#提交任务" class="headerlink" title="提交任务"></a>提交任务</h3><h2 id="Bridges"><a href="#Bridges" class="headerlink" title="Bridges"></a>Bridges</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="https://www.rcac.purdue.edu/knowledge/conte" target="_blank" rel="noopener">Conte user guide</a></li>
+<li><a href="https://www.psc.edu/bridges/user-guide" target="_blank" rel="noopener">Bridges user guide</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+      <tags>
+        <tag>cluster</tag>
+        <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在一台设备上管理两个 Github 账号</title>
     <url>/2017/09/17/manage-two-github-accounts-in-one-computer/</url>
     <content><![CDATA[<h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><p><a href="http://www.jianshu.com/p/f2bef9737a8a" target="_blank" rel="noopener">简书</a></p>
@@ -378,34 +346,6 @@
       </categories>
       <tags>
         <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python 开发过程中遇到问题总结</title>
-    <url>/2017/10/25/problem-in-python-development/</url>
-    <content><![CDATA[<p>在 python 开发过程中，经常遇到各种小问题，有的时候一个小问题便需要花大半天甚至数天时间才能解决。为方便今后查找，这篇博客主要记录在 python 开发过程中遇到的各种小问题以及相应的解决方法。</p>
-<a id="more"></a>
-
-<h2 id="ipython-重新加载模块"><a href="#ipython-重新加载模块" class="headerlink" title="ipython 重新加载模块"></a>ipython 重新加载模块</h2><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>为了提高加载速度，ipython 运行过程中对所有的 module 只会 import 一次，而在稍微大一些的项目中，往往需要编写多个 module 以方便管理。这样一来，当需要在 submodule 里面修改内容时，主程序并不能及时更新，使用的还是最开始加载的内容。</p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>最简单的解决方法就是每次修改 submodule 内容以后重启 ipython，但这样做非常麻烦而且有可能丢失数据。下面介绍一种利用 ipython 的 autoreload 扩展 [1]彻底解决该问题的方法：</p>
-<p>在 ipython 的配置文件 ~/.ipython/profile_default/ipython_config.py 中添加下面两段内容：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">c.InteractiveShellApp.extensions = [<span class="string">'autoreload'</span>]     </span><br><span class="line">c.InteractiveShellApp.exec_lines = [<span class="string">'%autoreload 2'</span>]</span><br></pre></td></tr></table></figure>
-<p>如果目前 ~/.ipython/profile_default/ 文件夹中不存在 ipython_config.py，可以在终端中输入以下命令来创建：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ipython profile create</span><br></pre></td></tr></table></figure>
-
-<p>该命令会自动创建 ipython 的配置文件，所有可用的配置都被注释好了，我们要做的就是根据自己的需要打开相应的配置并添加相应的内容就好了。</p>
-<h2 id="Theano-和-Lasagne-模块-import-错误"><a href="#Theano-和-Lasagne-模块-import-错误" class="headerlink" title="Theano 和 Lasagne 模块 import 错误"></a>Theano 和 Lasagne 模块 import 错误</h2><h3 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h3><p>在 Theano 和 Lasagne 模块 import 过程中报 ImportError 错误。</p>
-<h3 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h3><p>利用 pip 安装 theano 和 lasagne 模块的正确版本，命令如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pip install theano==0.8.2</span><br><span class="line">$ pip install lasagne==0.1</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://ipython.org/ipython-doc/3/config/extensions/autoreload.html" target="_blank" rel="noopener">ipython document</a></p>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -495,6 +435,90 @@
       </categories>
       <tags>
         <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python 中 Logging 模块使用方法</title>
+    <url>/2018/01/13/python-logging-module/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在代码调试过程中，我们使用最多的方法是 print 函数，在我们需要知道中间变量的值时，插入一句 print 函数即可。但这种方法存在一个问题，那就是在程序调试完以后我们需要一个一个把 print 函数删掉或者注释掉。logging 模块能非常好得解决这个问题，通过设置 severity level，我们可以方便得控制在控制台打印的信息，另外我们也可以同时把日志信息输出到多个目的地，比如控制台，日志文件，网络位置等。</p>
+<a id="more"></a>
+
+<h2 id="logging-基本用法"><a href="#logging-基本用法" class="headerlink" title="logging 基本用法"></a>logging 基本用法</h2><p>Logging 的基本用法非常简单，比如下面这个例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.basicConfig(filename=<span class="string">'example.log'</span>,level=logging.DEBUG)</span><br><span class="line">logging.debug(<span class="string">'This message should go to the log file'</span>)</span><br><span class="line">logging.info(<span class="string">'So should this'</span>)</span><br><span class="line">logging.warning(<span class="string">'And this, too'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>下面简单介绍一下该程序工作流程</p>
+<ul>
+<li>首先导入 logging 模块。</li>
+<li>然后利用函数 logging.basicConfig 设置 logger 的行为。其中，filename 指定日志文件，默认情况下，日志输出至控制台。level 指定记录日志的 severity level，logging 模块有 DEBUG, INFO, WARNING, ERROR, CRITICAL 五个从低到高的 severity level，logger 只输出与 level 参数指定级别相同更高级别的日志信息，比如，如果我们让 <code>level=logging.INFO</code>，上面程序中 logging.debug 信息在执行过程中将不会输出。当然，filenamelogging.basicConfig 可以传入很多参数，具体可以参考<a href="https://docs.python.org/2/library/logging.html#logging.basicConfig" target="_blank" rel="noopener">官方文档</a>。</li>
+<li>最后在需要记录日志的地方根据需要的 severity level 添加 logging.debug 等日志信息。</li>
+</ul>
+<p>Logging 模块的基本用法是通过创建 Loggers 对象来实现的，Loggers 对象提供了很多方法来操作其属性，比如 setLevel 方法可以用来改变其 severity level。我们可以通过以下程序在不同模块中创建 Loggers 对象：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">logger = logging.getLogger(__name__)</span><br></pre></td></tr></table></figure>
+
+<p>其中，<strong>name</strong> 是该模块的名字，当然我们也可以自己给该 logger 取一个名字。每次调用 logging.getLogger 便创建了一个指定名字的 logger，在同一个线程中，不管调用多少次该函数，相同名字都指向同一个 logger 对象。</p>
+<p>Logging 模块通过层级结构来组织这些 loggers 对象，在同一个线程中，所有 loggers 对象都继承自 root logger，前面程序中的 logging.basicConfig 便创建了一个 root logger。loggers 对象之间的继承关系用类似于<code>a.b.c</code>的方式表示，如果子对象指定了属性，则使用它自己的属性进行输出，如果没有则使用其父对象的属性进行输出，比如前面的 logging.basicConfig 函数设置了 root logger 的属性，如果后面创建的子对象都没有设置属性，那么 root logger 的属性将在所有 logger 对象间共享。</p>
+<h2 id="logging-工作流程"><a href="#logging-工作流程" class="headerlink" title="logging 工作流程"></a>logging 工作流程</h2><p>上一节介绍的是 logging 模块的基本用法，利用上面这些知识进行基本的程序调试已经没有问题了。然而，logging 模块的功能并不仅仅于此，事实上，Logging 模块包含 Loggers, Handlers, Filters 和 Formatters 等多个类，我们可以利用这些类来对日志进行更加精细化的控制。在这之前，我们需要了解 logging 模块的工作流程，如下图所示：</p>
+<img src="/images/python-logging-flow.png" width=50% height=50% align=center/>
+
+<ul>
+<li>Loggers 类是整个 logger 的载体，一般使用 getLogger 方法来创建。然后我们可以为创建好的 Logger 实体设置 severity level（调用方法 Logger.setLevel()），设置 Filters（filter 能比 severity level 更精细化的控制 logger 向后面 handler 的输出，一个 logger 可以设置多个 filter，所有 filter 的过滤关系是串联的，调用方法 Logger.addFilter()），设置 Handlers（handler 的作用是指定 logger 的最终输出去向，比如可以终端输出，可以写入日志文件，可以放入某个网络服务器等，一个 loggers 可以设置多个 handler，调用方法 Logger.addHandler()）</li>
+<li>Hanlder 类指定 logger 的输出去向，常用的 Handler 有 StreamHandler, FileHandler 和 SocketHandler 等。跟 Logger 类一样，我们也可以为 Handler 设置 severity level 和 filter，用法和 logger 也差不多，这样可以对最终输出进行更加精细化的控制。另外，我们可以设置最后的输出格式（调用方法 setFormatter()）</li>
+<li>Formatters 和 Filters 类顾名思义就是设置最终的输出格式和滤波器</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.python.org/2/howto/logging.html" target="_blank" rel="noopener">Logging HOWTO</a><br>[2] <a href="https://docs.python.org/2/howto/logging-cookbook.html" target="_blank" rel="noopener">Logging Cookbook</a><br>[3] <a href="https://docs.python.org/2/library/logging.html" target="_blank" rel="noopener">Logging facility for Python</a><br>[4] <a href="http://www.zlovezl.cn/articles/replacing-print-simple-introduction-to-logging/" target="_blank" rel="noopener">替换你的print(logging模块超简明指南)</a><br>[5] <a href="http://cblog.xyz/article/41" target="_blank" rel="noopener">logging的用法</a></p>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python PEP8 编程规范总结</title>
+    <url>/2018/01/09/python-pep8-program-standard/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这篇博客主要总结一些 python PEP8 的编程规范。</p>
+<a id="more"></a>
+
+<h2 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h2><ul>
+<li>尽量单独使用小写字母‘l’，大写字母‘O’等容易混淆的字母。</li>
+<li>模块命名尽量短小，使用全部小写的方式，可以使用下划线。</li>
+<li>包命名尽量短小，使用全部小写的方式，不可以使用下划线。</li>
+<li>类的命名使用CapWords的方式，模块内部使用的类采用_CapWords的方式。</li>
+<li>异常命名使用CapWords+Error后缀的方式。</li>
+<li>全局变量尽量只在模块内有效，类似C语言中的static。实现方法有两种，一是<strong>all</strong>机制;二是前缀一个下划线。</li>
+<li>函数命名使用全部小写的方式，可以使用下划线。</li>
+<li>常量命名使用全部大写的方式，可以使用下划线。</li>
+<li>类的属性（方法和变量）命名使用全部小写的方式，可以使用下划线。</li>
+<li>类的属性有3种作用域public、non-public和subclass API，可以理解成C++中的public、private、protected，non-public属性前，前缀一条下划线。</li>
+<li>类的属性若与关键字名字冲突，后缀一下划线，尽量不要使用缩略等其他方式。</li>
+<li>为避免与子类属性命名冲突，在类的一些属性前，前缀两条下划线。比如：类Foo中声明<strong>a,访问时，只能通过Foo._Foo</strong>a，避免歧义。如果子类也叫Foo，那就无能为力了。</li>
+<li>类的方法第一个参数必须是self，而静态方法第一个参数必须是cls。</li>
+</ul>
+<h2 id="代码编排"><a href="#代码编排" class="headerlink" title="代码编排"></a>代码编排</h2><ul>
+<li>缩进。4个空格的缩进（编辑器都可以完成此功能），不使用Tap，更不能混合使用Tap和空格。</li>
+<li>每行最大长度79，换行可以使用反斜杠，最好使用圆括号。换行点要在操作符的后边敲回车。</li>
+<li>类和top-level函数定义之间空两行；类中的方法定义之间空一行；函数内逻辑无关段落之间空一行；其他地方尽量不要再空行</li>
+</ul>
+<h2 id="空格使用"><a href="#空格使用" class="headerlink" title="空格使用"></a>空格使用</h2><p>总体原则，避免不必要的空格。</p>
+<ul>
+<li>各种右括号前不要加空格。</li>
+<li>逗号、冒号、分号前不要加空格。</li>
+<li>函数的左括号前不要加空格。如Func(1)。</li>
+<li>序列的左括号前不要加空格。如list[2]。</li>
+<li>操作符左右各加一个空格，不要为了对齐增加空格。</li>
+<li>函数默认参数使用的赋值符左右省略空格。</li>
+<li>不要将多句语句写在同一行，尽管使用‘;’允许。</li>
+<li>if/for/while语句中，即使执行语句只有一句，也必须另起一行。</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://www.douban.com/note/134971609/" target="_blank" rel="noopener">PEP8 Python 编码规范整理</a></p>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>pep8</tag>
       </tags>
   </entry>
   <entry>
@@ -601,87 +625,35 @@
       </tags>
   </entry>
   <entry>
-    <title>Python 中 Logging 模块使用方法</title>
-    <url>/2018/01/13/python-logging-module/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在代码调试过程中，我们使用最多的方法是 print 函数，在我们需要知道中间变量的值时，插入一句 print 函数即可。但这种方法存在一个问题，那就是在程序调试完以后我们需要一个一个把 print 函数删掉或者注释掉。logging 模块能非常好得解决这个问题，通过设置 severity level，我们可以方便得控制在控制台打印的信息，另外我们也可以同时把日志信息输出到多个目的地，比如控制台，日志文件，网络位置等。</p>
-<a id="more"></a>
+    <title>Gitbook</title>
+    <url>/2018/01/02/gitbook-tutorial/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><a id="more"></a>
 
-<h2 id="logging-基本用法"><a href="#logging-基本用法" class="headerlink" title="logging 基本用法"></a>logging 基本用法</h2><p>Logging 的基本用法非常简单，比如下面这个例子：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.basicConfig(filename=<span class="string">'example.log'</span>,level=logging.DEBUG)</span><br><span class="line">logging.debug(<span class="string">'This message should go to the log file'</span>)</span><br><span class="line">logging.info(<span class="string">'So should this'</span>)</span><br><span class="line">logging.warning(<span class="string">'And this, too'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="安装-gitbook"><a href="#安装-gitbook" class="headerlink" title="安装 gitbook"></a>安装 gitbook</h2><p>我们可以使用 nodejs 的 npm 包管理器来安装 gitbook，nodejs 的安装方法参考我的<a href="http://zhangzhk.com/2017/09/13/how-to-create-blog-by-hexo/">这篇博客</a>。使用以下命令安装 gitbook:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install gitbook -g</span><br></pre></td></tr></table></figure>
 
-<p>下面简单介绍一下该程序工作流程</p>
+<h2 id="使用-gitbook"><a href="#使用-gitbook" class="headerlink" title="使用 gitbook"></a>使用 gitbook</h2><p>Gitbook 的使用很简单，主要是以下两条命令：</p>
 <ul>
-<li>首先导入 logging 模块。</li>
-<li>然后利用函数 logging.basicConfig 设置 logger 的行为。其中，filename 指定日志文件，默认情况下，日志输出至控制台。level 指定记录日志的 severity level，logging 模块有 DEBUG, INFO, WARNING, ERROR, CRITICAL 五个从低到高的 severity level，logger 只输出与 level 参数指定级别相同更高级别的日志信息，比如，如果我们让 <code>level=logging.INFO</code>，上面程序中 logging.debug 信息在执行过程中将不会输出。当然，filenamelogging.basicConfig 可以传入很多参数，具体可以参考<a href="https://docs.python.org/2/library/logging.html#logging.basicConfig" target="_blank" rel="noopener">官方文档</a>。</li>
-<li>最后在需要记录日志的地方根据需要的 severity level 添加 logging.debug 等日志信息。</li>
+<li><code>gitbook init</code></li>
+<li><code>gitbook serve</code> </li>
 </ul>
-<p>Logging 模块的基本用法是通过创建 Loggers 对象来实现的，Loggers 对象提供了很多方法来操作其属性，比如 setLevel 方法可以用来改变其 severity level。我们可以通过以下程序在不同模块中创建 Loggers 对象：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">logger = logging.getLogger(__name__)</span><br></pre></td></tr></table></figure>
+<p>使用 gitbook.com 并关联 github</p>
+<h2 id="发布到-github-page"><a href="#发布到-github-page" class="headerlink" title="发布到 github page"></a>发布到 github page</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:repository.git</span><br></pre></td></tr></table></figure>
 
-<p>其中，<strong>name</strong> 是该模块的名字，当然我们也可以自己给该 logger 取一个名字。每次调用 logging.getLogger 便创建了一个指定名字的 logger，在同一个线程中，不管调用多少次该函数，相同名字都指向同一个 logger 对象。</p>
-<p>Logging 模块通过层级结构来组织这些 loggers 对象，在同一个线程中，所有 loggers 对象都继承自 root logger，前面程序中的 logging.basicConfig 便创建了一个 root logger。loggers 对象之间的继承关系用类似于<code>a.b.c</code>的方式表示，如果子对象指定了属性，则使用它自己的属性进行输出，如果没有则使用其父对象的属性进行输出，比如前面的 logging.basicConfig 函数设置了 root logger 的属性，如果后面创建的子对象都没有设置属性，那么 root logger 的属性将在所有 logger 对象间共享。</p>
-<h2 id="logging-工作流程"><a href="#logging-工作流程" class="headerlink" title="logging 工作流程"></a>logging 工作流程</h2><p>上一节介绍的是 logging 模块的基本用法，利用上面这些知识进行基本的程序调试已经没有问题了。然而，logging 模块的功能并不仅仅于此，事实上，Logging 模块包含 Loggers, Handlers, Filters 和 Formatters 等多个类，我们可以利用这些类来对日志进行更加精细化的控制。在这之前，我们需要了解 logging 模块的工作流程，如下图所示：</p>
-<img src="/images/python-logging-flow.png" width=50% height=50% align=center/>
+<p>使用这个<a href="/files/deploy.sh">脚本</a>快速部署到 github page。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add deploy.sh</span><br><span class="line">$ git commit -m <span class="string">"Commit deploy.sh to master repository"</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>Loggers 类是整个 logger 的载体，一般使用 getLogger 方法来创建。然后我们可以为创建好的 Logger 实体设置 severity level（调用方法 Logger.setLevel()），设置 Filters（filter 能比 severity level 更精细化的控制 logger 向后面 handler 的输出，一个 logger 可以设置多个 filter，所有 filter 的过滤关系是串联的，调用方法 Logger.addFilter()），设置 Handlers（handler 的作用是指定 logger 的最终输出去向，比如可以终端输出，可以写入日志文件，可以放入某个网络服务器等，一个 loggers 可以设置多个 handler，调用方法 Logger.addHandler()）</li>
-<li>Hanlder 类指定 logger 的输出去向，常用的 Handler 有 StreamHandler, FileHandler 和 SocketHandler 等。跟 Logger 类一样，我们也可以为 Handler 设置 severity level 和 filter，用法和 logger 也差不多，这样可以对最终输出进行更加精细化的控制。另外，我们可以设置最后的输出格式（调用方法 setFormatter()）</li>
-<li>Formatters 和 Filters 类顾名思义就是设置最终的输出格式和滤波器</li>
-</ul>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.python.org/2/howto/logging.html" target="_blank" rel="noopener">Logging HOWTO</a><br>[2] <a href="https://docs.python.org/2/howto/logging-cookbook.html" target="_blank" rel="noopener">Logging Cookbook</a><br>[3] <a href="https://docs.python.org/2/library/logging.html" target="_blank" rel="noopener">Logging facility for Python</a><br>[4] <a href="http://www.zlovezl.cn/articles/replacing-print-simple-introduction-to-logging/" target="_blank" rel="noopener">替换你的print(logging模块超简明指南)</a><br>[5] <a href="http://cblog.xyz/article/41" target="_blank" rel="noopener">logging的用法</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ chmod +x deploy.sh</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="http://www.chengweiyang.cn/gitbook/index.html" target="_blank" rel="noopener">GitBook 简明教程</a></p>
 ]]></content>
       <categories>
         <category>coding</category>
       </categories>
       <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python PEP8 编程规范总结</title>
-    <url>/2018/01/09/python-pep8-program-standard/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这篇博客主要总结一些 python PEP8 的编程规范。</p>
-<a id="more"></a>
-
-<h2 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h2><ul>
-<li>尽量单独使用小写字母‘l’，大写字母‘O’等容易混淆的字母。</li>
-<li>模块命名尽量短小，使用全部小写的方式，可以使用下划线。</li>
-<li>包命名尽量短小，使用全部小写的方式，不可以使用下划线。</li>
-<li>类的命名使用CapWords的方式，模块内部使用的类采用_CapWords的方式。</li>
-<li>异常命名使用CapWords+Error后缀的方式。</li>
-<li>全局变量尽量只在模块内有效，类似C语言中的static。实现方法有两种，一是<strong>all</strong>机制;二是前缀一个下划线。</li>
-<li>函数命名使用全部小写的方式，可以使用下划线。</li>
-<li>常量命名使用全部大写的方式，可以使用下划线。</li>
-<li>类的属性（方法和变量）命名使用全部小写的方式，可以使用下划线。</li>
-<li>类的属性有3种作用域public、non-public和subclass API，可以理解成C++中的public、private、protected，non-public属性前，前缀一条下划线。</li>
-<li>类的属性若与关键字名字冲突，后缀一下划线，尽量不要使用缩略等其他方式。</li>
-<li>为避免与子类属性命名冲突，在类的一些属性前，前缀两条下划线。比如：类Foo中声明<strong>a,访问时，只能通过Foo._Foo</strong>a，避免歧义。如果子类也叫Foo，那就无能为力了。</li>
-<li>类的方法第一个参数必须是self，而静态方法第一个参数必须是cls。</li>
-</ul>
-<h2 id="代码编排"><a href="#代码编排" class="headerlink" title="代码编排"></a>代码编排</h2><ul>
-<li>缩进。4个空格的缩进（编辑器都可以完成此功能），不使用Tap，更不能混合使用Tap和空格。</li>
-<li>每行最大长度79，换行可以使用反斜杠，最好使用圆括号。换行点要在操作符的后边敲回车。</li>
-<li>类和top-level函数定义之间空两行；类中的方法定义之间空一行；函数内逻辑无关段落之间空一行；其他地方尽量不要再空行</li>
-</ul>
-<h2 id="空格使用"><a href="#空格使用" class="headerlink" title="空格使用"></a>空格使用</h2><p>总体原则，避免不必要的空格。</p>
-<ul>
-<li>各种右括号前不要加空格。</li>
-<li>逗号、冒号、分号前不要加空格。</li>
-<li>函数的左括号前不要加空格。如Func(1)。</li>
-<li>序列的左括号前不要加空格。如list[2]。</li>
-<li>操作符左右各加一个空格，不要为了对齐增加空格。</li>
-<li>函数默认参数使用的赋值符左右省略空格。</li>
-<li>不要将多句语句写在同一行，尽管使用‘;’允许。</li>
-<li>if/for/while语句中，即使执行语句只有一句，也必须另起一行。</li>
-</ul>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://www.douban.com/note/134971609/" target="_blank" rel="noopener">PEP8 Python 编码规范整理</a></p>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>pep8</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -876,37 +848,31 @@
       </tags>
   </entry>
   <entry>
-    <title>深入剖析 fully_connected_feed.py</title>
-    <url>/2017/09/21/understanding-fully-connected-feed/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>fully_connected_feed.py 是 tensorflow 中训练 MINIST 数据集的简单示例，通过对该代码的学习，可以帮助我们更好得理解 python 的语法以及 tensorflow 的工作流程。</p>
+    <title>Python 开发过程中遇到问题总结</title>
+    <url>/2017/10/25/problem-in-python-development/</url>
+    <content><![CDATA[<p>在 python 开发过程中，经常遇到各种小问题，有的时候一个小问题便需要花大半天甚至数天时间才能解决。为方便今后查找，这篇博客主要记录在 python 开发过程中遇到的各种小问题以及相应的解决方法。</p>
 <a id="more"></a>
 
-<h2 id="代码详细注释"><a href="#代码详细注释" class="headerlink" title="代码详细注释"></a>代码详细注释</h2><p>由于Python是由社区推动的开源并且免费的开发语言，不受商业公司控制，因此，Python的改进往往比较激进，不兼容的情况时有发生。Python为了确保你能顺利过渡到新版本，特别提供了<strong>future</strong>模块，让你在旧的版本中试验新版本的一些特性。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> absolute_import</span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> division</span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> print_function</span><br></pre></td></tr></table></figure>
+<h2 id="ipython-重新加载模块"><a href="#ipython-重新加载模块" class="headerlink" title="ipython 重新加载模块"></a>ipython 重新加载模块</h2><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>为了提高加载速度，ipython 运行过程中对所有的 module 只会 import 一次，而在稍微大一些的项目中，往往需要编写多个 module 以方便管理。这样一来，当需要在 submodule 里面修改内容时，主程序并不能及时更新，使用的还是最开始加载的内容。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>最简单的解决方法就是每次修改 submodule 内容以后重启 ipython，但这样做非常麻烦而且有可能丢失数据。下面介绍一种利用 ipython 的 autoreload 扩展 [1]彻底解决该问题的方法：</p>
+<p>在 ipython 的配置文件 ~/.ipython/profile_default/ipython_config.py 中添加下面两段内容：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">c.InteractiveShellApp.extensions = [<span class="string">'autoreload'</span>]     </span><br><span class="line">c.InteractiveShellApp.exec_lines = [<span class="string">'%autoreload 2'</span>]</span><br></pre></td></tr></table></figure>
+<p>如果目前 ~/.ipython/profile_default/ 文件夹中不存在 ipython_config.py，可以在终端中输入以下命令来创建：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ipython profile create</span><br></pre></td></tr></table></figure>
+
+<p>该命令会自动创建 ipython 的配置文件，所有可用的配置都被注释好了，我们要做的就是根据自己的需要打开相应的配置并添加相应的内容就好了。</p>
+<h2 id="Theano-和-Lasagne-模块-import-错误"><a href="#Theano-和-Lasagne-模块-import-错误" class="headerlink" title="Theano 和 Lasagne 模块 import 错误"></a>Theano 和 Lasagne 模块 import 错误</h2><h3 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h3><p>在 Theano 和 Lasagne 模块 import 过程中报 ImportError 错误。</p>
+<h3 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h3><p>利用 pip 安装 theano 和 lasagne 模块的正确版本，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pip install theano==0.8.2</span><br><span class="line">$ pip install lasagne==0.1</span><br></pre></td></tr></table></figure>
 
 
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># pylint: disable=missing-docstring</span></span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> six.moves <span class="keyword">import</span> xrange  <span class="comment"># pylint: disable=redefined-builtin</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> tensorflow.examples.tutorials.mnist <span class="keyword">import</span> input_data</span><br><span class="line"><span class="keyword">from</span> tensorflow.examples.tutorials.mnist <span class="keyword">import</span> mnist</span><br><span class="line"></span><br><span class="line"><span class="comment"># Basic model parameters as external flags.</span></span><br><span class="line">FLAGS = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">placeholder_inputs</span><span class="params">(batch_size)</span>:</span></span><br><span class="line">  images_placeholder = tf.placeholder(tf.float32, shape=(batch_size,</span><br><span class="line">                                                         mnist.IMAGE_PIXELS))</span><br><span class="line">  labels_placeholder = tf.placeholder(tf.int32, shape=(batch_size))</span><br><span class="line">  <span class="keyword">return</span> images_placeholder, labels_placeholder</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fill_feed_dict</span><span class="params">(data_set, images_pl, labels_pl)</span>:</span></span><br><span class="line">  images_feed, labels_feed = data_set.next_batch(FLAGS.batch_size,</span><br><span class="line">                                                 FLAGS.fake_data)</span><br><span class="line">  feed_dict = &#123;</span><br><span class="line">      images_pl: images_feed,</span><br><span class="line">      labels_pl: labels_feed,</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> feed_dict</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_eval</span><span class="params">(sess,</span></span></span><br><span class="line"><span class="function"><span class="params">            eval_correct,</span></span></span><br><span class="line"><span class="function"><span class="params">            images_placeholder,</span></span></span><br><span class="line"><span class="function"><span class="params">            labels_placeholder,</span></span></span><br><span class="line"><span class="function"><span class="params">            data_set)</span>:</span></span><br><span class="line">  true_count = <span class="number">0</span>  <span class="comment"># Counts the number of correct predictions.</span></span><br><span class="line">  steps_per_epoch = data_set.num_examples // FLAGS.batch_size</span><br><span class="line">  num_examples = steps_per_epoch * FLAGS.batch_size</span><br><span class="line">  <span class="keyword">for</span> step <span class="keyword">in</span> xrange(steps_per_epoch):</span><br><span class="line">    feed_dict = fill_feed_dict(data_set,</span><br><span class="line">                               images_placeholder,</span><br><span class="line">                               labels_placeholder)</span><br><span class="line">    true_count += sess.run(eval_correct, feed_dict=feed_dict)</span><br><span class="line">  precision = float(true_count) / num_examples</span><br><span class="line">  print(<span class="string">'  Num examples: %d  Num correct: %d  Precision @ 1: %0.04f'</span> %</span><br><span class="line">        (num_examples, true_count, precision))</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_training</span><span class="params">()</span>:</span></span><br><span class="line">  <span class="keyword">with</span> tf.Graph().as_default():</span><br><span class="line">    <span class="comment"># Generate placeholders for the images and labels.</span></span><br><span class="line">    images_placeholder, labels_placeholder = placeholder_inputs(</span><br><span class="line">        FLAGS.batch_size)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Build a Graph that computes predictions from the inference model.</span></span><br><span class="line">    logits = mnist.inference(images_placeholder, FLAGS.hidden1, FLAGS.hidden2)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Add to the Graph the Ops for loss calculation.</span></span><br><span class="line">    loss = mnist.loss(logits, labels_placeholder)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Add to the Graph the Ops that calculate and apply gradients.</span></span><br><span class="line">    train_op = mnist.training(loss, FLAGS.learning_rate)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Add the Op to compare the logits to the labels during evaluation.</span></span><br><span class="line">    eval_correct = mnist.evaluation(logits, labels_placeholder)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Build the summary Tensor based on the TF collection of Summaries.</span></span><br><span class="line">    summary = tf.summary.merge_all()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Add the variable initializer Op.</span></span><br><span class="line">    init = tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create a saver for writing training checkpoints.</span></span><br><span class="line">    saver = tf.train.Saver()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create a session for running Ops on the Graph.</span></span><br><span class="line">    sess = tf.Session()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Instantiate a SummaryWriter to output summaries and the Graph.</span></span><br><span class="line">    summary_writer = tf.summary.FileWriter(FLAGS.log_dir, sess.graph)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># And then after everything is built:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Run the Op to initialize the variables.</span></span><br><span class="line">    sess.run(init)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Start the training loop.</span></span><br><span class="line">    <span class="keyword">for</span> step <span class="keyword">in</span> xrange(FLAGS.max_steps):</span><br><span class="line">      start_time = time.time()</span><br><span class="line"></span><br><span class="line">      <span class="comment"># Fill a feed dictionary with the actual set of images and labels</span></span><br><span class="line">      <span class="comment"># for this particular training step.</span></span><br><span class="line">      feed_dict = fill_feed_dict(data_sets.train, images_placeholder, labels_placeholder)</span><br><span class="line">      </span><br><span class="line">      _, loss_value = sess.run([train_op, loss], feed_dict=feed_dict)</span><br><span class="line"></span><br><span class="line">      duration = time.time() - start_time</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> step % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># Print status to stdout.</span></span><br><span class="line">        print(<span class="string">'Step %d: loss = %.2f (%.3f sec)'</span> % (step, loss_value, duration))</span><br><span class="line">        <span class="comment"># Update the events file.</span></span><br><span class="line">        summary_str = sess.run(summary, feed_dict=feed_dict)</span><br><span class="line">        summary_writer.add_summary(summary_str, step)</span><br><span class="line">        summary_writer.flush()</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (step + <span class="number">1</span>) % <span class="number">1000</span> == <span class="number">0</span> <span class="keyword">or</span> (step + <span class="number">1</span>) == FLAGS.max_steps:</span><br><span class="line">        checkpoint_file = os.path.join(FLAGS.log_dir, <span class="string">'model.ckpt'</span>)</span><br><span class="line">        saver.save(sess, checkpoint_file, global_step=step)</span><br><span class="line">        <span class="comment"># Evaluate against the training set.</span></span><br><span class="line">        print(<span class="string">'Training Data Eval:'</span>)</span><br><span class="line">        do_eval(sess, eval_correct, images_placeholder, labels_placeholder, data_sets.train)</span><br><span class="line">        <span class="comment"># Evaluate against the validation set.</span></span><br><span class="line">        print(<span class="string">'Validation Data Eval:'</span>)</span><br><span class="line">        do_eval(sess, eval_correct, images_placeholder, labels_placeholder, data_sets.validation)</span><br><span class="line">        <span class="comment"># Evaluate against the test set.</span></span><br><span class="line">        print(<span class="string">'Test Data Eval:'</span>)</span><br><span class="line">        do_eval(sess, eval_correct, images_placeholder, labels_placeholder, data_sets.test)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(_)</span>:</span></span><br><span class="line">  <span class="comment"># 把之前的 log 文件删除</span></span><br><span class="line">  <span class="keyword">if</span> tf.gfile.Exists(FLAGS.log_dir):</span><br><span class="line">    tf.gfile.DeleteRecursively(FLAGS.log_dir)</span><br><span class="line">  <span class="comment"># 重新创建 log 文件</span></span><br><span class="line">  tf.gfile.MakeDirs(FLAGS.log_dir)</span><br><span class="line">  <span class="comment"># 正式开始训练</span></span><br><span class="line">  run_training()</span><br></pre></td></tr></table></figure>
-
-<p>Python 中的 argparse 模块主要负责命令行解析。其主要作用是在 python 调用 .py 脚本文件是可以传入参数。比如对于以下程序，我们可以在命令行输入 <code>python fully_connected_feed.py --learning_rate 0.1 --max_steps 200</code>。其中 ArgumentParser() 函数的作用是定义一个 parser 实例。parser.add_argument() 函数的作用是添加输入命令参数，它的第一个参数为命令参数名称，第二个参数为命令参数类型，第三个参数为命令参数默认值，如果没有输入，那么取默认值，第四个参数为调用 help 时显示的内容。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># if 的作用是保证此文件被 import 时，不会执行 main 里面的内容</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>: </span><br><span class="line">  parser = argparse.ArgumentParser()</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--learning_rate'</span>,</span><br><span class="line">      type=float,</span><br><span class="line">      default=<span class="number">0.01</span>,</span><br><span class="line">      help=<span class="string">'Initial learning rate.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--max_steps'</span>,</span><br><span class="line">      type=int,</span><br><span class="line">      default=<span class="number">2000</span>,</span><br><span class="line">      help=<span class="string">'Number of steps to run trainer.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--hidden1'</span>,</span><br><span class="line">      type=int,</span><br><span class="line">      default=<span class="number">128</span>,</span><br><span class="line">      help=<span class="string">'Number of units in hidden layer 1.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--hidden2'</span>,</span><br><span class="line">      type=int,</span><br><span class="line">      default=<span class="number">32</span>,</span><br><span class="line">      help=<span class="string">'Number of units in hidden layer 2.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--batch_size'</span>,</span><br><span class="line">      type=int,</span><br><span class="line">      default=<span class="number">100</span>,</span><br><span class="line">      help=<span class="string">'Batch size.  Must divide evenly into the dataset sizes.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--input_data_dir'</span>,</span><br><span class="line">      type=str,</span><br><span class="line">      default=os.path.join(os.getenv(<span class="string">'TEST_TMPDIR'</span>, <span class="string">'/tmp'</span>),</span><br><span class="line">                           <span class="string">'tensorflow/mnist/input_data'</span>),</span><br><span class="line">      help=<span class="string">'Directory to put the input data.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--log_dir'</span>,</span><br><span class="line">      type=str,</span><br><span class="line">      default=os.path.join(os.getenv(<span class="string">'TEST_TMPDIR'</span>, <span class="string">'/tmp'</span>),</span><br><span class="line">                           <span class="string">'tensorflow/mnist/logs/fully_connected_feed'</span>),</span><br><span class="line">      help=<span class="string">'Directory to put the log data.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--fake_data'</span>,</span><br><span class="line">      default=<span class="literal">False</span>,</span><br><span class="line">      help=<span class="string">'If true, uses fake data for unit testing.'</span>,</span><br><span class="line">      action=<span class="string">'store_true'</span></span><br><span class="line">  )</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># parse_known_args() 函数的作用是把传入的参数读出来，并放到 FLAGS 里面，unparsed 里面存的是默认值。</span></span><br><span class="line">  FLAGS, unparsed = parser.parse_known_args() </span><br><span class="line">  <span class="comment"># 正式激活 main() 函数。</span></span><br><span class="line">  tf.app.run(main=main, argv=[sys.argv[<span class="number">0</span>]] + unparsed)</span><br></pre></td></tr></table></figure>]]></content>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://ipython.org/ipython-doc/3/config/extensions/autoreload.html" target="_blank" rel="noopener">ipython document</a></p>
+]]></content>
       <categories>
-        <category>machine learning</category>
+        <category>coding</category>
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>tensorflow</tag>
       </tags>
   </entry>
   <entry>
@@ -956,6 +922,40 @@
         <tag>security</tag>
         <tag>cleverhans</tag>
         <tag>adversarial</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>深入剖析 fully_connected_feed.py</title>
+    <url>/2017/09/21/understanding-fully-connected-feed/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>fully_connected_feed.py 是 tensorflow 中训练 MINIST 数据集的简单示例，通过对该代码的学习，可以帮助我们更好得理解 python 的语法以及 tensorflow 的工作流程。</p>
+<a id="more"></a>
+
+<h2 id="代码详细注释"><a href="#代码详细注释" class="headerlink" title="代码详细注释"></a>代码详细注释</h2><p>由于Python是由社区推动的开源并且免费的开发语言，不受商业公司控制，因此，Python的改进往往比较激进，不兼容的情况时有发生。Python为了确保你能顺利过渡到新版本，特别提供了<strong>future</strong>模块，让你在旧的版本中试验新版本的一些特性。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> absolute_import</span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> division</span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> print_function</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># pylint: disable=missing-docstring</span></span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> six.moves <span class="keyword">import</span> xrange  <span class="comment"># pylint: disable=redefined-builtin</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> tensorflow.examples.tutorials.mnist <span class="keyword">import</span> input_data</span><br><span class="line"><span class="keyword">from</span> tensorflow.examples.tutorials.mnist <span class="keyword">import</span> mnist</span><br><span class="line"></span><br><span class="line"><span class="comment"># Basic model parameters as external flags.</span></span><br><span class="line">FLAGS = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">placeholder_inputs</span><span class="params">(batch_size)</span>:</span></span><br><span class="line">  images_placeholder = tf.placeholder(tf.float32, shape=(batch_size,</span><br><span class="line">                                                         mnist.IMAGE_PIXELS))</span><br><span class="line">  labels_placeholder = tf.placeholder(tf.int32, shape=(batch_size))</span><br><span class="line">  <span class="keyword">return</span> images_placeholder, labels_placeholder</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fill_feed_dict</span><span class="params">(data_set, images_pl, labels_pl)</span>:</span></span><br><span class="line">  images_feed, labels_feed = data_set.next_batch(FLAGS.batch_size,</span><br><span class="line">                                                 FLAGS.fake_data)</span><br><span class="line">  feed_dict = &#123;</span><br><span class="line">      images_pl: images_feed,</span><br><span class="line">      labels_pl: labels_feed,</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> feed_dict</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_eval</span><span class="params">(sess,</span></span></span><br><span class="line"><span class="function"><span class="params">            eval_correct,</span></span></span><br><span class="line"><span class="function"><span class="params">            images_placeholder,</span></span></span><br><span class="line"><span class="function"><span class="params">            labels_placeholder,</span></span></span><br><span class="line"><span class="function"><span class="params">            data_set)</span>:</span></span><br><span class="line">  true_count = <span class="number">0</span>  <span class="comment"># Counts the number of correct predictions.</span></span><br><span class="line">  steps_per_epoch = data_set.num_examples // FLAGS.batch_size</span><br><span class="line">  num_examples = steps_per_epoch * FLAGS.batch_size</span><br><span class="line">  <span class="keyword">for</span> step <span class="keyword">in</span> xrange(steps_per_epoch):</span><br><span class="line">    feed_dict = fill_feed_dict(data_set,</span><br><span class="line">                               images_placeholder,</span><br><span class="line">                               labels_placeholder)</span><br><span class="line">    true_count += sess.run(eval_correct, feed_dict=feed_dict)</span><br><span class="line">  precision = float(true_count) / num_examples</span><br><span class="line">  print(<span class="string">'  Num examples: %d  Num correct: %d  Precision @ 1: %0.04f'</span> %</span><br><span class="line">        (num_examples, true_count, precision))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_training</span><span class="params">()</span>:</span></span><br><span class="line">  <span class="keyword">with</span> tf.Graph().as_default():</span><br><span class="line">    <span class="comment"># Generate placeholders for the images and labels.</span></span><br><span class="line">    images_placeholder, labels_placeholder = placeholder_inputs(</span><br><span class="line">        FLAGS.batch_size)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Build a Graph that computes predictions from the inference model.</span></span><br><span class="line">    logits = mnist.inference(images_placeholder, FLAGS.hidden1, FLAGS.hidden2)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Add to the Graph the Ops for loss calculation.</span></span><br><span class="line">    loss = mnist.loss(logits, labels_placeholder)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Add to the Graph the Ops that calculate and apply gradients.</span></span><br><span class="line">    train_op = mnist.training(loss, FLAGS.learning_rate)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Add the Op to compare the logits to the labels during evaluation.</span></span><br><span class="line">    eval_correct = mnist.evaluation(logits, labels_placeholder)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Build the summary Tensor based on the TF collection of Summaries.</span></span><br><span class="line">    summary = tf.summary.merge_all()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Add the variable initializer Op.</span></span><br><span class="line">    init = tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create a saver for writing training checkpoints.</span></span><br><span class="line">    saver = tf.train.Saver()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create a session for running Ops on the Graph.</span></span><br><span class="line">    sess = tf.Session()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Instantiate a SummaryWriter to output summaries and the Graph.</span></span><br><span class="line">    summary_writer = tf.summary.FileWriter(FLAGS.log_dir, sess.graph)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># And then after everything is built:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Run the Op to initialize the variables.</span></span><br><span class="line">    sess.run(init)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Start the training loop.</span></span><br><span class="line">    <span class="keyword">for</span> step <span class="keyword">in</span> xrange(FLAGS.max_steps):</span><br><span class="line">      start_time = time.time()</span><br><span class="line"></span><br><span class="line">      <span class="comment"># Fill a feed dictionary with the actual set of images and labels</span></span><br><span class="line">      <span class="comment"># for this particular training step.</span></span><br><span class="line">      feed_dict = fill_feed_dict(data_sets.train, images_placeholder, labels_placeholder)</span><br><span class="line">      </span><br><span class="line">      _, loss_value = sess.run([train_op, loss], feed_dict=feed_dict)</span><br><span class="line"></span><br><span class="line">      duration = time.time() - start_time</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> step % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># Print status to stdout.</span></span><br><span class="line">        print(<span class="string">'Step %d: loss = %.2f (%.3f sec)'</span> % (step, loss_value, duration))</span><br><span class="line">        <span class="comment"># Update the events file.</span></span><br><span class="line">        summary_str = sess.run(summary, feed_dict=feed_dict)</span><br><span class="line">        summary_writer.add_summary(summary_str, step)</span><br><span class="line">        summary_writer.flush()</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (step + <span class="number">1</span>) % <span class="number">1000</span> == <span class="number">0</span> <span class="keyword">or</span> (step + <span class="number">1</span>) == FLAGS.max_steps:</span><br><span class="line">        checkpoint_file = os.path.join(FLAGS.log_dir, <span class="string">'model.ckpt'</span>)</span><br><span class="line">        saver.save(sess, checkpoint_file, global_step=step)</span><br><span class="line">        <span class="comment"># Evaluate against the training set.</span></span><br><span class="line">        print(<span class="string">'Training Data Eval:'</span>)</span><br><span class="line">        do_eval(sess, eval_correct, images_placeholder, labels_placeholder, data_sets.train)</span><br><span class="line">        <span class="comment"># Evaluate against the validation set.</span></span><br><span class="line">        print(<span class="string">'Validation Data Eval:'</span>)</span><br><span class="line">        do_eval(sess, eval_correct, images_placeholder, labels_placeholder, data_sets.validation)</span><br><span class="line">        <span class="comment"># Evaluate against the test set.</span></span><br><span class="line">        print(<span class="string">'Test Data Eval:'</span>)</span><br><span class="line">        do_eval(sess, eval_correct, images_placeholder, labels_placeholder, data_sets.test)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(_)</span>:</span></span><br><span class="line">  <span class="comment"># 把之前的 log 文件删除</span></span><br><span class="line">  <span class="keyword">if</span> tf.gfile.Exists(FLAGS.log_dir):</span><br><span class="line">    tf.gfile.DeleteRecursively(FLAGS.log_dir)</span><br><span class="line">  <span class="comment"># 重新创建 log 文件</span></span><br><span class="line">  tf.gfile.MakeDirs(FLAGS.log_dir)</span><br><span class="line">  <span class="comment"># 正式开始训练</span></span><br><span class="line">  run_training()</span><br></pre></td></tr></table></figure>
+
+<p>Python 中的 argparse 模块主要负责命令行解析。其主要作用是在 python 调用 .py 脚本文件是可以传入参数。比如对于以下程序，我们可以在命令行输入 <code>python fully_connected_feed.py --learning_rate 0.1 --max_steps 200</code>。其中 ArgumentParser() 函数的作用是定义一个 parser 实例。parser.add_argument() 函数的作用是添加输入命令参数，它的第一个参数为命令参数名称，第二个参数为命令参数类型，第三个参数为命令参数默认值，如果没有输入，那么取默认值，第四个参数为调用 help 时显示的内容。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># if 的作用是保证此文件被 import 时，不会执行 main 里面的内容</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>: </span><br><span class="line">  parser = argparse.ArgumentParser()</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--learning_rate'</span>,</span><br><span class="line">      type=float,</span><br><span class="line">      default=<span class="number">0.01</span>,</span><br><span class="line">      help=<span class="string">'Initial learning rate.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--max_steps'</span>,</span><br><span class="line">      type=int,</span><br><span class="line">      default=<span class="number">2000</span>,</span><br><span class="line">      help=<span class="string">'Number of steps to run trainer.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--hidden1'</span>,</span><br><span class="line">      type=int,</span><br><span class="line">      default=<span class="number">128</span>,</span><br><span class="line">      help=<span class="string">'Number of units in hidden layer 1.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--hidden2'</span>,</span><br><span class="line">      type=int,</span><br><span class="line">      default=<span class="number">32</span>,</span><br><span class="line">      help=<span class="string">'Number of units in hidden layer 2.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--batch_size'</span>,</span><br><span class="line">      type=int,</span><br><span class="line">      default=<span class="number">100</span>,</span><br><span class="line">      help=<span class="string">'Batch size.  Must divide evenly into the dataset sizes.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--input_data_dir'</span>,</span><br><span class="line">      type=str,</span><br><span class="line">      default=os.path.join(os.getenv(<span class="string">'TEST_TMPDIR'</span>, <span class="string">'/tmp'</span>),</span><br><span class="line">                           <span class="string">'tensorflow/mnist/input_data'</span>),</span><br><span class="line">      help=<span class="string">'Directory to put the input data.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--log_dir'</span>,</span><br><span class="line">      type=str,</span><br><span class="line">      default=os.path.join(os.getenv(<span class="string">'TEST_TMPDIR'</span>, <span class="string">'/tmp'</span>),</span><br><span class="line">                           <span class="string">'tensorflow/mnist/logs/fully_connected_feed'</span>),</span><br><span class="line">      help=<span class="string">'Directory to put the log data.'</span></span><br><span class="line">  )</span><br><span class="line">  parser.add_argument(</span><br><span class="line">      <span class="string">'--fake_data'</span>,</span><br><span class="line">      default=<span class="literal">False</span>,</span><br><span class="line">      help=<span class="string">'If true, uses fake data for unit testing.'</span>,</span><br><span class="line">      action=<span class="string">'store_true'</span></span><br><span class="line">  )</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># parse_known_args() 函数的作用是把传入的参数读出来，并放到 FLAGS 里面，unparsed 里面存的是默认值。</span></span><br><span class="line">  FLAGS, unparsed = parser.parse_known_args() </span><br><span class="line">  <span class="comment"># 正式激活 main() 函数。</span></span><br><span class="line">  tf.app.run(main=main, argv=[sys.argv[<span class="number">0</span>]] + unparsed)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>machine learning</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>tensorflow</tag>
       </tags>
   </entry>
 </search>
