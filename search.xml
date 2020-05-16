@@ -3,7 +3,10 @@
   <entry>
     <title>Git 使用方法与常用命令</title>
     <url>/2017/09/21/commands-of-git/</url>
-    <content><![CDATA[<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><img src="/images/git_command.jpg" width=100% height=100% align=center/>
+    <content><![CDATA[<p>本文总结一些 Git 常用命令。</p>
+<a id="more"></a>
+
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><img src="/images/git_command.jpg" width=100% height=100% align=center/>
 
 <h2 id="Commit-类别"><a href="#Commit-类别" class="headerlink" title="Commit 类别"></a>Commit 类别</h2><ul>
 <li>init：项目初始化（用于项目初始化或其他某种行为的开始描述，不影响代码）</li>
@@ -16,7 +19,7 @@
 <li>test：增加测试</li>
 <li>other：用于难以分类的类别（不建议使用，但一些如删除不必要的文件，更新.ignore之类的可以使用）</li>
 </ul>
-<a id="more"></a>
+<!-- more -->
 
 <h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><ul>
 <li><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰教程</a></li>
@@ -166,21 +169,6 @@
       <tags>
         <tag>cluster</tag>
         <tag>ssh</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MacOS 提升效率工具总结</title>
-    <url>/2019/07/16/macos-efficiency-tools/</url>
-    <content><![CDATA[<p>这篇博客主要介绍 Linux 服务器如何连接浙大 VPN。</p>
-<a id="more"></a>
-
-
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>macos</tag>
       </tags>
   </entry>
   <entry>
