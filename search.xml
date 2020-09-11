@@ -1006,5 +1006,12 @@
 <h2 id="爬取动态网页"><a href="#爬取动态网页" class="headerlink" title="爬取动态网页"></a>爬取动态网页</h2><p>实际生活中有很多网页需要通过 js 来渲染，直接使用 scrapy 无法直接爬取，因此需要借助于 splash 来实现。具体使用方法可以参考这个<a href="https://splash-cn-doc.readthedocs.io/zh_CN/latest/scrapy-splash-toturial.html" target="_blank" rel="noopener">教程</a>。</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.scrapy.org/en/latest/" target="_blank" rel="noopener">Scrapy documentation</a><br>[2] <a href="https://splash-cn-doc.readthedocs.io/zh_CN/latest/scrapy-splash-toturial.html" target="_blank" rel="noopener">scrapy-splash 教程</a></p>
 ]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+      <tags>
+        <tag>crawler</tag>
+        <tag>scrapy</tag>
+      </tags>
   </entry>
 </search>
