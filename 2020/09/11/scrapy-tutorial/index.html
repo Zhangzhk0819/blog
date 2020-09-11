@@ -20,20 +20,19 @@
     var CONFIG = {"hostname":"zhangzhk.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="这篇博客主要介绍 Linux 服务器如何连接浙大 VPN。">
+  <meta name="description" content="简介Scrapy 是目前最广泛使用的爬虫框架之一，只需要编写非常少的代码就能实现需要的爬虫功能。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux 服务器连接浙大 VPN">
-<meta property="og:url" content="http://zhangzhk.com/2019/07/16/install-zjunet/index.html">
+<meta property="og:title" content="利用 Scrapy 编写爬虫程序">
+<meta property="og:url" content="http://zhangzhk.com/2020/09/11/scrapy-tutorial/index.html">
 <meta property="og:site_name" content="Blog of Zhikun Zhang">
-<meta property="og:description" content="这篇博客主要介绍 Linux 服务器如何连接浙大 VPN。">
+<meta property="og:description" content="简介Scrapy 是目前最广泛使用的爬虫框架之一，只需要编写非常少的代码就能实现需要的爬虫功能。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2019-07-16T15:06:55.000Z">
-<meta property="article:modified_time" content="2020-06-01T23:11:45.845Z">
+<meta property="article:published_time" content="2020-09-11T15:15:48.000Z">
+<meta property="article:modified_time" content="2020-09-11T16:49:41.801Z">
 <meta property="article:author" content="Zhikun Zhang">
-<meta property="article:tag" content="vpn">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://zhangzhk.com/2019/07/16/install-zjunet/">
+<link rel="canonical" href="http://zhangzhk.com/2020/09/11/scrapy-tutorial/">
 
 
 <script id="page-configurations">
@@ -46,7 +45,7 @@
   };
 </script>
 
-  <title>Linux 服务器连接浙大 VPN | Blog of Zhikun Zhang</title>
+  <title>利用 Scrapy 编写爬虫程序 | Blog of Zhikun Zhang</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-166848480-1"></script>
     <script>
@@ -208,7 +207,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://zhangzhk.com/2019/07/16/install-zjunet/">
+    <link itemprop="mainEntityOfPage" href="http://zhangzhk.com/2020/09/11/scrapy-tutorial/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -221,7 +220,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Linux 服务器连接浙大 VPN
+          利用 Scrapy 编写爬虫程序
         </h1>
 
         <div class="post-meta">
@@ -230,24 +229,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2019-07-16 17:06:55" itemprop="dateCreated datePublished" datetime="2019-07-16T17:06:55+02:00">2019-07-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-02 01:11:45" itemprop="dateModified" datetime="2020-06-02T01:11:45+02:00">2020-06-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/network/" itemprop="url" rel="index"><span itemprop="name">network</span></a>
-                </span>
+              <time title="Created: 2020-09-11 17:15:48 / Modified: 18:49:41" itemprop="dateCreated datePublished" datetime="2020-09-11T17:15:48+02:00">2020-09-11</time>
             </span>
 
           
@@ -268,23 +252,50 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>这篇博客主要介绍 Linux 服务器如何连接浙大 VPN。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Scrapy 是目前最广泛使用的爬虫框架之一，只需要编写非常少的代码就能实现需要的爬虫功能。</p>
 <a id="more"></a>
 
-<h2 id="安装-zjunet"><a href="#安装-zjunet" class="headerlink" title="安装 zjunet"></a>安装 zjunet</h2><p>由于在 vpn 设置好之前是无法连接外网的，所以只能手动下载 zjunet rpm 包到本地，然后通过 scp 上传到 Linux 服务器。另外，zjunet 依赖于 xl2tpd 程序，也需要通过 rpm 包安装。具体命令如下：<br>本地下载 <a href="https://github.com/QSCTech/zjunet/releases" target="_blank" rel="noopener">zjunet</a> 和 <a href="https://centos.pkgs.org/7/epel-x86_64/xl2tpd-1.3.8-3.el7.x86_64.rpm.html" target="_blank" rel="noopener">xl2tpd</a> rpm 包，并执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp .&#x2F;zjunet.rpm root@server_ip:~&#x2F;zjunet.rpm</span><br><span class="line">scp .&#x2F;xl2tpd.rpm root@server_ip:~&#x2F;xl2tpd.rpm</span><br></pre></td></tr></table></figure>
-<p>两个包的名字根据具体下载文件名确定，下面命令类似。</p>
-<p>通过 ssh 登录到远程服务器并执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install xl2tpd.rpm</span><br><span class="line">yum -y install zjunet.rpm</span><br></pre></td></tr></table></figure>
-
-<p>如果安装 zjunet 时提示缺少 dnsutils 这个包，可以首先执行以下命令忽略依赖然后安装，主要是因为这个包是 Ubuntu 里面的，在 CentOS 里面没有这个包，相同功能对应另外一个包。忽略以后似乎对连接 vpn 没啥影响。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -i zjunet.rpm --nodeps</span><br></pre></td></tr></table></figure>
-
-<h2 id="连接浙大-vpn"><a href="#连接浙大-vpn" class="headerlink" title="连接浙大 vpn"></a>连接浙大 vpn</h2><p>安装好 zjunet 后可以直接在终端输入<code>zjunet</code>来查看可用命令，当然也可以通过该命令判断程序是否正确安装。常用的命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 添加 vpn 用户</span><br><span class="line">zjunet user add</span><br><span class="line"># 连接 vpn</span><br><span class="line">zjunet vpn -c</span><br><span class="line"># 断开 vpn</span><br><span class="line">zjunet vpn -d</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="有用链接"><a href="#有用链接" class="headerlink" title="有用链接"></a>有用链接</h2><p>[1] <a href="https://centos.pkgs.org/7/epel-x86_64/xl2tpd-1.3.8-3.el7.x86_64.rpm.html" target="_blank" rel="noopener">xl2tpd rpm 包下载</a><br>[2] <a href="https://github.com/QSCTech/zjunet/releases" target="_blank" rel="noopener">zjunet rpm 包下载</a></p>
+<h2 id="Scrapy-基本使用方法"><a href="#Scrapy-基本使用方法" class="headerlink" title="Scrapy 基本使用方法"></a>Scrapy 基本使用方法</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>Scrapy 安装非常方便，直接使用 pip 安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install scrapy</span><br></pre></td></tr></table></figure>
+
+<h3 id="Scrapy-编写基础爬虫程序"><a href="#Scrapy-编写基础爬虫程序" class="headerlink" title="Scrapy 编写基础爬虫程序"></a>Scrapy 编写基础爬虫程序</h3><p>首先使用以下命令自动创建一个爬虫模板：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject project_name</span><br></pre></td></tr></table></figure>
+
+<p>接下来在 ‘spider’ 文件夹下建立一个爬虫文件，以下是一段模板程序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class DemoSpider(scrapy.Spider):</span><br><span class="line">    name &#x3D; &quot;demo&quot;</span><br><span class="line"></span><br><span class="line">    def start_requests(self):</span><br><span class="line">        urls &#x3D; [</span><br><span class="line">            &#39;http:&#x2F;&#x2F;quotes.toscrape.com&#x2F;page&#x2F;1&#x2F;&#39;,</span><br><span class="line">            &#39;http:&#x2F;&#x2F;quotes.toscrape.com&#x2F;page&#x2F;2&#x2F;&#39;,</span><br><span class="line">        ]</span><br><span class="line">        for url in urls:</span><br><span class="line">            yield scrapy.Request(url&#x3D;url, callback&#x3D;self.parse)</span><br><span class="line"></span><br><span class="line">    def parse(self, response):</span><br><span class="line">        page &#x3D; response.url.split(&quot;&#x2F;&quot;)[-2]</span><br><span class="line">        filename &#x3D; &#39;quotes-%s.html&#39; % page</span><br><span class="line">        with open(filename, &#39;wb&#39;) as f:</span><br><span class="line">            f.write(response.body)</span><br><span class="line">        self.log(&#39;Saved file %s&#39; % filename)</span><br></pre></td></tr></table></figure>
+
+<p>该程序包含三大基本组件，name 指定爬虫的名字，必须唯一。start_requests 函数向目标网址发送请求，其中 Request() 类必须指定 url 和 callback 函数，callback 函数的作用为解析 HTML 文件。parse 函数实现 HTML 解析功能，实例中实现的功能为把爬取的 HTML 文件直接存储在本地。接下来的内容将会介绍其他内容提取方法。</p>
+<h3 id="使用代理"><a href="#使用代理" class="headerlink" title="使用代理"></a>使用代理</h3><p>很多网站比如 google 会部署反爬虫程序来减小服务器压力，如果我们直接使用本地 ip 运行大量爬虫，很有可能会被封掉。在这种情况下我们可以使用代理，这里介绍一个代理网站 <a href="https://www.scraperapi.com/" target="_blank" rel="noopener">https://www.scraperapi.com/</a>，免费版本每个月有 5000 次爬取机会。在程序中定义以下函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def get_url(url):</span><br><span class="line">    payload &#x3D; &#123;&#39;api_key&#39;: API_KEY, &#39;url&#39;: url, &#39;country_code&#39;: &#39;us&#39;&#125;</span><br><span class="line">    proxy_url &#x3D; &#39;http:&#x2F;&#x2F;api.scraperapi.com&#x2F;?&#39; + urlencode(payload)</span><br><span class="line">    return proxy_url</span><br></pre></td></tr></table></figure>
+
+<p> 其中 API_KEY 在注册账户中可以找到。</p>
+<h3 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h3><p> Scrapy 一般使用命令函来运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl demo -o save_file.jl</span><br></pre></td></tr></table></figure>
+
+<p>其中 save_file.jl 可以使用 jsonline 格式保存爬取的数据。</p>
+<p>如果想要使用 pycharm 来调试爬虫程序，可以在 setting.py 同级目录新建一个文件，并编写以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from scrapy import cmdline</span><br><span class="line"></span><br><span class="line">name &#x3D; &#39;demo&#39;</span><br><span class="line">cmd &#x3D; &#39;scrapy crawl &#123;0&#125; -o temp.jl&#39;.format(name)</span><br><span class="line">cmdline.execute(cmd.split())</span><br></pre></td></tr></table></figure>
+
+<p>以上代码有一个问题是执行完爬虫程序就直接退出了，无法串行执行两个以上爬虫程序或者对爬取数据进行后续处理，为了解决这个问题，可以使用以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line"></span><br><span class="line">name &#x3D; &#39;demo&#39;</span><br><span class="line">os.system(&#39;scrapy crawl &#123;0&#125; -o temp.jl&#39;.format(name))</span><br></pre></td></tr></table></figure>
+
+<p>这行代码有一个问题是没有办法停在爬虫程序的断点处，因此没法调试爬虫。所以我现在的策略是使用 cmdline 来调试单个爬虫程序，在单个爬虫程序调试完成后，再使用 os.system 来实现爬虫数据后处理。</p>
+<h2 id="Xpath-使用方法"><a href="#Xpath-使用方法" class="headerlink" title="Xpath 使用方法"></a>Xpath 使用方法</h2><p>Scrapy 使用 selector 提取 HTML 文件内容，其中 selector 有很多选择，比如 css 和 xpath，这里我们只介绍 xpath。</p>
+<h3 id="常用语法"><a href="#常用语法" class="headerlink" title="常用语法"></a>常用语法</h3><ul>
+<li>//: 提取子目录所有满足条件内容</li>
+<li>/: 提取直接子目录所有满足条件内容</li>
+<li>[]: 设置提取条件</li>
+<li>@: 指定属性</li>
+<li>text(): 提取文字</li>
+</ul>
+<p>一下为一个实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.xpath(&#39;&#x2F;&#x2F;div&#x2F;&#x2F;a[@class&#x3D;&quot;gsc_a_at&quot;]&#x2F;&#x2F;text()&#39;).extract()</span><br></pre></td></tr></table></figure>
+
+<p>这段程序提取了所有 div 标签下的所有 a 标签，其中 a 标签需要带有属性 class=”gsc_a_at”，并提取满足条件标签的所有文字。extract() 把 selector 转化成 string，如果有多个满足条件的内容，将形成一个列表。</p>
+<h2 id="爬取动态网页"><a href="#爬取动态网页" class="headerlink" title="爬取动态网页"></a>爬取动态网页</h2><p>实际生活中有很多网页需要通过 js 来渲染，直接使用 scrapy 无法直接爬取，因此需要借助于 splash 来实现。具体使用方法可以参考这个<a href="https://splash-cn-doc.readthedocs.io/zh_CN/latest/scrapy-splash-toturial.html" target="_blank" rel="noopener">教程</a>。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.scrapy.org/en/latest/" target="_blank" rel="noopener">Scrapy documentation</a><br>[2] <a href="https://splash-cn-doc.readthedocs.io/zh_CN/latest/scrapy-splash-toturial.html" target="_blank" rel="noopener">scrapy-splash 教程</a></p>
 
     </div>
 
@@ -303,12 +314,12 @@
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
 
-  <p><span>本文标题:</span>Linux 服务器连接浙大 VPN</a></p>
+  <p><span>本文标题:</span>利用 Scrapy 编写爬虫程序</a></p>
   <p><span>文章作者:</span>Zhikun Zhang</a></p>
-  <p><span>发布时间:</span>2019年07月16日 - 17:06:55</p>
-  <p><span>最后更新:</span>2020年06月02日 - 01:11:45</p>
-  <p><span>原始链接:</span><a href="/2019/07/16/install-zjunet/" title="Linux 服务器连接浙大 VPN">http://zhangzhk.com/2019/07/16/install-zjunet/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhangzhk.com/2019/07/16/install-zjunet/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2020年09月11日 - 17:15:48</p>
+  <p><span>最后更新:</span>2020年09月11日 - 18:49:41</p>
+  <p><span>原始链接:</span><a href="/2020/09/11/scrapy-tutorial/" title="利用 Scrapy 编写爬虫程序">http://zhangzhk.com/2020/09/11/scrapy-tutorial/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhangzhk.com/2020/09/11/scrapy-tutorial/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -331,9 +342,6 @@
     </div>
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/vpn/" rel="tag"># vpn</a>
-          </div>
 
         
 
@@ -341,13 +349,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/07/13/deploy-ceph-for-storage-sharing/" rel="prev" title="使用 Ceph 实现多服务器存储共享">
-      <i class="fa fa-chevron-left"></i> 使用 Ceph 实现多服务器存储共享
+    <a href="/2019/07/16/install-zjunet/" rel="prev" title="Linux 服务器连接浙大 VPN">
+      <i class="fa fa-chevron-left"></i> Linux 服务器连接浙大 VPN
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/09/11/scrapy-tutorial/" rel="next" title="利用 Scrapy 编写爬虫程序">
-      利用 Scrapy 编写爬虫程序 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -406,7 +411,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-zjunet"><span class="nav-number">1.</span> <span class="nav-text">安装 zjunet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接浙大-vpn"><span class="nav-number">2.</span> <span class="nav-text">连接浙大 vpn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有用链接"><span class="nav-number">3.</span> <span class="nav-text">有用链接</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scrapy-基本使用方法"><span class="nav-number">2.</span> <span class="nav-text">Scrapy 基本使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scrapy-编写基础爬虫程序"><span class="nav-number">2.2.</span> <span class="nav-text">Scrapy 编写基础爬虫程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用代理"><span class="nav-number">2.3.</span> <span class="nav-text">使用代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行程序"><span class="nav-number">2.4.</span> <span class="nav-text">运行程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Xpath-使用方法"><span class="nav-number">3.</span> <span class="nav-text">Xpath 使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用语法"><span class="nav-number">3.1.</span> <span class="nav-text">常用语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#爬取动态网页"><span class="nav-number">4.</span> <span class="nav-text">爬取动态网页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

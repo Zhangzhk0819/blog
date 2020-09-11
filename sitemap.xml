@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhangzhk.com/2020/09/11/scrapy-tutorial/</loc>
+    
+    <lastmod>2020-09-11T16:49:41.801Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhangzhk.com/2019/07/16/install-zjunet/</loc>
+    
+    <lastmod>2020-06-01T23:11:45.845Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://zhangzhk.com/2017/09/21/commands-of-git/</loc>
     
     <lastmod>2020-05-15T23:56:38.555Z</lastmod>
@@ -89,13 +103,6 @@
     <loc>http://zhangzhk.com/2017/09/17/manage-two-github-accounts-in-one-computer/</loc>
     
     <lastmod>2020-05-15T23:48:29.919Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zhangzhk.com/2019/07/16/install-zjunet/</loc>
-    
-    <lastmod>2020-05-15T23:48:19.690Z</lastmod>
     
   </url>
   

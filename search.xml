@@ -277,7 +277,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux 服务器使用 Zjunet 连接浙大 VPN</title>
+    <title>Linux 服务器连接浙大 VPN</title>
     <url>/2019/07/16/install-zjunet/</url>
     <content><![CDATA[<p>这篇博客主要介绍 Linux 服务器如何连接浙大 VPN。</p>
 <a id="more"></a>
@@ -957,5 +957,54 @@
         <tag>python</tag>
         <tag>tensorflow</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>利用 Scrapy 编写爬虫程序</title>
+    <url>/2020/09/11/scrapy-tutorial/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Scrapy 是目前最广泛使用的爬虫框架之一，只需要编写非常少的代码就能实现需要的爬虫功能。</p>
+<a id="more"></a>
+
+
+
+<h2 id="Scrapy-基本使用方法"><a href="#Scrapy-基本使用方法" class="headerlink" title="Scrapy 基本使用方法"></a>Scrapy 基本使用方法</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>Scrapy 安装非常方便，直接使用 pip 安装</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pip install scrapy</span><br></pre></td></tr></table></figure>
+
+<h3 id="Scrapy-编写基础爬虫程序"><a href="#Scrapy-编写基础爬虫程序" class="headerlink" title="Scrapy 编写基础爬虫程序"></a>Scrapy 编写基础爬虫程序</h3><p>首先使用以下命令自动创建一个爬虫模板：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">scrapy startproject project_name</span><br></pre></td></tr></table></figure>
+
+<p>接下来在 ‘spider’ 文件夹下建立一个爬虫文件，以下是一段模板程序：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class DemoSpider(scrapy.Spider):</span><br><span class="line">    name &#x3D; &quot;demo&quot;</span><br><span class="line"></span><br><span class="line">    def start_requests(self):</span><br><span class="line">        urls &#x3D; [</span><br><span class="line">            &#39;http:&#x2F;&#x2F;quotes.toscrape.com&#x2F;page&#x2F;1&#x2F;&#39;,</span><br><span class="line">            &#39;http:&#x2F;&#x2F;quotes.toscrape.com&#x2F;page&#x2F;2&#x2F;&#39;,</span><br><span class="line">        ]</span><br><span class="line">        for url in urls:</span><br><span class="line">            yield scrapy.Request(url&#x3D;url, callback&#x3D;self.parse)</span><br><span class="line"></span><br><span class="line">    def parse(self, response):</span><br><span class="line">        page &#x3D; response.url.split(&quot;&#x2F;&quot;)[-2]</span><br><span class="line">        filename &#x3D; &#39;quotes-%s.html&#39; % page</span><br><span class="line">        with open(filename, &#39;wb&#39;) as f:</span><br><span class="line">            f.write(response.body)</span><br><span class="line">        self.log(&#39;Saved file %s&#39; % filename)</span><br></pre></td></tr></table></figure>
+
+<p>该程序包含三大基本组件，name 指定爬虫的名字，必须唯一。start_requests 函数向目标网址发送请求，其中 Request() 类必须指定 url 和 callback 函数，callback 函数的作用为解析 HTML 文件。parse 函数实现 HTML 解析功能，实例中实现的功能为把爬取的 HTML 文件直接存储在本地。接下来的内容将会介绍其他内容提取方法。</p>
+<h3 id="使用代理"><a href="#使用代理" class="headerlink" title="使用代理"></a>使用代理</h3><p>很多网站比如 google 会部署反爬虫程序来减小服务器压力，如果我们直接使用本地 ip 运行大量爬虫，很有可能会被封掉。在这种情况下我们可以使用代理，这里介绍一个代理网站 <a href="https://www.scraperapi.com/" target="_blank" rel="noopener">https://www.scraperapi.com/</a>，免费版本每个月有 5000 次爬取机会。在程序中定义以下函数：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def get_url(url):</span><br><span class="line">    payload &#x3D; &#123;&#39;api_key&#39;: API_KEY, &#39;url&#39;: url, &#39;country_code&#39;: &#39;us&#39;&#125;</span><br><span class="line">    proxy_url &#x3D; &#39;http:&#x2F;&#x2F;api.scraperapi.com&#x2F;?&#39; + urlencode(payload)</span><br><span class="line">    return proxy_url</span><br></pre></td></tr></table></figure>
+
+<p> 其中 API_KEY 在注册账户中可以找到。</p>
+<h3 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h3><p> Scrapy 一般使用命令函来运行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">scrapy crawl demo -o save_file.jl</span><br></pre></td></tr></table></figure>
+
+<p>其中 save_file.jl 可以使用 jsonline 格式保存爬取的数据。</p>
+<p>如果想要使用 pycharm 来调试爬虫程序，可以在 setting.py 同级目录新建一个文件，并编写以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from scrapy import cmdline</span><br><span class="line"></span><br><span class="line">name &#x3D; &#39;demo&#39;</span><br><span class="line">cmd &#x3D; &#39;scrapy crawl &#123;0&#125; -o temp.jl&#39;.format(name)</span><br><span class="line">cmdline.execute(cmd.split())</span><br></pre></td></tr></table></figure>
+
+<p>以上代码有一个问题是执行完爬虫程序就直接退出了，无法串行执行两个以上爬虫程序或者对爬取数据进行后续处理，为了解决这个问题，可以使用以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import os</span><br><span class="line"></span><br><span class="line">name &#x3D; &#39;demo&#39;</span><br><span class="line">os.system(&#39;scrapy crawl &#123;0&#125; -o temp.jl&#39;.format(name))</span><br></pre></td></tr></table></figure>
+
+<p>这行代码有一个问题是没有办法停在爬虫程序的断点处，因此没法调试爬虫。所以我现在的策略是使用 cmdline 来调试单个爬虫程序，在单个爬虫程序调试完成后，再使用 os.system 来实现爬虫数据后处理。</p>
+<h2 id="Xpath-使用方法"><a href="#Xpath-使用方法" class="headerlink" title="Xpath 使用方法"></a>Xpath 使用方法</h2><p>Scrapy 使用 selector 提取 HTML 文件内容，其中 selector 有很多选择，比如 css 和 xpath，这里我们只介绍 xpath。</p>
+<h3 id="常用语法"><a href="#常用语法" class="headerlink" title="常用语法"></a>常用语法</h3><ul>
+<li>//: 提取子目录所有满足条件内容</li>
+<li>/: 提取直接子目录所有满足条件内容</li>
+<li>[]: 设置提取条件</li>
+<li>@: 指定属性</li>
+<li>text(): 提取文字</li>
+</ul>
+<p>一下为一个实例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">response.xpath(&#39;&#x2F;&#x2F;div&#x2F;&#x2F;a[@class&#x3D;&quot;gsc_a_at&quot;]&#x2F;&#x2F;text()&#39;).extract()</span><br></pre></td></tr></table></figure>
+
+<p>这段程序提取了所有 div 标签下的所有 a 标签，其中 a 标签需要带有属性 class=”gsc_a_at”，并提取满足条件标签的所有文字。extract() 把 selector 转化成 string，如果有多个满足条件的内容，将形成一个列表。</p>
+<h2 id="爬取动态网页"><a href="#爬取动态网页" class="headerlink" title="爬取动态网页"></a>爬取动态网页</h2><p>实际生活中有很多网页需要通过 js 来渲染，直接使用 scrapy 无法直接爬取，因此需要借助于 splash 来实现。具体使用方法可以参考这个<a href="https://splash-cn-doc.readthedocs.io/zh_CN/latest/scrapy-splash-toturial.html" target="_blank" rel="noopener">教程</a>。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.scrapy.org/en/latest/" target="_blank" rel="noopener">Scrapy documentation</a><br>[2] <a href="https://splash-cn-doc.readthedocs.io/zh_CN/latest/scrapy-splash-toturial.html" target="_blank" rel="noopener">scrapy-splash 教程</a></p>
+]]></content>
   </entry>
 </search>
