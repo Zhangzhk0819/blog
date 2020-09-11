@@ -28,7 +28,7 @@
 <meta property="og:description" content="简介Scrapy 是目前使用最广泛的爬虫框架之一，只需要编写非常少的代码就能实现需要的爬虫功能。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-11T15:15:48.000Z">
-<meta property="article:modified_time" content="2020-09-11T16:55:00.492Z">
+<meta property="article:modified_time" content="2020-09-11T17:01:27.770Z">
 <meta property="article:author" content="Zhikun Zhang">
 <meta property="article:tag" content="crawler">
 <meta property="article:tag" content="scrapy">
@@ -233,7 +233,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-09-11 17:15:48 / Modified: 18:55:00" itemprop="dateCreated datePublished" datetime="2020-09-11T17:15:48+02:00">2020-09-11</time>
+              <time title="Created: 2020-09-11 17:15:48 / Modified: 19:01:27" itemprop="dateCreated datePublished" datetime="2020-09-11T17:15:48+02:00">2020-09-11</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -282,7 +282,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def get_url(url):</span><br><span class="line">    payload &#x3D; &#123;&#39;api_key&#39;: API_KEY, &#39;url&#39;: url, &#39;country_code&#39;: &#39;us&#39;&#125;</span><br><span class="line">    proxy_url &#x3D; &#39;http:&#x2F;&#x2F;api.scraperapi.com&#x2F;?&#39; + urlencode(payload)</span><br><span class="line">    return proxy_url</span><br></pre></td></tr></table></figure>
 
 <p> 其中 API_KEY 在注册账户中可以找到。</p>
-<h3 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h3><p> Scrapy 一般使用命令函来运行</p>
+<h3 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h3><p> Scrapy 一般使用命令行来运行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl demo -o save_file.jl</span><br></pre></td></tr></table></figure>
 
 <p>其中 save_file.jl 可以使用 jsonline 格式保存爬取的数据。</p>
@@ -306,7 +306,7 @@
 
 <p>这段程序提取了所有 div 标签下的所有 a 标签，其中 a 标签需要带有属性 class=”gsc_a_at”，并提取满足条件标签的所有文字。extract() 把 selector 转化成 string，如果有多个满足条件的内容，将形成一个列表。</p>
 <h2 id="爬取动态网页"><a href="#爬取动态网页" class="headerlink" title="爬取动态网页"></a>爬取动态网页</h2><p>实际生活中有很多网页需要通过 js 来渲染，直接使用 scrapy 无法直接爬取，因此需要借助于 splash 来实现。具体使用方法可以参考这个<a href="https://splash-cn-doc.readthedocs.io/zh_CN/latest/scrapy-splash-toturial.html" target="_blank" rel="noopener">教程</a>。</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.scrapy.org/en/latest/" target="_blank" rel="noopener">Scrapy documentation</a><br>[2] <a href="https://splash-cn-doc.readthedocs.io/zh_CN/latest/scrapy-splash-toturial.html" target="_blank" rel="noopener">scrapy-splash 教程</a><br>[3] <a href="https://zhuanlan.zhihu.com/p/29436838" target="_blank" rel="noopener">学爬虫利器XPath,看这一篇就够了</a><br>[4] <a href="http://plasmasturm.org/log/xpath101/" target="_blank" rel="noopener">Concise XPath</a></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.scrapy.org/en/latest/" target="_blank" rel="noopener">Scrapy documentation</a><br>[2] <a href="https://splash-cn-doc.readthedocs.io/zh_CN/latest/scrapy-splash-toturial.html" target="_blank" rel="noopener">scrapy-splash 教程</a><br>[3] <a href="https://zhuanlan.zhihu.com/p/29436838" target="_blank" rel="noopener">学爬虫利器XPath,看这一篇就够了</a><br>[4] <a href="http://plasmasturm.org/log/xpath101/" target="_blank" rel="noopener">Concise XPath</a><br>[5] <a href="https://www.scraperapi.com/" target="_blank" rel="noopener">scraperapi</a></p>
 
     </div>
 
@@ -328,7 +328,7 @@
   <p><span>本文标题:</span>利用 Scrapy 编写爬虫程序</a></p>
   <p><span>文章作者:</span>Zhikun Zhang</a></p>
   <p><span>发布时间:</span>2020年09月11日 - 17:15:48</p>
-  <p><span>最后更新:</span>2020年09月11日 - 18:55:00</p>
+  <p><span>最后更新:</span>2020年09月11日 - 19:01:27</p>
   <p><span>原始链接:</span><a href="/2020/09/11/scrapy-tutorial/" title="利用 Scrapy 编写爬虫程序">http://zhangzhk.com/2020/09/11/scrapy-tutorial/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://zhangzhk.com/2020/09/11/scrapy-tutorial/"  aria-label="复制成功！"></i></span>
   </p>
